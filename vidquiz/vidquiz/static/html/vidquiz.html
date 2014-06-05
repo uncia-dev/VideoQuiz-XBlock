@@ -1,0 +1,42 @@
+<div class="vidquiz_block">
+<p>VideoQuiz: count is now
+    <span class='count'>{self.count}</span> (click me to increment).
+</p>
+
+    <!-- Video player affected by Popcorn.js -->
+    <video id="vid_lecture" height={self.height} width={self.width} controls>
+        <source src="{self.href}"> <!-- will need work here to make it work cross-platform -->
+    </video>
+    <!-- Question form to be displayed for each question -->
+    <div id="quiz_space"> <!-- remember to make it hidden again -->
+        <p id="question">Gibberish?</p>
+        <p>
+            <span id="answer">Gibberish!</span>
+            <img id="answer_correct" src="/resource/equality_demo/public/images/correct-icon.png">
+            <img id="answer_incorrect" src="/resource/equality_demo/public/images/incorrect-icon.png">
+        </p>
+
+        <!-- answer options for students -->
+
+        <!-- simple answer -->
+        <input id="student_answer" type="text">
+
+        <!-- multiple choice -->
+<!-- this needs to be populated -->
+
+        <!-- checkboxes -->
+
+        <p id="tries"></p>
+        <div>
+            <input id="btn_submit" type="button" value="Submit">
+            <input id="btn_skip" type="button" value="Skip">
+            <input id="btn_continue" type="button" value="Continue">
+        </div>
+
+    </div>
+
+    <div id="DEV">
+        <input id="print_all" type="button" value="Print to Console" onclick="printall()">
+    </div>
+
+</div>
