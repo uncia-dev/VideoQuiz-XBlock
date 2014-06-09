@@ -84,6 +84,17 @@ class VideoQuiz(XBlock):
         return {"count": self.count}
 
 
+    def studio_view(self, context):
+
+        html = self.resource_string("static/html/vidquiz.html")
+        frag = Fragment(html.format(self=self))
+        frag.add_css(self.resource_string("static/css/vidquiz.css"))
+        frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
+        frag.add_javascript(self.resource_string("static/js/src/jquery.min.js"))
+        frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
+        frag.initialize_js('VideoQuiz')
+        return frag
+
     # TO-DO: change this to create the scenarios you'd like to see in the
     # workbench while developing your XBlock.
     @staticmethod
@@ -178,11 +189,3 @@ class QuizQuestion():
         '''
 
         return False
-
-
-
-
-
-
-
-
