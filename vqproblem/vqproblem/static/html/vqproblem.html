@@ -1,0 +1,47 @@
+<div class="vqproblem_block">
+
+    <p>VideoQuizProblem: count is now
+        <span class='count'>{self.count}</span> (click me to increment).
+    </p>
+
+    <div id="quiz_space"> <!-- remember to make it hidden again -->
+        <p id="question"></p>
+        <p>
+            <span id="answer"></span>
+            <img id="answer_icon" src="">
+        </p>
+
+        <!-- Add options in this space: simple answer, multiple choice, checkboxes -->
+
+        <input id="student_answer" type="text">
+
+        <!-- Populate a list of checkboxes or radio buttons -->
+
+
+        <p id="tries"></p>
+        <div>
+            <input id="btn_submit" type="button" value="Submit">
+            <input id="btn_skip" type="button" value="Skip">
+            <input id="btn_continue" type="button" value="Continue">
+        </div>
+
+    </div>
+
+    <div id="DEV">
+
+    <hr/>
+
+    <p>Development Stuff</p>
+
+    Question: {self.question}<br/>
+    Type: {self.type}<br/>
+    Answer: {self.answer}<br/>
+    Options: {self.options}<br/>
+    Tries: {self.tries}<br/>
+    Max Tries: {self.tries}<br/>
+    Result: {self.result}<br/>
+    Touched: {self.touched}<br/>
+
+    </div>
+
+</div>

@@ -8,11 +8,11 @@
   min-height: 320px;
 }
 
-#quiz_space {
+.quiz_space {
 
 }
 
-#DEV {
+.DEV {
   text-align: center;
   color:green;
 }

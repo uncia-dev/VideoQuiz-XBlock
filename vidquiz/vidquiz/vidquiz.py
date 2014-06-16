@@ -1,25 +1,59 @@
-"""
-TO-DO: Write a description of what this XBlock is.
-"""
+"""TO-DO: Write a description of what this XBlock is."""
 
 import pkg_resources
 
 from xblock.core import XBlock
-from xblock.fields import Scope, Integer, String
+from xblock.fields import Scope, Integer, String, Field, List
+from xblock.fragment import Fragment
+from urlparse import urlparse
+from xblock.run_script import run_script
 from xblock.fragment import Fragment
 
-from urlparse import urlparse
-from xblock.fragment import Fragment
+
+class QuizQuestion():
+    """This object contains the contents of a quiz question/problem"""
+
+    # kind of question being asked
+    kind = 'SA'
+
+    # question being asked
+    question = ''
+
+    # options from which to grab an answer
+    options = []
+
+    # answer(s) to the question can be an array
+    answer = []
+
+    # tries left
+    tries = 3
+
+    '''
+    Constructor takes in a string for the question, an array of choices as answers (for multiple choice and
+    checkboxes only), an array of potential answers, the kind of question (Simple Answer, Multiple Choice, Check Boxes),
+    and the number of attempts a student has.
+    '''
+    def __init__(self, question='', options=[], answer=[], kind='SA', tries=3):
+        self.kind = kind
+        self.question = question
+        self.options = options
+        self.answer = answer
+        self.tries = tries
+
+    ''' For development purposes: Output QuizQuestion variables '''
+    def __str__(self):
+        return "[Question: " + self.question + ", Kind: " + self.kind + ", Options: " + str(self.options) +\
+               ", Answer(s): " + str(self.answer) + ", Result: " + ", Tries: " + str(self.tries) + "]"
 
 
 class VideoQuiz(XBlock):
     """
-    TO-DO: document what your XBlock does.
+
     """
 
     href = String(
         help="URL of the video page at the provider",
-        default=None, scope=Scope.content
+        default="", scope=Scope.content
     )
 
     width = Integer(
@@ -34,21 +68,161 @@ class VideoQuiz(XBlock):
 
     text_area = String(
         help="Area for custom text",
-        default='', scope=Scope.content
+        default="", scope=Scope.content
     )
 
     quiz_file = String(
         help="Path to the quiz file being read",
-        default='', scope=Scope.content
+        default="", scope=Scope.content
     )
 
-
-
-    # TO-DO: delete count, and define your own fields.
-    count = Integer(
-        default=0, scope=Scope.user_state,
-        help="A simple counter, to show something happening",
+    index = Integer(
+        default=-1, scope=Scope.user_state,
+        help="Counter that keeps track of the current question being displayed",
     )
+
+    '''
+    tries = List(
+        default=[], scope=Scope.user_state,
+        help="",
+    )'''
+
+    '''
+    results = List(
+        default=[], scope=Scope.user_state,
+        help="",
+    )
+    '''
+
+    #TODO convert these to XBlock fields in order to track them
+    tries = []
+    results = []
+    attempted = []
+    answers = []
+    # container of quiz questions
+    quiz = []
+    # trigger times for each quiz question
+    quiz_cuetimes = []
+
+    def load_quiz(self, path):
+        """Load all questions of the quiz from file located at path"""
+
+        if len(self.quiz) == 0:
+
+            # open quiz file and read its contents to the question container
+            handle = open(path, 'r')
+
+            # Quiz file pattern:
+            # cue time ~ question kind ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ tries
+
+            # Check if file is valid
+            if handle.readline() != "#vidquiz_file\n":
+                print("Not a valid vidquiz file!")
+                # ignore this file and leave quiz empty
+            else:
+                handle.readline()  # skip syntax line
+                # grab questions, answers, etc from file now and build a quiz
+                for line in handle:
+                    tmp = line.strip('\n').split(" ~ ")
+                    tmp_opt = tmp[3].split("|")
+                    tmp_ans = tmp[4].split("|")
+                    self.quiz_cuetimes.append(tmp[0])
+                    self.quiz.append(QuizQuestion(tmp[2], tmp_opt, tmp_ans, tmp[1], int(tmp[5])))
+                    self.tries.append(int(tmp[5]))
+                    self.results.append(False)
+                    self.attempted.append(False)
+
+    @XBlock.json_handler
+    def get_to_work(self, data, suffix=''):
+        """Perform the actions below when the module is loaded"""
+
+        # load contents of quiz file
+        self.load_quiz(self.quiz_file)
+
+        # return cue time triggers
+        return {"cuetimes": self.quiz_cuetimes}
+
+    def grab_current_question(self):
+        """Return current quiz question and its index"""
+
+        content = {"index": self.index,
+                   "question": self.quiz[self.index].question,
+                   "kind": self.quiz[self.index].kind,
+                   "options": self.quiz[self.index].options,
+                   "answer": "away with you, pesky cheater",
+                   "attempted": self.attempted[self.index],
+                   "student_tries": self.tries[self.index],
+                   "result": self.results[self.index]
+                   }
+
+        # Send out answers ONLY IF the student answered correctly
+        if self.results[self.index]:
+            content["answer"] = self.quiz[self.index].answer
+
+        print("Content: " + str(content))
+        print("Results: " + str(self.results))
+        print("Tries: " + str(self.tries))
+        print("Answers " + str(self.answers))
+
+        return content
+
+    @XBlock.json_handler
+    def index_goto(self, data, suffix=''):
+        """Retrieve index from JSON and return quiz question strings located at that index"""
+
+        if self.index in range(0, len(self.quiz)):
+            self.index = data['index']
+
+        return self.grab_current_question()
+
+    @XBlock.json_handler
+    def index_reset(self, data, suffix=''):
+        """Reset index to 0"""
+
+        if self.index in range(0, len(self.quiz)):
+            self.index = 0
+
+        return self.grab_current_question()
+
+    def answer_validate(self, left, right, kind="SA"):
+        """Validate student answer and return true if the answer is correct, false otherwise"""
+
+        # just a basic string comparison here
+        # expand if you wish to allow students some leniency with their answers
+
+        if left in right:
+            return True
+        else:
+            return False
+
+    @XBlock.json_handler
+    def answer_submit(self, data, suffix=''):
+        """~"""
+
+        # do validation only if there are tries left
+        if self.tries[self.index] > 0:
+
+            # Valid question kind
+            if self.quiz[self.index].kind in ["SA", "MC", "CB"]:
+
+                if self.answer_validate(data["answer"], self.quiz[self.index].answer):
+                    self.results[self.index] = True
+
+                self.tries[self.index] -= 1
+
+                self.answers.append([self.index, data["answer"]])
+
+            else:
+                print("Unsupported kind of question.")
+
+        return self.grab_current_question()
+
+    # ================================================================================================================ #
+
+    def resource_string(self, path):
+        """Handy helper for getting resources from our kit."""
+        data = pkg_resources.resource_string(__name__, path)
+        return data.decode("utf8")
 
     # TO-DO: change this view to display your data your own way.
     def student_view(self, context=None):
@@ -60,132 +234,17 @@ class VideoQuiz(XBlock):
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/vidquiz.css"))
         frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
-        frag.add_javascript(self.resource_string("static/js/src/jquery.min.js"))
         frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
         frag.initialize_js('VideoQuiz')
         return frag
 
-    def resource_string(self, path):
-        """Handy helper for getting resources from our kit."""
-        data = pkg_resources.resource_string(__name__, path)
-        return data.decode("utf8")
-
-    # TO-DO: change this handler to perform your own actions.  You may need more
-    # than one handler, or you may not need any handlers at all.
-    @XBlock.json_handler
-    def increment_count(self, data, suffix=''):
-        """
-        An example handler, which increments the data.
-        """
-        # Just to show data coming in...
-        assert data['hello'] == 'world'
-
-        self.count += 1
-        return {"count": self.count}
-
-
-    def studio_view(self, context):
-
-        html = self.resource_string("static/html/vidquiz.html")
-        frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/vidquiz.css"))
-        frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
-        frag.add_javascript(self.resource_string("static/js/src/jquery.min.js"))
-        frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
-        frag.initialize_js('VideoQuiz')
-        return frag
-
-    # TO-DO: change this to create the scenarios you'd like to see in the
-    # workbench while developing your XBlock.
     @staticmethod
     def workbench_scenarios():
-        """A canned scenario for display in the workbench."""
+        """Workbench scenario for development and testing"""
         return [
             ("VideoQuiz",
-             """<vertical_demo>
-                <vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" width="480" height="320"/>
-                </vertical_demo>
+             """
+                <vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv"
+                 quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>
              """),
         ]
-
-
-class QuizQuestion():
-
-    # question being asked
-    question = ''
-
-    # options from which to grab an answer
-    options = []
-
-    # answers to the question can be an array
-    answers = []
-
-    # tries left
-    tries = 3
-
-    # student result (fail by default)
-    result = False
-
-    # flag for whether or not student dealt with this question
-    touched = False
-
-    def __init__(question = '', type = 'SA', options = [], answer = [], tries = 3):
-        print("x");
-
-    ''' Getter for tries '''
-    def get_tries(self):
-        return self.tries
-
-    ''' Getter for question '''
-    def get_question(self):
-        return self.question
-
-    ''' Getter for answer '''
-    def get_answers (self):
-        return self.answers
-
-    ''' Getter for result '''
-    def get_result(self):
-        return self.result
-
-    ''' Getter for touched '''
-    def get_touched(self):
-        return self.touched
-
-    ''' Set status of this question to touched '''
-    def touch(self):
-        touched = True
-
-    ''' Validate student answer to be used for more precise or lenient validation '''
-    def validate(self, ans=''):
-        # For now it's just a direct string comparison
-        return self.answers == ans
-
-    ''' Student skips the question. Sets tries to 0 and touched to True '''
-    def skip(self):
-        self.tries = 0
-        self.touch()
-
-    ''' Submit student answer and return validity of answer '''
-    def submit(ans=''):
-        '''
-            # Only process submission if the question was never attempted
-            if not self.touched():
-                self.tries -= 1 # decrement tries
-                result = validate(ans) # validate answer
-                if (tries == 0 || result) def touch()
-
-        '''
-        return False
-
-    ''' For development purposes: Output QuizQuestion variables '''
-    def get_vars(self):
-        '''
-
-        return "[Question: " + question + ", Answer: " + answer + ", Result: " + result +
-        ", Tries left: " + tries + ", Was it attempted? " + touched + "]"
-
-
-        '''
-
-        return False

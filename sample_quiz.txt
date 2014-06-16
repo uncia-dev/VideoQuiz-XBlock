@@ -1,0 +1,5 @@
+#vidquiz_file
+#Syntax for this file: cue time ~ question kind ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ tries
+1 ~ SA ~ Is this the first question? ~  ~ yes ~ 3
+2 ~ MC ~ Is this the second question? ~ yes|no|maybe ~ no ~ 3
+4 ~ CB ~ Is this the last question? ~ yes|no|maybe ~ yes|maybe ~ 3
