@@ -21,96 +21,124 @@ function VideoQuiz(runtime, element) {
 
     }
 
+    // TODO STUFF BELOW
+    // function createMultipleChoiceElement(name, type=MC/CB/LI)
+
+
     /* Update contents of quiz field to those received from quiz_content */
     function quizUpdate(quiz_content) {
 
-        quizReset();
+        quizReset(); // refresh quiz form; not the most optimal way, but it does the job
 
         $('.index', element).text(quiz_content.index);
         $('.question', element).text(quiz_content.question);
 
         // Draw multiple choice or checkbox options
-        if (quiz_content.kind != "SA") {
-            // draw the list here
-            // TODO: TEMPORARY
-            $('.options', element).text(quiz_content.options);
+        if (quiz_content.kind == "SA") {
+            $(".student_answer_simple").show();
+
+        } else if (quiz_content.kind == "MC" || quiz_content.kind == "CB") {
+
+            var kind = "";
+
+            if (quiz_content.kind == "MC") kind = "radio";
+            else kind = "checkbox";
+
+            console.log(kind);
+
+
+            // TODO FINISH THIS!
+/*
+
+            $(".student_answer_simple").hide();
+
+            for (var i = 0; i < quiz_content.options.length; i++) {
+
+                if (quiz_content.kind == "MC") {
+
+                    $('.options').append(
+                            "<p><input type=\"radio\" class=\"opt" + i + "\" value=\"" +
+                                quiz_content.options[i] + "\">" + quiz_content.options[i] + "</p>");
+
+                } else {
+
+                    $('.options').append(
+                            "<p><input type=\"checkbox\" class=\"opt" + i + "\" value=\"" +
+                                quiz_content.options[i] + "\">" + quiz_content.options[i] + "</p>");
+
+                }
+
+            }
+*/
+            //$('.options', element).text(quiz_content.options);
+
+        } else {
+
+            $(".question").text("Invalid question type for question ID=" + quiz_content.index + ". Please contact your" +
+                " professor.");
+            $(".btn_submit").hide();
+            $(".tries").hide();
+            $(".student_answer_simple").hide();
+
         }
 
-        /*
         // Display feedback if student already attempted or completed this question
-        if (quiz_content.attempted) {
+        if (quiz_content.result >= 4) {
 
             $('.btn_submit').hide();
             $('.btn_next').val("Continue");
             $('.tries').hide();
             $('.student_answer_simple').hide();
 
-            if (quiz_content.result) {
-                $(".answer_feedback", element).show().text("You have already answered this question. The answer was: "
+            // TODO LIST ALL CHOICES FOR MC AND CB HERE, WITHOUT CHECKBOXES/RADIOS
+
+            if (quiz_content.result == 5) {
+                $(".answer_feedback").show().text("You have already answered this question. Valid answers were: "
                     + quiz_content.answer);
             } else {
-                $(".answer_feedback", element).show().text("You have already attempted this question.");
+                $(".answer_feedback").show().text("You have already attempted this question.");
             }
 
         } else {
-        */
 
-        // TODO indent this further once you can get around the attempted questions issue
+            // Output tries left
+            if (quiz_content.student_tries > 0) {
+                $(".tries").text("Tries left: " + quiz_content.student_tries);
 
-        // Output tries left
-        if (quiz_content.student_tries > 0) {
+                // Provide feedback on the given answer
 
-            $(".tries").text("Tries left: " + quiz_content.student_tries);
+                // Right answer
+                if (quiz_content.result == 3) {
 
-        } else {
+                    $(".answer_icon").show().attr("src", "/resource/equality_demo/public/images/correct-icon.png");
+                    $(".answer_feedback").show().text("Your answer is correct!");
 
-            $(".tries").text("Sorry, you ran out of tries.");
-            // don't bother attempting to cheat here, the server will just refuse to validate further input
-            $(".btn_submit").hide();
-            $(".btn_next").val("Continue");
-            $(".student_answer_simple").hide();
+                    $('.tries').hide();
+                    $('.btn_submit').hide();
+                    $('.student_answer_simple', element).hide();
+                    $('.btn_next').val("Continue");
 
-        }
+                // Wrong answer
+                } else if (quiz_content.result == 1) {
 
-        // TODO finish part below
+                    $(".answer_icon").show().attr("src", "/resource/equality_demo/public/images/incorrect-icon.png");
+                    $(".answer_feedback").show().text("Sorry, your answer is not correct!");
+                    $(".btn_submit").val("Resubmit");
+                    $('.btn_next').val("Continue");
 
-        if (quiz_content.result) {
+                }
 
-            $(".answer_icon").show().attr("src", "/resource/equality_demo/public/images/correct-icon.png");
-            $(".answer_feedback").show().text("Your answer is correct!");
-
-            $('.tries', element).hide();
-            $('.btn_submit', element).hide();
-            $('.btn_next').val("Continue");
-            $('.student_answer_simple', element).hide();
-
-        } else {
-
-            /*
-            $(".answer_icon").show().attr("src", "/resource/equality_demo/public/images/incorrect-icon.png");
-            $(".answer_feedback").show().text("Sorry, your answer is not correct!");
-            $(".btn_submit").val("Resubmit");
-
-            if (quiz_content.tries > 0) {
-
-                $('.tries', element).text("Tries left: " + quiz_content.student_tries);
-                $('.btn_submit', element).show();
-                $('.student_answer', element).show();
-
+            // Tries ran out
             } else {
 
-                $('.tries', element).text("Sorry, you ran out of tries.");
-                $('.btn_submit', element).hide();
-                $('.student_answer', element).hide();
+                $(".tries").text("Sorry, you ran out of tries.");
+                $(".btn_submit").hide();
+                $(".btn_next").val("Continue");
+                $(".student_answer_simple").hide();
 
             }
 
-            $('.btn_next', element).val("Continue");
-            */
-
         }
-
-        //}
 
     }
 
@@ -167,7 +195,9 @@ function VideoQuiz(runtime, element) {
             $.ajax({
                 type: "POST",
                 url: runtime.handlerUrl(element, 'answer_submit'),
-                data: JSON.stringify({"answer": $('.student_answer_simple').val()}),
+                data: JSON.stringify({
+                    "answer": $('.student_answer_simple').val()
+                }),
                 success: quizUpdate
             });
 

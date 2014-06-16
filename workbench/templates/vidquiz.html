@@ -1,8 +1,10 @@
 <div class="vidquiz_block">
 
+
+
     <!-- Video player affected by Popcorn.js -->
-    <video class="vid_lecture" height={self.height} width={self.width} controls>
-        <source src="{self.href}"> <!-- will need work here to make it work cross-platform -->
+    <video class="vid_lecture" height={{height}} width={{width}} controls>
+        <source src="{{href}}"> <!-- will need work here to make it work cross-platform -->
     </video>
     <!-- Question form to be displayed for each question -->
     <div class="quiz_space" hidden>
@@ -11,7 +13,12 @@
 
         <form class="student_input" method="POST">
 
-            <div class="options"></div>
+            <div class="options">
+
+
+
+
+            </div>
 
             <input class="student_answer_simple" type="text">
 
@@ -34,7 +41,7 @@
     <div>
         <hr/>
             DEV STUFF
-            <p>Current quiz question index: <span class='index'>{self.index}</span></p>
+            <p>Current quiz question index: <span class='index'>{{ index }}</span></p>
         <hr/>
     </div>
 

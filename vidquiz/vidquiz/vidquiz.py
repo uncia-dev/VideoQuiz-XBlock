@@ -9,6 +9,9 @@ from urlparse import urlparse
 from xblock.run_script import run_script
 from xblock.fragment import Fragment
 
+from django.template import RequestContext
+from django.shortcuts import render_to_response
+
 
 class QuizQuestion():
     """This object contains the contents of a quiz question/problem"""
@@ -97,7 +100,13 @@ class VideoQuiz(XBlock):
     #TODO convert these to XBlock fields in order to track them
     tries = []
     results = []
-    attempted = []
+    # Result states for each question:
+    #   0 - not attempted
+    #   1 - attempted, with tries left
+    #   2 - just failed (ran out of tries)
+    #   3 - just passed
+    #   4 - failed
+    #   5 - passed
     answers = []
     # container of quiz questions
     quiz = []
@@ -129,8 +138,7 @@ class VideoQuiz(XBlock):
                     self.quiz_cuetimes.append(tmp[0])
                     self.quiz.append(QuizQuestion(tmp[2], tmp_opt, tmp_ans, tmp[1], int(tmp[5])))
                     self.tries.append(int(tmp[5]))
-                    self.results.append(False)
-                    self.attempted.append(False)
+                    self.results.append(0)
 
     @XBlock.json_handler
     def get_to_work(self, data, suffix=''):
@@ -150,19 +158,71 @@ class VideoQuiz(XBlock):
                    "kind": self.quiz[self.index].kind,
                    "options": self.quiz[self.index].options,
                    "answer": "away with you, pesky cheater",
-                   "attempted": self.attempted[self.index],
                    "student_tries": self.tries[self.index],
                    "result": self.results[self.index]
                    }
 
         # Send out answers ONLY IF the student answered correctly
-        if self.results[self.index]:
+        if self.results[self.index] == 5:
             content["answer"] = self.quiz[self.index].answer
 
         print("Content: " + str(content))
         print("Results: " + str(self.results))
-        print("Tries: " + str(self.tries))
         print("Answers " + str(self.answers))
+        print("Tries: " + str(self.tries))
+
+        return content
+
+    def answer_validate(self, left, right, kind="SA"):
+        """Validate student answer and return true if the answer is correct, false otherwise"""
+
+        # just a basic string comparison here
+        # expand if you wish to allow students some leniency with their answers
+
+        if left in right:
+            return True
+        else:
+            return False
+
+    @XBlock.json_handler
+    def answer_submit(self, data, suffix=''):
+        """~"""
+
+        # make sure the question is of a familiar kind
+        if self.quiz[self.index].kind in ["SA", "MC", "CB"]:
+
+            # record student answers; might be useful
+            self.answers.append([self.index, data["answer"]])
+
+            # are there any tries left?
+            if self.tries[self.index] > 0:
+
+                # glitch/cheat avoidance here
+                if not self.results[self.index] > 1:
+
+                    # decrease number of tries
+                    self.tries[self.index] -= 1
+
+                    # student enters valid answer(s)
+                    if self.answer_validate(data["answer"], self.quiz[self.index].answer):
+                        self.results[self.index] = 3
+                    # student enters invalid answer, but may still have tries left
+                    else:
+                        self.results[self.index] = 1
+
+        else:
+
+            print("Unsupported kind of question.")
+
+        content = self.grab_current_question()
+
+        # If the tries ran out, set this to failed
+        if self.tries[self.index] == 0 and self.results[self.index] == 1:
+            self.results[self.index] = 2
+
+        # mark this question as attempted, after preparing output
+        if self.results[self.index] in range(2, 4):
+            self.results[self.index] += 2
 
         return content
 
@@ -184,39 +244,6 @@ class VideoQuiz(XBlock):
 
         return self.grab_current_question()
 
-    def answer_validate(self, left, right, kind="SA"):
-        """Validate student answer and return true if the answer is correct, false otherwise"""
-
-        # just a basic string comparison here
-        # expand if you wish to allow students some leniency with their answers
-
-        if left in right:
-            return True
-        else:
-            return False
-
-    @XBlock.json_handler
-    def answer_submit(self, data, suffix=''):
-        """~"""
-
-        # do validation only if there are tries left
-        if self.tries[self.index] > 0:
-
-            # Valid question kind
-            if self.quiz[self.index].kind in ["SA", "MC", "CB"]:
-
-                if self.answer_validate(data["answer"], self.quiz[self.index].answer):
-                    self.results[self.index] = True
-
-                self.tries[self.index] -= 1
-
-                self.answers.append([self.index, data["answer"]])
-
-            else:
-                print("Unsupported kind of question.")
-
-        return self.grab_current_question()
-
     # ================================================================================================================ #
 
     def resource_string(self, path):
@@ -230,6 +257,9 @@ class VideoQuiz(XBlock):
         The primary view of the VideoQuiz, shown to students
         when viewing courses.
         """
+
+        print("fragment")
+
         html = self.resource_string("static/html/vidquiz.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/vidquiz.css"))
@@ -237,6 +267,30 @@ class VideoQuiz(XBlock):
         frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
         frag.initialize_js('VideoQuiz')
         return frag
+
+    def studio_view(self, context=None):
+        """
+        The primary view of the VideoQuiz, shown to students
+        when viewing courses.
+        """
+
+        '''
+        html = self.resource_string("static/html/vidquiz.html")
+        frag = Fragment(html.format(self=self))
+        frag.add_css(self.resource_string("static/css/vidquiz.css"))
+        frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
+        frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
+        frag.initialize_js('VideoQuiz')
+        return frag
+        '''
+
+        frag = Fragment(self.runtime.render_template(
+            "vidquiz.html",
+            index=self.index
+        ))
+
+        return frag
+
 
     @staticmethod
     def workbench_scenarios():

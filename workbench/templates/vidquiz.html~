@@ -1,4 +1,5 @@
 <div class="vidquiz_block">
+    {{ index }}
 
     <!-- Video player affected by Popcorn.js -->
     <video class="vid_lecture" height={self.height} width={self.width} controls>
