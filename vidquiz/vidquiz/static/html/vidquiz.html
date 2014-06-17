@@ -1,8 +1,10 @@
 <div class="vidquiz_block">
 
+    <p class="text_area"></p>
+
     <!-- Video player affected by Popcorn.js -->
     <video class="vid_lecture" height={self.height} width={self.width} controls>
-        <source src="{self.href}"> <!-- will need work here to make it work cross-platform -->
+        <source class="vidsrc" src="{self.href}"> <!-- will need work here to make it work cross-platform -->
     </video>
     <!-- Question form to be displayed for each question -->
     <div class="quiz_space" hidden>
@@ -31,11 +33,7 @@
 
     </div>
 
-    <div>
-        <hr/>
-            DEV STUFF
-            <p>Current quiz question index: <span class='index'>{self.index}</span></p>
-        <hr/>
-    </div>
+    <p class="novid" style="color: darkorange" hidden>There is no video to display.</p>
+    <p class="noquiz" style="color: darkorange" hidden>There is no quiz to display.</p>
 
 </div>

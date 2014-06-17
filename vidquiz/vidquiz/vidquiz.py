@@ -150,10 +150,11 @@ class VideoQuiz(XBlock):
         """Perform the actions below when the module is loaded."""
 
         # load contents of quiz file
-        self.load_quiz(self.quiz_file)
+        if self.quiz_file != "":
+            self.load_quiz(self.quiz_file)
 
         # return cue time triggers
-        return {"cuetimes": self.quiz_cuetimes}
+        return {"cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0, "text_area": self.text_area}
 
     def grab_current_question(self):
         """Return data relevant for each refresh of the quiz form."""
@@ -172,8 +173,6 @@ class VideoQuiz(XBlock):
             content["answer"] = self.quiz[self.index].answer
         else:
             content["answer"] = "if you see this, you cheated! begone!"
-
-        #TODO remove
 
         return content
 
@@ -270,6 +269,7 @@ class VideoQuiz(XBlock):
 
             # There is no validation! Enter your data carefully!
 
+            self.text_area = data["text_area"]
             self.quiz_file = data["quiz_file"]
             self.href = data["href"]
             self.height = data["height"]
@@ -277,6 +277,7 @@ class VideoQuiz(XBlock):
 
         # prepare current module parameters for return
         content = {
+            "text_area": self.text_area,
             "quiz_file": self.quiz_file,
             "href": self.href,
             "width": self.width,
@@ -325,6 +326,6 @@ class VideoQuiz(XBlock):
     def workbench_scenarios():
         """Workbench scenario for development and testing"""
         return [
-            ("VideoQuiz","""<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>"""),
+            ("VideoQuiz","""<vidquiz text_area="test text over here!" href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>"""),
         ]
 

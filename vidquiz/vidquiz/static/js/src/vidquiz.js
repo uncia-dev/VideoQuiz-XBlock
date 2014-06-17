@@ -2,6 +2,8 @@
 function VideoQuiz(runtime, element) {
 
     var cue_times = []; // store cue times for each quiz question
+    var quiz_loaded = false; // was the quiz loaded?
+    var text_area = ""; // text to be displayed above the video
 
     /*
     Resets question form to a blank state
@@ -153,6 +155,8 @@ function VideoQuiz(runtime, element) {
             async: false,
             success: function(result) {
                 cue_times = result.cuetimes;
+                quiz_loaded = result.quiz_loaded;
+                text_area = result.text_area;
             }
 
         });
@@ -173,43 +177,70 @@ function VideoQuiz(runtime, element) {
     /* Page is loaded. Do something. */
     $(function($) {
 
-        // Load quiz questions and grab their cue times
-        getToWork();
+        // TODO hide video frame if there is no video file!
+        // TODO ignore code if no quiz_file
 
-        // Popcorn object that affects video lecture
-        var corn = Popcorn(".vid_lecture");
+        if ($(".vidsrc").attr("src") != "") {
 
-        // Set trigger times for each quiz question, and attach controls the quiz
-        //elements (ie buttons, text field, etc)
-        Popcorn.forEach(cue_times, function(v, k, i) {
-            corn.cue(v, function() {
-                corn.pause();
+            // Load quiz questions and grab their cue times
+            getToWork();
+
+            // Display title, or heading, or text
+            $(".text_area").text(text_area);
+
+            if (quiz_loaded) {
+
+                // Popcorn object that affects video lecture
+                var corn = Popcorn(".vid_lecture");
+
+                // Set trigger times for each quiz question, and attach controls the quiz
+                //elements (ie buttons, text field, etc)
+                Popcorn.forEach(cue_times, function (v, k, i) {
+                    corn.cue(v, function () {
+                        corn.pause();
+                        $(".vid_lecture").hide();
+                        $(".quiz_space").show();
+                        quizGoto(k);
+                    });
+                });
+
+                // Clicked Submit/Resubmit
+                $('.btn_submit').click(function (eventObject) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: runtime.handlerUrl(element, 'answer_submit'),
+                        data: JSON.stringify({
+                            "answer": $('.student_answer_simple').val()
+                        }),
+                        success: quizUpdate
+                    });
+
+                });
+
+                // Clicked Skip/Continue
+                $('.btn_next').click(function (eventObject) {
+                    $(".vid_lecture").show();
+                    $(".quiz_space").hide();
+                    corn.play();
+                });
+
+            } else {
+
                 $(".vid_lecture").hide();
-                $(".quiz_space").show();
-                quizGoto(k);
-            });
-        });
+                $(".quiz_space").hide();
+                $(".novid").hide();
+                $(".noquiz").show();
 
-        // Clicked Submit/Resubmit
-        $('.btn_submit').click(function(eventObject) {
+            }
 
-            $.ajax({
-                type: "POST",
-                url: runtime.handlerUrl(element, 'answer_submit'),
-                data: JSON.stringify({
-                    "answer": $('.student_answer_simple').val()
-                }),
-                success: quizUpdate
-            });
+        } else {
 
-        });
-
-        // Clicked Skip/Continue
-        $('.btn_next').click(function(eventObject) {
-            $(".vid_lecture").show();
+            $(".vid_lecture").hide();
             $(".quiz_space").hide();
-            corn.play();
-        });
+            $(".novid").show();
+
+        }
 
     });
 

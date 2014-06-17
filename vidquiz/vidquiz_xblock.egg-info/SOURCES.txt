@@ -1,9 +1,13 @@
 vidquiz/__init__.py
 vidquiz/vidquiz.py
+vidquiz/vidquiz_old.py
 vidquiz/static/README.txt
 vidquiz/static/css/vidquiz.css
 vidquiz/static/html/vidquiz.html
+vidquiz/static/html/vidquiz_studio.html
+vidquiz/static/js/src/popcorn-complete.min.js
 vidquiz/static/js/src/vidquiz.js
+vidquiz/static/js/src/vidquiz_studio.js
 vidquiz_xblock.egg-info/PKG-INFO
 vidquiz_xblock.egg-info/SOURCES.txt
 vidquiz_xblock.egg-info/dependency_links.txt
