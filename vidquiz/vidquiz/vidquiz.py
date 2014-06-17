@@ -53,6 +53,8 @@ class VideoQuiz(XBlock):
     the student has to answer. Upon completing or skipping a question, the video resumes playback.
     """
 
+    #has_score = True
+
     # container of quiz questions
     quiz = []
     # trigger times for each quiz question
