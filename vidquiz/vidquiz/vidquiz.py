@@ -258,14 +258,23 @@ class VideoQuiz(XBlock):
         when viewing courses.
         """
 
-        print("fragment")
-
+        '''
         html = self.resource_string("static/html/vidquiz.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/vidquiz.css"))
         frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
         frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
         frag.initialize_js('VideoQuiz')
+        '''
+
+        html = self.resource_string("static/html/vidquiz_studio.html")
+        frag = Fragment(html.format(self=self))
+        frag.add_css(self.resource_string("static/css/vidquiz.css"))
+        #frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
+        #frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
+        #frag.initialize_js('VideoQuiz')
+
+
         return frag
 
     def studio_view(self, context=None):
@@ -274,20 +283,12 @@ class VideoQuiz(XBlock):
         when viewing courses.
         """
 
-        '''
-        html = self.resource_string("static/html/vidquiz.html")
+        html = self.resource_string("static/html/vidquiz_studio.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/vidquiz.css"))
         frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
         frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
         frag.initialize_js('VideoQuiz')
-        return frag
-        '''
-
-        frag = Fragment(self.runtime.render_template(
-            "vidquiz.html",
-            index=self.index
-        ))
 
         return frag
 
