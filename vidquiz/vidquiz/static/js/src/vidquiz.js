@@ -22,7 +22,7 @@ function VideoQuiz(runtime, element) {
     }
 
     // TODO STUFF BELOW
-    // function createMultipleChoiceElement(name, type=MC/CB/LI)
+    // function createMultipleChoiceElement(name, type=MC/MA/LI)
 
 
     /* Update contents of quiz field to those received from quiz_content */
@@ -37,7 +37,7 @@ function VideoQuiz(runtime, element) {
         if (quiz_content.kind == "SA") {
             $(".student_answer_simple").show();
 
-        } else if (quiz_content.kind == "MC" || quiz_content.kind == "CB") {
+        } else if (quiz_content.kind == "MC" || quiz_content.kind == "MA") {
 
             var kind = "";
 
@@ -90,7 +90,7 @@ function VideoQuiz(runtime, element) {
             $('.tries').hide();
             $('.student_answer_simple').hide();
 
-            // TODO LIST ALL CHOICES FOR MC AND CB HERE, WITHOUT CHECKBOXES/RADIOS
+            // TODO LIST ALL CHOICES FOR MC AND MA HERE, WITHOUT CHECKBOXES/RADIOS
 
             if (quiz_content.result == 5) {
                 $(".answer_feedback").show().text("You have already answered this question. Valid answers were: "

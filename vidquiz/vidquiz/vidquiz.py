@@ -1,5 +1,3 @@
-"""TO-DO: Write a description of what this XBlock is."""
-
 import pkg_resources
 
 from xblock.core import XBlock
@@ -14,7 +12,7 @@ from django.shortcuts import render_to_response
 
 
 class QuizQuestion():
-    """This object contains the contents of a quiz question/problem"""
+    """This object contains the contents of a quiz question/problem."""
 
     # kind of question being asked
     kind = 'SA'
@@ -51,8 +49,14 @@ class QuizQuestion():
 
 class VideoQuiz(XBlock):
     """
-
+    A VideoQuiz object plays a specified video file and at times specified in the quiz file, displays a question which
+    the student has to answer. Upon completing or skipping a question, the video resumes playback.
     """
+
+    # container of quiz questions
+    quiz = []
+    # trigger times for each quiz question
+    quiz_cuetimes = []
 
     href = String(
         help="URL of the video page at the provider",
@@ -108,13 +112,9 @@ class VideoQuiz(XBlock):
     #   4 - failed
     #   5 - passed
     answers = []
-    # container of quiz questions
-    quiz = []
-    # trigger times for each quiz question
-    quiz_cuetimes = []
 
     def load_quiz(self, path):
-        """Load all questions of the quiz from file located at path"""
+        """Load all questions of the quiz from file located at path."""
 
         if len(self.quiz) == 0:
 
@@ -126,15 +126,22 @@ class VideoQuiz(XBlock):
 
             # Check if file is valid
             if handle.readline() != "#vidquiz_file\n":
+
                 print("Not a valid vidquiz file!")
                 # ignore this file and leave quiz empty
+
             else:
+
                 handle.readline()  # skip syntax line
+
                 # grab questions, answers, etc from file now and build a quiz
                 for line in handle:
+
                     tmp = line.strip('\n').split(" ~ ")
                     tmp_opt = tmp[3].split("|")
                     tmp_ans = tmp[4].split("|")
+
+                    # populate arrays being used by this object
                     self.quiz_cuetimes.append(tmp[0])
                     self.quiz.append(QuizQuestion(tmp[2], tmp_opt, tmp_ans, tmp[1], int(tmp[5])))
                     self.tries.append(int(tmp[5]))
@@ -142,7 +149,7 @@ class VideoQuiz(XBlock):
 
     @XBlock.json_handler
     def get_to_work(self, data, suffix=''):
-        """Perform the actions below when the module is loaded"""
+        """Perform the actions below when the module is loaded."""
 
         # load contents of quiz file
         self.load_quiz(self.quiz_file)
@@ -151,13 +158,13 @@ class VideoQuiz(XBlock):
         return {"cuetimes": self.quiz_cuetimes}
 
     def grab_current_question(self):
-        """Return current quiz question and its index"""
+        """Return data relevant for each refresh of the quiz form."""
 
         content = {"index": self.index,
                    "question": self.quiz[self.index].question,
                    "kind": self.quiz[self.index].kind,
                    "options": self.quiz[self.index].options,
-                   "answer": "away with you, pesky cheater",
+                   "answer": "",
                    "student_tries": self.tries[self.index],
                    "result": self.results[self.index]
                    }
@@ -165,19 +172,18 @@ class VideoQuiz(XBlock):
         # Send out answers ONLY IF the student answered correctly
         if self.results[self.index] == 5:
             content["answer"] = self.quiz[self.index].answer
-
-        print("Content: " + str(content))
-        print("Results: " + str(self.results))
-        print("Answers " + str(self.answers))
-        print("Tries: " + str(self.tries))
+        else:
+            content["answer"] = "if you see this, you cheated! begone!"
 
         return content
 
     def answer_validate(self, left, right, kind="SA"):
-        """Validate student answer and return true if the answer is correct, false otherwise"""
+        """Validate student answer and return true if the answer is correct, false otherwise."""
 
         # just a basic string comparison here
         # expand if you wish to allow students some leniency with their answers
+
+        # TODO make the statements below compatible with the multiple choice/answer questions
 
         if left in right:
             return True
@@ -186,12 +192,12 @@ class VideoQuiz(XBlock):
 
     @XBlock.json_handler
     def answer_submit(self, data, suffix=''):
-        """~"""
+        """Accept, record and validate student input, and generate a mark."""
 
         # make sure the question is of a familiar kind
-        if self.quiz[self.index].kind in ["SA", "MC", "CB"]:
+        if self.quiz[self.index].kind in ["SA", "MC", "MA"]:
 
-            # record student answers; might be useful
+            # record student answers; might be useful for professors
             self.answers.append([self.index, data["answer"]])
 
             # are there any tries left?
@@ -216,19 +222,22 @@ class VideoQuiz(XBlock):
 
         content = self.grab_current_question()
 
-        # If the tries ran out, set this to failed
+        # If the tries ran out, mark this answer as failed
         if self.tries[self.index] == 0 and self.results[self.index] == 1:
             self.results[self.index] = 2
 
         # mark this question as attempted, after preparing output
+        # ensures student is not alerted too early of completing the question in the past
         if self.results[self.index] in range(2, 4):
-            self.results[self.index] += 2
+            self.results[self.index] += 2 # set to state 4 (failed) or 5 (passed)
 
         return content
 
     @XBlock.json_handler
     def index_goto(self, data, suffix=''):
-        """Retrieve index from JSON and return quiz question strings located at that index"""
+        """Retrieve index from JSON and return quiz question strings located at that index."""
+
+        # NO LONGER USED
 
         if self.index in range(0, len(self.quiz)):
             self.index = data['index']
@@ -237,12 +246,40 @@ class VideoQuiz(XBlock):
 
     @XBlock.json_handler
     def index_reset(self, data, suffix=''):
-        """Reset index to 0"""
+        """Reset index to 0."""
+
+        # NO LONGER USED
 
         if self.index in range(0, len(self.quiz)):
             self.index = 0
 
         return self.grab_current_question()
+
+    @XBlock.json_handler
+    def studio_submit(self, data, suffix=''):
+        """
+        Studio only: Accepts course author input if any (no validation), and updates fields to contain current data.
+        """
+
+        # if some data is sent in, update it
+        if len(data) > 0:
+
+            # There is no validation! Enter your data carefully!
+
+            self.quiz_file = data["quiz_file"]
+            self.href = data["href"]
+            self.height = data["height"]
+            self.width = data["width"]
+
+        # prepare current module parameters for return
+        content = {
+            "quiz_file": self.quiz_file,
+            "href": self.href,
+            "width": self.width,
+            "height": self.height
+        }
+
+        return content
 
     # ================================================================================================================ #
 
@@ -254,41 +291,28 @@ class VideoQuiz(XBlock):
     # TO-DO: change this view to display your data your own way.
     def student_view(self, context=None):
         """
-        The primary view of the VideoQuiz, shown to students
-        when viewing courses.
+        The primary view of VideoQuiz, shown to students.
         """
 
-        '''
         html = self.resource_string("static/html/vidquiz.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/vidquiz.css"))
         frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
         frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
         frag.initialize_js('VideoQuiz')
-        '''
-
-        html = self.resource_string("static/html/vidquiz_studio.html")
-        frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/vidquiz.css"))
-        #frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
-        #frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
-        #frag.initialize_js('VideoQuiz')
-
 
         return frag
 
     def studio_view(self, context=None):
         """
-        The primary view of the VideoQuiz, shown to students
-        when viewing courses.
+        The studio view of VideoQuiz, shown to course authors.
         """
 
         html = self.resource_string("static/html/vidquiz_studio.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/vidquiz.css"))
-        frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
-        frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
-        frag.initialize_js('VideoQuiz')
+        frag.add_javascript(self.resource_string("static/js/src/vidquiz_studio.js"))
+        frag.initialize_js('VideoQuizStudio')
 
         return frag
 
@@ -299,7 +323,12 @@ class VideoQuiz(XBlock):
         return [
             ("VideoQuiz",
              """
-                <vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv"
-                 quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>
+                <vidquiz/>
              """),
         ]
+
+            # ("VideoQuiz",
+            #  """
+            #     <vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv"
+            #      quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>
+            #  """),
