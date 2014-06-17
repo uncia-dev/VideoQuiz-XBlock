@@ -83,39 +83,32 @@ class VideoQuiz(XBlock):
         default="", scope=Scope.content
     )
 
+    # index = -1
+
     index = Integer(
         default=-1, scope=Scope.user_state,
         help="Counter that keeps track of the current question being displayed",
     )
 
-    '''
     tries = List(
         default=[], scope=Scope.user_state,
-        help="",
-    )'''
+        help="The number of tries left for each question",
+    )
 
-    '''
     results = List(
         default=[], scope=Scope.user_state,
-        help="",
+        help="The student's results for each question",
     )
-    '''
 
-    #TODO convert these to XBlock fields in order to track them
-    tries = []
-    results = []
-    # Result states for each question:
-    #   0 - not attempted
-    #   1 - attempted, with tries left
-    #   2 - just failed (ran out of tries)
-    #   3 - just passed
-    #   4 - failed
-    #   5 - passed
-    answers = []
+    answers = List(
+        default=[], scope=Scope.user_state,
+        help="Answers entered by the student",
+    )
 
     def load_quiz(self, path):
         """Load all questions of the quiz from file located at path."""
 
+        # Populate quiz only if it's empty
         if len(self.quiz) == 0:
 
             # open quiz file and read its contents to the question container
@@ -144,8 +137,11 @@ class VideoQuiz(XBlock):
                     # populate arrays being used by this object
                     self.quiz_cuetimes.append(tmp[0])
                     self.quiz.append(QuizQuestion(tmp[2], tmp_opt, tmp_ans, tmp[1], int(tmp[5])))
-                    self.tries.append(int(tmp[5]))
-                    self.results.append(0)
+
+                    # Check if the student records were already populated for this quiz
+                    if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
+                        self.tries.append(int(tmp[5]))
+                        self.results.append(0)
 
     @XBlock.json_handler
     def get_to_work(self, data, suffix=''):
@@ -175,6 +171,8 @@ class VideoQuiz(XBlock):
         else:
             content["answer"] = "if you see this, you cheated! begone!"
 
+        #TODO remove
+
         return content
 
     def answer_validate(self, left, right, kind="SA"):
@@ -184,6 +182,13 @@ class VideoQuiz(XBlock):
         # expand if you wish to allow students some leniency with their answers
 
         # TODO make the statements below compatible with the multiple choice/answer questions
+
+        ''' Helpful sample from StackOverflow
+            >>> list1 = ['a', 'c', 'c']
+            >>> list2 = ['x', 'b', 'a', 'x', 'c', 'y', 'c']
+            >>> set(list1) < set(list2)
+            True
+        '''
 
         if left in right:
             return True
@@ -237,10 +242,7 @@ class VideoQuiz(XBlock):
     def index_goto(self, data, suffix=''):
         """Retrieve index from JSON and return quiz question strings located at that index."""
 
-        # NO LONGER USED
-
-        if self.index in range(0, len(self.quiz)):
-            self.index = data['index']
+        self.index = data['index']
 
         return self.grab_current_question()
 
@@ -321,14 +323,6 @@ class VideoQuiz(XBlock):
     def workbench_scenarios():
         """Workbench scenario for development and testing"""
         return [
-            ("VideoQuiz",
-             """
-                <vidquiz/>
-             """),
+            ("VideoQuiz","""<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>"""),
         ]
 
-            # ("VideoQuiz",
-            #  """
-            #     <vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv"
-            #      quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>
-            #  """),

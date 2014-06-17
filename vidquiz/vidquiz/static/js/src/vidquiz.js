@@ -161,6 +161,7 @@ function VideoQuiz(runtime, element) {
 
     /* Load question at index i, from vidquiz.py->self.quiz.quiz_questions */
     function quizGoto(index, eventObject) {
+
         $.ajax({
             type: "POST",
             url: runtime.handlerUrl(element, "index_goto"),
