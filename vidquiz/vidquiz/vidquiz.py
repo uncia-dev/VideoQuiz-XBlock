@@ -55,16 +55,6 @@ class VideoQuiz(XBlock):
 
     #has_score = True
 
-    quiz = List(
-        default=[], scope=Scope.user_state,
-        help="Container of quiz questions",
-    )
-
-    quiz_cuetimes = List(
-        default=[], scope=Scope.user_state,
-        help="Trigger times for each quiz question",
-    )
-
     href = String(
         help="URL of the video page at the provider",
         default="", scope=Scope.content
@@ -84,6 +74,9 @@ class VideoQuiz(XBlock):
         help="Path to the quiz file being read",
         default="", scope=Scope.content
     )
+
+    quiz =[]
+    quiz_cuetimes = []
 
     index = Integer(
         default=-1, scope=Scope.user_state,
@@ -114,24 +107,25 @@ class VideoQuiz(XBlock):
             # open quiz file and read its contents to the question container
 
             # got an http/https link; open a url
-            if self.quiz[:4] == "http":
+            if self.quiz_file[:4] == "http":
                 handle = urllib.urlopen(self.quiz_file)
 
-            # got a *nix path; open file - used to development and testing mostly
-            if self.quiz[0] == "/":
+             # got a *nix path; open file - used to development and testing mostly
+            elif self.quiz_file[0] == "/":
                 handle = open(self.quiz_file, 'r')
+
+            else:
+                handle = ""
 
             # Quiz file pattern:
             # cue time ~ question kind ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ tries
 
             # Check if file is valid
             if handle.readline() != "#vidquiz_file\n":
-
                 print("Not a valid vidquiz file!")
                 # ignore this file and leave quiz empty
 
             else:
-
                 handle.readline()  # skip syntax line
 
                 # grab questions, answers, etc from file now and build a quiz
@@ -158,7 +152,9 @@ class VideoQuiz(XBlock):
         if self.quiz_file != "":
             self.load_quiz()
 
-        # return cue time triggers
+        print(self.quiz)
+
+        # return cue time triggers and tell whether or not the quit was loaded
         return {"cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0}
 
     def grab_current_question(self):
@@ -240,7 +236,7 @@ class VideoQuiz(XBlock):
         # mark this question as attempted, after preparing output
         # ensures student is not alerted too early of completing the question in the past
         if self.results[self.index] in range(2, 4):
-            self.results[self.index] += 2 # set to state 4 (failed) or 5 (passed)
+            self.results[self.index] += 2  # set to state 4 (failed) or 5 (passed)
 
         return content
 
@@ -305,7 +301,7 @@ class VideoQuiz(XBlock):
         html = self.resource_string("static/html/vidquiz.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/vidquiz.css"))
-        frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.js"))
+        #frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
         frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
 
         frag.initialize_js('VideoQuiz')

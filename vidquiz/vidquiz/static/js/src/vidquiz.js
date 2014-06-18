@@ -149,6 +149,8 @@ function VideoQuiz(runtime, element) {
     /* Begin quiz session */
     function getToWork(eventObject) {
 
+        console.log("<<<< getting to work");
+
         // Load quiz questions and grab their cue times
         $.ajax({
             type: "POST",
@@ -194,6 +196,7 @@ function VideoQuiz(runtime, element) {
                 console.log("Got a quiz");
 
                 /*
+
                 // Popcorn object that affects video lecture
                 var corn = Popcorn(".vid_lecture");
 
@@ -207,6 +210,7 @@ function VideoQuiz(runtime, element) {
                         quizGoto(k);
                     });
                 });
+
                 */
 
                 // Clicked Submit/Resubmit
