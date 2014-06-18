@@ -302,9 +302,7 @@ class VideoQuiz(XBlock):
         The primary view of VideoQuiz, shown to students.
         """
 
-        self.load_quiz()
-
-        print("Studio stuff")
+        print("Student View")
         print("============")
         print(self.quiz_file)
         print(self.quiz)
@@ -325,8 +323,8 @@ class VideoQuiz(XBlock):
         The studio view of VideoQuiz, shown to course authors.
         """
 
-        print("Studio stuff")
-        print("============")
+        print("Studio View")
+        print("===========")
         print(self.quiz_file)
         print(self.quiz)
         print(self.text_area)

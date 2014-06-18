@@ -1,5 +1,9 @@
+console.log("hello1");
+
 /* Javascript for VideoQuiz. */
 function VideoQuiz(runtime, element) {
+
+    console.log("hello2");
 
     var cue_times = []; // store cue times for each quiz question
     var quiz_loaded = false; // was the quiz loaded?
