@@ -270,6 +270,8 @@ class VideoQuiz(XBlock):
         Studio only: Accepts course author input if any (no validation), and updates fields to contain current data.
         """
 
+        print("hello?")
+
         # if some data is sent in, update it
         if len(data) > 0:
 
