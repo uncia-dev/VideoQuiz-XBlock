@@ -107,7 +107,7 @@ class VideoQuiz(XBlock):
         help="Answers entered by the student",
     )
 
-    def load_quiz(self, path):
+    def load_quiz(self):
         """Load all questions of the quiz from file located at path."""
 
         # Populate quiz only if it's empty
@@ -154,7 +154,7 @@ class VideoQuiz(XBlock):
 
         # load contents of quiz file
         if self.quiz_file != "":
-            self.load_quiz(self.quiz_file)
+            self.load_quiz()
 
         # return cue time triggers
         return {"cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0, "text_area": self.text_area}
@@ -301,6 +301,8 @@ class VideoQuiz(XBlock):
         """
         The primary view of VideoQuiz, shown to students.
         """
+
+        self.load_quiz()
 
         print("Studio stuff")
         print("============")
