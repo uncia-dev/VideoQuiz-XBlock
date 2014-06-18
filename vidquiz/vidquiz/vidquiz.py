@@ -55,10 +55,15 @@ class VideoQuiz(XBlock):
 
     #has_score = True
 
-    # container of quiz questions
-    quiz = []
-    # trigger times for each quiz question
-    quiz_cuetimes = []
+    quiz =  = List(
+        default=[], scope=Scope.user_state,
+        help="Container of quiz questions",
+    )
+
+    quiz_cuetimes =  = List(
+        default=[], scope=Scope.user_state,
+        help="Trigger times for each quiz question",
+    )
 
     href = String(
         help="URL of the video page at the provider",
@@ -79,8 +84,6 @@ class VideoQuiz(XBlock):
         help="Path to the quiz file being read",
         default="", scope=Scope.content
     )
-
-    # index = -1
 
     index = Integer(
         default=-1, scope=Scope.user_state,
