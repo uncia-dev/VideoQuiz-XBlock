@@ -313,7 +313,7 @@ class VideoQuiz(XBlock):
         frag.add_css(self.resource_string("static/css/vidquiz.css"))
         frag.add_javascript(self.resource_string("static/js/src/jquery-1.11.1.min.js"))
         #frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
-        frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
+        #frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
         #frag.initialize_js('VideoQuiz')
 
         return frag

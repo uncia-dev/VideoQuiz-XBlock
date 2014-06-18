@@ -183,8 +183,6 @@ function VideoQuiz(runtime, element) {
 
         console.log("JavaScript loading");
 
-        /*
-
         if ($(".vidsrc").attr("src") != "") {
 
             console.log("Got a video");
@@ -253,7 +251,6 @@ function VideoQuiz(runtime, element) {
             $(".novid").show();
 
         }
-        */
 
     });
 
