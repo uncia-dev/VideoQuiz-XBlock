@@ -37,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/vidquiz/vidquiz/vidquiz.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.5104809" vertical-offset="5130" max-vertical-offset="6264">
-              <caret line="308" column="8" selection-start-line="308" selection-start-column="8" selection-end-line="308" selection-end-column="8" />
+              <caret line="308" column="90" selection-start-line="308" selection-start-column="90" selection-end-line="308" selection-end-column="90" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -787,7 +787,7 @@
     <entry file="file://$PROJECT_DIR$/vidquiz/vidquiz/vidquiz.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5104809" vertical-offset="5130" max-vertical-offset="6264">
-          <caret line="308" column="8" selection-start-line="308" selection-start-column="8" selection-end-line="308" selection-end-column="8" />
+          <caret line="308" column="90" selection-start-line="308" selection-start-column="90" selection-end-line="308" selection-end-column="90" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
