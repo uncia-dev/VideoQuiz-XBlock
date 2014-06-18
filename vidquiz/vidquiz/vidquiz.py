@@ -298,7 +298,6 @@ class VideoQuiz(XBlock):
         print("============")
         print(self.quiz_file)
         print(self.quiz)
-        print(self.quiz_title)
 
         html = self.resource_string("static/html/vidquiz.html")
         frag = Fragment(html.format(self=self))
