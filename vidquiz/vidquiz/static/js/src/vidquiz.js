@@ -185,10 +185,14 @@ function VideoQuiz(runtime, element) {
             // Load quiz questions and grab their cue times
             getToWork();
 
+            console.log("text_area: " + text_area);
+
             // Display title, or heading, or text
             $(".text_area").text(text_area);
 
             if (quiz_loaded) {
+
+                console.log("quiz is loaded");
 
                 // Popcorn object that affects video lecture
                 var corn = Popcorn(".vid_lecture");
