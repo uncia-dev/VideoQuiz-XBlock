@@ -180,7 +180,11 @@ function VideoQuiz(runtime, element) {
         // TODO hide video frame if there is no video file!
         // TODO ignore code if no quiz_file
 
+        console.log("JavaScript loading");
+
         if ($(".vidsrc").attr("src") != "") {
+
+            console.log("Got a video");
 
             // Load quiz questions and grab their cue times
             getToWork();
@@ -188,7 +192,12 @@ function VideoQuiz(runtime, element) {
             // Display title, or heading, or text
             $(".text_area").text(text_area);
 
+            console.log(text_area);
+            console.log(quiz_loaded);
+
             if (quiz_loaded) {
+
+                console.log("Got a quiz");
 
                 // Popcorn object that affects video lecture
                 var corn = Popcorn(".vid_lecture");
