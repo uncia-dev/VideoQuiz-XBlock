@@ -149,9 +149,15 @@ class VideoQuiz(XBlock):
     def get_to_work(self, data, suffix=''):
         """Perform the actions below when the module is loaded."""
 
+        print("Getting to work")
+        print("===============")
+
         # load contents of quiz file
         if self.quiz_file != "":
             self.load_quiz(self.quiz_file)
+
+        print(self.quiz)
+        print(self.text_area)
 
         # return cue time triggers
         return {"cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0, "text_area": self.text_area}
@@ -302,8 +308,8 @@ class VideoQuiz(XBlock):
         html = self.resource_string("static/html/vidquiz.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/vidquiz.css"))
-        frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
         frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
+        frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
         frag.initialize_js('VideoQuiz')
 
         return frag
