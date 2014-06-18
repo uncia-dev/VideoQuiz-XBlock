@@ -9,7 +9,7 @@ from xblock.fragment import Fragment
 
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-
+import urllib
 
 class QuizQuestion():
     """This object contains the contents of a quiz question/problem."""
@@ -305,10 +305,9 @@ class VideoQuiz(XBlock):
         print(self.quiz)
         print(self.text_area)
 
-        handle = open(self.quiz_file, 'r')
-
-        for line in handle:
-            print(line)
+        f = urllib.urlopen(self.quiz_file)
+        myfile = f.readline()
+        print(myfile)
 
         html = self.resource_string("static/html/vidquiz.html")
         frag = Fragment(html.format(self=self))
