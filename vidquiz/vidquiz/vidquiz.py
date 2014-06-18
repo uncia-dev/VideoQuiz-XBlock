@@ -135,6 +135,7 @@ class VideoQuiz(XBlock):
                 for line in handle:
 
                     tmp = line.strip('\n').split(" ~ ")
+                    print(tmp)
                     tmp_opt = tmp[3].split("|")
                     tmp_ans = tmp[4].split("|")
 
@@ -300,6 +301,12 @@ class VideoQuiz(XBlock):
         """
         The primary view of VideoQuiz, shown to students.
         """
+
+        print("Studio stuff")
+        print("============")
+        print(self.quiz_file)
+        print(self.quiz)
+        print(self.text_area)
 
         html = self.resource_string("static/html/vidquiz.html")
         frag = Fragment(html.format(self=self))
