@@ -114,7 +114,9 @@ class VideoQuiz(XBlock):
         if len(self.quiz) == 0:
 
             # open quiz file and read its contents to the question container
-            handle = open(path, 'r')
+            #handle = open(path, 'r')
+
+            handle = urllib.urlopen(self.quiz_file)
 
             # Quiz file pattern:
             # cue time ~ question kind ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ tries
@@ -298,16 +300,6 @@ class VideoQuiz(XBlock):
         """
         The primary view of VideoQuiz, shown to students.
         """
-
-        print("Student stuff")
-        print("=============")
-        print(self.quiz_file)
-        print(self.quiz)
-        print(self.text_area)
-
-        f = urllib.urlopen(self.quiz_file)
-        myfile = f.readline()
-        print(myfile)
 
         html = self.resource_string("static/html/vidquiz.html")
         frag = Fragment(html.format(self=self))
