@@ -182,6 +182,40 @@ function VideoQuiz(runtime, element) {
 
         console.log("JavaScript loading");
 
+        if ($(".vidsrc").attr("src") != "") {
+
+            console.log("Got a video");
+
+            // Load quiz questions and grab their cue times
+            getToWork();
+
+            // Display title, or heading, or text
+            $(".text_area").text(text_area);
+
+            console.log(text_area);
+            console.log(quiz_loaded);
+
+            if (quiz_loaded) {
+
+                console.log("Got a quiz");
+
+            } else {
+
+                $(".vid_lecture").hide();
+                $(".quiz_space").hide();
+                $(".novid").hide();
+                $(".noquiz").show();
+
+            }
+
+        } else {
+
+            $(".vid_lecture").hide();
+            $(".quiz_space").hide();
+            $(".novid").show();
+
+        }
+
     });
 
 }
