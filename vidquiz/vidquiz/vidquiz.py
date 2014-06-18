@@ -297,18 +297,11 @@ class VideoQuiz(XBlock):
         The primary view of VideoQuiz, shown to students.
         """
 
-        print("Student View")
-        print("============")
-        print(self.quiz_file)
-        print(self.quiz)
-
         html = self.resource_string("static/html/vidquiz.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/vidquiz.css"))
-        frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
         frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.js"))
-        #frag.add_javascript(self.resource_string("static/js/src/jquery-1.11.1.min.js"))
-
+        frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
 
         frag.initialize_js('VideoQuiz')
 
@@ -318,11 +311,6 @@ class VideoQuiz(XBlock):
         """
         The studio view of VideoQuiz, shown to course authors.
         """
-
-        print("Studio View")
-        print("===========")
-        print(self.quiz_file)
-        print(self.quiz)
 
         html = self.resource_string("static/html/vidquiz_studio.html")
         frag = Fragment(html.format(self=self))
@@ -337,6 +325,6 @@ class VideoQuiz(XBlock):
     def workbench_scenarios():
         """Workbench scenario for development and testing"""
         return [
-            ("VideoQuiz","""<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>"""),
+            ("VideoQuiz", """<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>"""),
         ]
 
