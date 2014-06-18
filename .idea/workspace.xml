@@ -36,8 +36,8 @@
       <file leaf-file-name="vidquiz.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vidquiz/vidquiz/vidquiz.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5157" max-vertical-offset="6408">
-              <caret line="318" column="8" selection-start-line="318" selection-start-column="8" selection-end-line="318" selection-end-column="8" />
+            <state vertical-scroll-proportion="-23.555555" vertical-offset="5592" max-vertical-offset="6390">
+              <caret line="346" column="47" selection-start-line="346" selection-start-column="47" selection-end-line="346" selection-end-column="47" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -48,8 +48,8 @@
       <file leaf-file-name="vidquiz.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vidquiz/vidquiz/static/js/src/vidquiz.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5339088" vertical-offset="3041" max-vertical-offset="4068">
-              <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+            <state vertical-scroll-proportion="-3.705302" vertical-offset="3149" max-vertical-offset="4068">
+              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -116,8 +116,8 @@
         <option value="$PROJECT_DIR$/vidquiz/vidquiz/static/html/vidquiz.html" />
         <option value="$PROJECT_DIR$/vidquiz/vidquiz/static/js/src/vidquiz_studio.js" />
         <option value="$PROJECT_DIR$/vidquiz/vidquiz/static/html/vidquiz_studio.html" />
-        <option value="$PROJECT_DIR$/vidquiz/vidquiz/vidquiz.py" />
         <option value="$PROJECT_DIR$/vidquiz/vidquiz/static/js/src/vidquiz.js" />
+        <option value="$PROJECT_DIR$/vidquiz/vidquiz/vidquiz.py" />
       </list>
     </option>
   </component>
@@ -778,8 +778,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vidquiz/vidquiz/vidquiz.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5157" max-vertical-offset="6408">
-          <caret line="318" column="8" selection-start-line="318" selection-start-column="8" selection-end-line="318" selection-end-column="8" />
+        <state vertical-scroll-proportion="-23.555555" vertical-offset="5592" max-vertical-offset="6390">
+          <caret line="346" column="47" selection-start-line="346" selection-start-column="47" selection-end-line="346" selection-end-column="47" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
@@ -788,8 +788,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vidquiz/vidquiz/static/js/src/vidquiz.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5339088" vertical-offset="3041" max-vertical-offset="4068">
-          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+        <state vertical-scroll-proportion="-3.705302" vertical-offset="3149" max-vertical-offset="4068">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
           <folding />
         </state>
       </provider>

@@ -6,7 +6,7 @@ function VideoQuiz(runtime, element) {
 
     var cue_times = []; // store cue times for each quiz question
     var quiz_loaded = false; // was the quiz loaded?
-    var text_area = ""; // text to be displayed above the video
+    var quiz_title = ""; // text to be displayed above the video
 
     /*
     Resets question form to a blank state
@@ -159,7 +159,7 @@ function VideoQuiz(runtime, element) {
             success: function(result) {
                 cue_times = result.cuetimes;
                 quiz_loaded = result.quiz_loaded;
-                text_area = result.text_area;
+                quiz_title = result.quiz_title;
             }
 
         });
@@ -190,9 +190,9 @@ function VideoQuiz(runtime, element) {
             getToWork();
 
             // Display title, or heading, or text
-            $(".text_area").text(text_area);
+            $(".title").text(quiz_title);
 
-            console.log(text_area);
+            console.log(quiz_title);
             console.log(quiz_loaded);
 
             if (quiz_loaded) {

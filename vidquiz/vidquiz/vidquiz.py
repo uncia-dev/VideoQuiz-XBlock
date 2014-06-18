@@ -75,7 +75,7 @@ class VideoQuiz(XBlock):
         default=480, scope=Scope.content
     )
 
-    text_area = String(
+    quiz_title = String(
         help="Area for custom text",
         default="", scope=Scope.content
     )
@@ -135,7 +135,6 @@ class VideoQuiz(XBlock):
                 for line in handle:
 
                     tmp = line.strip('\n').split(" ~ ")
-                    print(tmp)
                     tmp_opt = tmp[3].split("|")
                     tmp_ans = tmp[4].split("|")
 
@@ -157,7 +156,7 @@ class VideoQuiz(XBlock):
             self.load_quiz()
 
         # return cue time triggers
-        return {"cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0, "text_area": self.text_area}
+        return {"cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0, "quiz_title": self.quiz_title}
 
     def grab_current_question(self):
         """Return data relevant for each refresh of the quiz form."""
@@ -272,7 +271,7 @@ class VideoQuiz(XBlock):
 
             # There is no validation! Enter your data carefully!
 
-            self.text_area = data["text_area"]
+            self.quiz_title = data["quiz_title"]
             self.quiz_file = data["quiz_file"]
             self.href = data["href"]
             self.height = data["height"]
@@ -280,7 +279,7 @@ class VideoQuiz(XBlock):
 
         # prepare current module parameters for return
         content = {
-            "text_area": self.text_area,
+            "quiz_title": self.quiz_title,
             "quiz_file": self.quiz_file,
             "href": self.href,
             "width": self.width,
@@ -306,7 +305,7 @@ class VideoQuiz(XBlock):
         print("============")
         print(self.quiz_file)
         print(self.quiz)
-        print(self.text_area)
+        print(self.quiz_title)
 
         html = self.resource_string("static/html/vidquiz.html")
         frag = Fragment(html.format(self=self))
@@ -329,7 +328,7 @@ class VideoQuiz(XBlock):
         print("===========")
         print(self.quiz_file)
         print(self.quiz)
-        print(self.text_area)
+        print(self.quiz_title)
 
         html = self.resource_string("static/html/vidquiz_studio.html")
         frag = Fragment(html.format(self=self))
@@ -345,6 +344,6 @@ class VideoQuiz(XBlock):
     def workbench_scenarios():
         """Workbench scenario for development and testing"""
         return [
-            ("VideoQuiz","""<vidquiz text_area="test text over here!" href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>"""),
+            ("VideoQuiz","""<vidquiz quiz_title="test text over here!" href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>"""),
         ]
 
