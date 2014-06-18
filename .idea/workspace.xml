@@ -36,8 +36,8 @@
       <file leaf-file-name="vidquiz.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vidquiz/vidquiz/vidquiz.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7293233" vertical-offset="5286" max-vertical-offset="6228">
-              <caret line="336" column="87" selection-start-line="336" selection-start-column="87" selection-end-line="336" selection-end-column="87" />
+            <state vertical-scroll-proportion="0.5488722" vertical-offset="5232" max-vertical-offset="6228">
+              <caret line="325" column="11" selection-start-line="325" selection-start-column="11" selection-end-line="325" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -786,8 +786,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vidquiz/vidquiz/vidquiz.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7293233" vertical-offset="5286" max-vertical-offset="6228">
-          <caret line="336" column="87" selection-start-line="336" selection-start-column="87" selection-end-line="336" selection-end-column="87" />
+        <state vertical-scroll-proportion="0.5488722" vertical-offset="5232" max-vertical-offset="6228">
+          <caret line="325" column="11" selection-start-line="325" selection-start-column="11" selection-end-line="325" selection-end-column="11" />
           <folding />
         </state>
       </provider>
