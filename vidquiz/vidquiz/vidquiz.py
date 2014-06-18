@@ -55,12 +55,12 @@ class VideoQuiz(XBlock):
 
     #has_score = True
 
-    quiz =  = List(
+    quiz = List(
         default=[], scope=Scope.user_state,
         help="Container of quiz questions",
     )
 
-    quiz_cuetimes =  = List(
+    quiz_cuetimes = List(
         default=[], scope=Scope.user_state,
         help="Trigger times for each quiz question",
     )
