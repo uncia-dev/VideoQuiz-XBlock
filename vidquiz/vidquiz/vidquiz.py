@@ -264,8 +264,6 @@ class VideoQuiz(XBlock):
         Studio only: Accepts course author input if any (no validation), and updates fields to contain current data.
         """
 
-        print("hello?")
-
         # if some data is sent in, update it
         if len(data) > 0:
 
@@ -306,6 +304,11 @@ class VideoQuiz(XBlock):
         print(self.quiz_file)
         print(self.quiz)
         print(self.text_area)
+
+        handle = open(path, 'r')
+
+        for line in handle:
+            print(line)
 
         html = self.resource_string("static/html/vidquiz.html")
         frag = Fragment(html.format(self=self))
