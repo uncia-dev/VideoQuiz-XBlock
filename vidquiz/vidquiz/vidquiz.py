@@ -112,9 +112,14 @@ class VideoQuiz(XBlock):
         if len(self.quiz) == 0:
 
             # open quiz file and read its contents to the question container
-            #handle = open(path, 'r')
 
-            handle = urllib.urlopen(self.quiz_file)
+            # got an http/https link; open a url
+            if self.quiz[:4] == "http":
+                handle = urllib.urlopen(self.quiz_file)
+
+            # got a *nix path; open file - used to development and testing mostly
+            if self.quiz[0] == "/":
+                handle = open(self.quiz_file, 'r')
 
             # Quiz file pattern:
             # cue time ~ question kind ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ tries
