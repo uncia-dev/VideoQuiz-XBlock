@@ -75,11 +75,6 @@ class VideoQuiz(XBlock):
         default=480, scope=Scope.content
     )
 
-    quiz_title = String(
-        help="Area for custom text",
-        default="", scope=Scope.content
-    )
-
     quiz_file = String(
         help="Path to the quiz file being read",
         default="", scope=Scope.content
@@ -156,7 +151,7 @@ class VideoQuiz(XBlock):
             self.load_quiz()
 
         # return cue time triggers
-        return {"cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0, "quiz_title": self.quiz_title}
+        return {"cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0}
 
     def grab_current_question(self):
         """Return data relevant for each refresh of the quiz form."""
@@ -271,7 +266,6 @@ class VideoQuiz(XBlock):
 
             # There is no validation! Enter your data carefully!
 
-            self.quiz_title = data["quiz_title"]
             self.quiz_file = data["quiz_file"]
             self.href = data["href"]
             self.height = data["height"]
@@ -279,7 +273,6 @@ class VideoQuiz(XBlock):
 
         # prepare current module parameters for return
         content = {
-            "quiz_title": self.quiz_title,
             "quiz_file": self.quiz_file,
             "href": self.href,
             "width": self.width,
@@ -328,7 +321,6 @@ class VideoQuiz(XBlock):
         print("===========")
         print(self.quiz_file)
         print(self.quiz)
-        print(self.quiz_title)
 
         html = self.resource_string("static/html/vidquiz_studio.html")
         frag = Fragment(html.format(self=self))
@@ -344,6 +336,6 @@ class VideoQuiz(XBlock):
     def workbench_scenarios():
         """Workbench scenario for development and testing"""
         return [
-            ("VideoQuiz","""<vidquiz quiz_title="test text over here!" href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>"""),
+            ("VideoQuiz","""<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>"""),
         ]
 

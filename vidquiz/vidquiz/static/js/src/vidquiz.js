@@ -6,7 +6,6 @@ function VideoQuiz(runtime, element) {
 
     var cue_times = []; // store cue times for each quiz question
     var quiz_loaded = false; // was the quiz loaded?
-    var quiz_title = ""; // text to be displayed above the video
 
     /*
     Resets question form to a blank state
@@ -159,7 +158,6 @@ function VideoQuiz(runtime, element) {
             success: function(result) {
                 cue_times = result.cuetimes;
                 quiz_loaded = result.quiz_loaded;
-                quiz_title = result.quiz_title;
             }
 
         });
@@ -189,15 +187,48 @@ function VideoQuiz(runtime, element) {
             // Load quiz questions and grab their cue times
             getToWork();
 
-            // Display title, or heading, or text
-            $(".title").text(quiz_title);
-
-            console.log(quiz_title);
             console.log(quiz_loaded);
 
             if (quiz_loaded) {
 
                 console.log("Got a quiz");
+
+                /*
+                // Popcorn object that affects video lecture
+                var corn = Popcorn(".vid_lecture");
+
+                // Set trigger times for each quiz question, and attach controls the quiz
+                //elements (ie buttons, text field, etc)
+                Popcorn.forEach(cue_times, function (v, k, i) {
+                    corn.cue(v, function () {
+                        corn.pause();
+                        $(".vid_lecture").hide();
+                        $(".quiz_space").show();
+                        quizGoto(k);
+                    });
+                });
+                */
+
+                // Clicked Submit/Resubmit
+                $('.btn_submit').click(function (eventObject) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: runtime.handlerUrl(element, 'answer_submit'),
+                        data: JSON.stringify({
+                            "answer": $('.student_answer_simple').val()
+                        }),
+                        success: quizUpdate
+                    });
+
+                });
+
+                // Clicked Skip/Continue
+                $('.btn_next').click(function (eventObject) {
+                    $(".vid_lecture").show();
+                    $(".quiz_space").hide();
+                    corn.play();
+                });
 
             } else {
 
