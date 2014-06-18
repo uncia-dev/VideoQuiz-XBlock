@@ -1,3 +1,5 @@
+console.log("hello1");
+
 function VideoQuiz(runtime, element) {
 
     console.log("hello2");
