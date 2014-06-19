@@ -184,16 +184,7 @@ function VideoQuiz(runtime, element) {
 
         console.log("JavaScript loading");
 
-        $.getScript("http://cdn.popcornjs.org/code/dist/popcorn.min.js", function(){
-
-           alert("Script loaded and executed.");
-            // Here you can use anything you defined in the loaded script
-
-            var pcorn = Popcorn(".vid_lecture");
-
-        });
-
-
+        // Is a video file assigned to vid_lecture?
         if ($(".vidsrc").attr("src") != "") {
 
             console.log("Got a video");
@@ -207,39 +198,47 @@ function VideoQuiz(runtime, element) {
 
                 console.log("Got a quiz");
 
-                // Popcorn object that affects video lecture
-                var corn = Popcorn(".vid_lecture");
+                // Load Popcorn js
+                $.getScript("http://cdn.popcornjs.org/code/dist/popcorn.min.js", function(){
 
-                // Set trigger times for each quiz question, and attach controls the quiz
-                //elements (ie buttons, text field, etc)
-                Popcorn.forEach(cue_times, function (v, k, i) {
-                    corn.cue(v, function () {
-                        corn.pause();
-                        $(".vid_lecture").hide();
-                        $(".quiz_space").show();
-                        quizGoto(k);
-                    });
-                });
+                    console.log("Popcorn loaded");
 
-                // Clicked Submit/Resubmit
-                $('.btn_submit').click(function (eventObject) {
+                    // Popcorn object that affects video lecture
+                    var corn = Popcorn(".vid_lecture");
 
-                    $.ajax({
-                        type: "POST",
-                        url: runtime.handlerUrl(element, 'answer_submit'),
-                        data: JSON.stringify({
-                            "answer": $('.student_answer_simple').val()
-                        }),
-                        success: quizUpdate
+                    // Set trigger times for each quiz question, and attach controls the quiz
+                    //elements (ie buttons, text field, etc)
+                    Popcorn.forEach(cue_times, function (v, k, i) {
+                        corn.cue(v, function () {
+                            corn.pause();
+                            $(".vid_lecture").hide();
+                            $(".quiz_space").show();
+                            quizGoto(k);
+                        });
                     });
 
-                });
+                    // Clicked Submit/Resubmit
+                    $('.btn_submit').click(function (eventObject) {
 
-                // Clicked Skip/Continue
-                $('.btn_next').click(function (eventObject) {
-                    $(".vid_lecture").show();
-                    $(".quiz_space").hide();
-                    corn.play();
+                        $.ajax({
+                            type: "POST",
+                            url: runtime.handlerUrl(element, 'answer_submit'),
+                            data: JSON.stringify({
+                                "answer": $('.student_answer_simple').val()
+                            }),
+                            success: quizUpdate
+                        });
+
+                    });
+
+                    // Clicked Skip/Continue
+                    $('.btn_next').click(function (eventObject) {
+                        $(".vid_lecture").show();
+                        $(".quiz_space").hide();
+                        corn.play();
+                    });
+
+
                 });
 
             } else {

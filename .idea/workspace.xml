@@ -70,8 +70,8 @@
       <file leaf-file-name="vidquiz.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vidquiz/vidquiz/static/js/vidquiz.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38743454" vertical-offset="3142" max-vertical-offset="4842">
-              <caret line="191" column="17" selection-start-line="191" selection-start-column="17" selection-end-line="191" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.2225131" vertical-offset="3340" max-vertical-offset="4824">
+              <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -90,8 +90,8 @@
       <file leaf-file-name="vidquiz.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vidquiz/vidquiz/templates/html/vidquiz.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="792">
-              <caret line="0" column="107" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="107" />
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="756">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#p#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#1;n#div#0;n#!!top" expanded="true" />
@@ -128,9 +128,9 @@
         <option value="$PROJECT_DIR$/vidquiz/vidquiz/static/html/vidquiz_studio.html" />
         <option value="$PROJECT_DIR$/vidquiz/vidquiz/static/js/src/vidquiz.js" />
         <option value="$PROJECT_DIR$/vidquiz/vidquiz/utils.py" />
-        <option value="$PROJECT_DIR$/vidquiz/vidquiz/templates/html/vidquiz.html" />
         <option value="$PROJECT_DIR$/vidquiz/vidquiz/templates/html/vidquiz_studio.html" />
         <option value="$PROJECT_DIR$/vidquiz/vidquiz/vidquiz.py" />
+        <option value="$PROJECT_DIR$/vidquiz/vidquiz/templates/html/vidquiz.html" />
         <option value="$PROJECT_DIR$/vidquiz/vidquiz/static/js/vidquiz.js" />
       </list>
     </option>
@@ -769,8 +769,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vidquiz/vidquiz/templates/html/vidquiz.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="792">
-          <caret line="0" column="107" selection-start-line="0" selection-start-column="58" selection-end-line="0" selection-end-column="107" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="764">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#p#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#1;n#div#0;n#!!top" expanded="true" />
@@ -780,8 +780,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vidquiz/vidquiz/static/js/vidquiz.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38743454" vertical-offset="3142" max-vertical-offset="4842">
-          <caret line="191" column="17" selection-start-line="191" selection-start-column="17" selection-end-line="191" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.2225131" vertical-offset="3340" max-vertical-offset="4824">
+          <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
           <folding />
         </state>
       </provider>
