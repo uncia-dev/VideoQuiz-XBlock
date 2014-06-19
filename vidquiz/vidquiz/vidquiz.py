@@ -75,9 +75,6 @@ class VideoQuiz(XBlock):
         default="", scope=Scope.content
     )
 
-    quiz =[]
-    quiz_cuetimes = []
-
     index = Integer(
         default=-1, scope=Scope.user_state,
         help="Counter that keeps track of the current question being displayed",
@@ -98,59 +95,61 @@ class VideoQuiz(XBlock):
         help="Answers entered by the student",
     )
 
+    quiz =[]
+    quiz_cuetimes = []
+
     def load_quiz(self):
         """Load all questions of the quiz from file located at path."""
 
-        # Populate quiz only if it's empty
-        if len(self.quiz) == 0:
+        # purge quiz and cue times in case it already contains elements
+        del self.quiz[:]
+        del self.quiz_cuetimes[:]
 
-            # open quiz file and read its contents to the question container
+        # open quiz file and read its contents to the question container
 
-            # got an http/https link; open a url
-            if self.quiz_file[:4] == "http":
-                handle = urllib.urlopen(self.quiz_file)
+        # got an http/https link; open a url
+        if self.quiz_file[:4] == "http":
+            handle = urllib.urlopen(self.quiz_file)
 
-             # got a *nix path; open file - used to development and testing mostly
-            elif self.quiz_file[0] == "/":
-                handle = open(self.quiz_file, 'r')
+         # got a *nix path; open file - used to development and testing mostly
+        elif self.quiz_file[0] == "/":
+            handle = open(self.quiz_file, 'r')
 
-            else:
-                handle = ""
+        else:
+            handle = ""
 
-            # Quiz file pattern:
-            # cue time ~ question kind ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ tries
+        # Quiz file pattern:
+        # cue time ~ question kind ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ tries
 
-            # Check if file is valid
-            if handle.readline() != "#vidquiz_file\n":
-                print("Not a valid vidquiz file!")
-                # ignore this file and leave quiz empty
+        # Check if file is valid
+        if handle.readline() != "#vidquiz_file\n":
+            print("Not a valid vidquiz file!")
+            # ignore this file and leave quiz empty
 
-            else:
-                handle.readline()  # skip syntax line
+        else:
+            handle.readline()  # skip syntax line
 
-                # grab questions, answers, etc from file now and build a quiz
-                for line in handle:
+            # grab questions, answers, etc from file now and build a quiz
+            for line in handle:
 
-                    tmp = line.strip('\n').split(" ~ ")
-                    tmp_opt = tmp[3].split("|")
-                    tmp_ans = tmp[4].split("|")
+                tmp = line.strip('\n').split(" ~ ")
+                tmp_opt = tmp[3].split("|")
+                tmp_ans = tmp[4].split("|")
 
-                    # populate arrays being used by this object
-                    self.quiz_cuetimes.append(tmp[0])
-                    self.quiz.append(QuizQuestion(tmp[2], tmp_opt, tmp_ans, tmp[1], int(tmp[5])))
+                # populate arrays being used by this object
+                self.quiz_cuetimes.append(tmp[0])
+                self.quiz.append(QuizQuestion(tmp[2], tmp_opt, tmp_ans, tmp[1], int(tmp[5])))
 
-                    # Check if the student records were already populated for this quiz
-                    if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
-                        self.tries.append(int(tmp[5]))
-                        self.results.append(0)
+                # Check if the student records were already populated for this quiz
+                if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
+                    self.tries.append(int(tmp[5]))
+                    self.results.append(0)
+
+        handle.close()
 
     @XBlock.json_handler
     def get_to_work(self, data, suffix=''):
         """Perform the actions below when the module is loaded."""
-
-        # load contents of quiz file
-        if self.quiz_file != "":
-            self.load_quiz()
 
         print(self.quiz)
 
@@ -280,7 +279,7 @@ class VideoQuiz(XBlock):
             "quiz_file": self.quiz_file,
             "href": self.href,
             "width": self.width,
-            "height": self.height
+            "height": self.height,
         }
 
         return content
@@ -298,10 +297,14 @@ class VideoQuiz(XBlock):
         The primary view of VideoQuiz, shown to students.
         """
 
+        # load contents of quiz file
+        if self.quiz_file != "":
+            self.load_quiz()
+
         html = self.resource_string("static/html/vidquiz.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/vidquiz.css"))
-        #frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
+        frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
         frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
 
         frag.initialize_js('VideoQuiz')

@@ -4,7 +4,6 @@ function VideoQuizStudio(runtime, element) {
     /* Update fields of the form to the current values */
     function formUpdate(data) {
 
-        $(".text_area").val(data.text_area);
         $(".quiz_file").val(data.quiz_file);
         $(".href").val(data.href);
         $(".width").val(data.width);
@@ -30,7 +29,6 @@ function VideoQuizStudio(runtime, element) {
                 type: "POST",
                 url: runtime.handlerUrl(element, 'studio_submit'),
                 data: JSON.stringify({
-                    "text_area": $('.text_area').val(),
                     "quiz_file": $('.quiz_file').val(),
                     "href": $('.href').val(),
                     "width": $('.width').val(),
