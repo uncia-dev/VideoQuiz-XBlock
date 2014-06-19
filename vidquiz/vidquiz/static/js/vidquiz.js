@@ -184,6 +184,16 @@ function VideoQuiz(runtime, element) {
 
         console.log("JavaScript loading");
 
+        $.getScript("http://cdn.popcornjs.org/code/dist/popcorn.min.js", function(){
+
+           alert("Script loaded and executed.");
+            // Here you can use anything you defined in the loaded script
+
+            var pcorn = Popcorn(".vid_lecture");
+
+        });
+
+
         if ($(".vidsrc").attr("src") != "") {
 
             console.log("Got a video");
