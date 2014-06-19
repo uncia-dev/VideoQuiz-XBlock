@@ -1,8 +1,10 @@
+<script language="JavaScript" type="text/javascript" src="http://cdn.popcornjs.org/code/dist/popcorn.min.js"></script>
+
 <div class="vidquiz_block">
 
     <!-- Video player affected by Popcorn.js -->
-    <video class="vid_lecture" height={self.height} width={self.width} controls>
-        <source class="vidsrc" src="{self.href}"> <!-- will need work here to make it work cross-platform -->
+    <video class="vid_lecture" height={{self.height}} width={{self.width}} controls>
+        <source class="vidsrc" src="{{self.href}}"> <!-- will need work here to make it work cross-platform -->
     </video>
     <!-- Question form to be displayed for each question -->
     <div class="quiz_space" hidden>

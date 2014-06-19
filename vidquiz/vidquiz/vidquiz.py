@@ -9,6 +9,8 @@ from xblock.fragment import Fragment
 
 from django.template import RequestContext
 from django.shortcuts import render_to_response
+from .utils import render_template, load_resource
+
 import urllib
 
 class QuizQuestion():
@@ -151,10 +153,10 @@ class VideoQuiz(XBlock):
     def get_to_work(self, data, suffix=''):
         """Perform the actions below when the module is loaded."""
 
-        print(self.quiz)
-
         # return cue time triggers and tell whether or not the quit was loaded
-        return {"cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0}
+        return {"cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0,
+                "correct": self.runtime.local_resource_url(self, 'public/img/correct-icon.png'),
+                "incorrect": self.runtime.local_resource_url(self, 'public/img/incorrect-icon.png')}
 
     def grab_current_question(self):
         """Return data relevant for each refresh of the quiz form."""
@@ -286,11 +288,6 @@ class VideoQuiz(XBlock):
 
     # ================================================================================================================ #
 
-    def resource_string(self, path):
-        """Handy helper for getting resources from our kit."""
-        data = pkg_resources.resource_string(__name__, path)
-        return data.decode("utf8")
-
     # TO-DO: change this view to display your data your own way.
     def student_view(self, context=None):
         """
@@ -301,29 +298,42 @@ class VideoQuiz(XBlock):
         if self.quiz_file != "":
             self.load_quiz()
 
-        html = self.resource_string("static/html/vidquiz.html")
-        frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/vidquiz.css"))
-        frag.add_javascript(self.resource_string("static/js/src/popcorn-complete.min.js"))
-        frag.add_javascript(self.resource_string("static/js/src/vidquiz.js"))
+        print("Loading Student View")
+        print("====================")
+        print(">> Parameters: ")
+        print(self.quiz_file)
+        print(self.href)
+        print(self.width)
+        print(self.height)
+        print(">> Filled data")
+        print("Quiz entries: " + str(self.quiz))
+        print("Quiz cue times: " + str(self.quiz_cuetimes))
+        print("Answers: " + str(self.answers))
+        print("Results: " + str(self.results))
+        print("Tries: " + str(self.tries))
 
-        frag.initialize_js('VideoQuiz')
+        fragment = Fragment()
+        fragment.add_content(render_template('templates/html/vidquiz.html', {'self': self}))
+        fragment.add_css(load_resource('static/css/vidquiz.css'))
+        fragment.add_javascript(load_resource('static/js/vidquiz.js'))
 
-        return frag
+        fragment.initialize_js('VideoQuiz')
+
+        return fragment
 
     def studio_view(self, context=None):
         """
         The studio view of VideoQuiz, shown to course authors.
         """
 
-        html = self.resource_string("static/html/vidquiz_studio.html")
-        frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/vidquiz.css"))
-        frag.add_javascript(self.resource_string("static/js/src/vidquiz_studio.js"))
-        frag.initialize_js('VideoQuizStudio')
+        fragment = Fragment()
+        fragment.add_content(render_template('templates/html/vidquiz_studio.html', {'self': self}))
+        fragment.add_css(load_resource('static/css/vidquiz.css'))
+        fragment.add_javascript(load_resource('static/js/vidquiz_studio.js'))
 
-        return frag
+        fragment.initialize_js('VideoQuizStudio')
 
+        return fragment
 
     @staticmethod
     def workbench_scenarios():

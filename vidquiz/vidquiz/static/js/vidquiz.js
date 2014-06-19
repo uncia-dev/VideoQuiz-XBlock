@@ -6,6 +6,8 @@ function VideoQuiz(runtime, element) {
 
     var cue_times = []; // store cue times for each quiz question
     var quiz_loaded = false; // was the quiz loaded?
+    var icon_correct = "";
+    var icon_incorrect = "";
 
     /*
     Resets question form to a blank state
@@ -114,7 +116,7 @@ function VideoQuiz(runtime, element) {
                 // Right answer
                 if (quiz_content.result == 3) {
 
-                    $(".answer_icon").show().attr("src", "/resource/equality_demo/public/images/correct-icon.png");
+                    $(".answer_icon").show().attr("src", icon_correct);
                     $(".answer_feedback").show().text("Your answer is correct!");
 
                     $('.tries').hide();
@@ -125,7 +127,7 @@ function VideoQuiz(runtime, element) {
                 // Wrong answer
                 } else if (quiz_content.result == 1) {
 
-                    $(".answer_icon").show().attr("src", "/resource/equality_demo/public/images/incorrect-icon.png");
+                    $(".answer_icon").show().attr("src", icon_incorrect);
                     $(".answer_feedback").show().text("Sorry, your answer is not correct!");
                     $(".btn_submit").val("Resubmit");
                     $('.btn_next').val("Continue");
@@ -158,6 +160,8 @@ function VideoQuiz(runtime, element) {
             success: function(result) {
                 cue_times = result.cuetimes;
                 quiz_loaded = result.quiz_loaded;
+                icon_correct = result.correct;
+                icon_incorrect = result.incorrect;
             }
 
         });
