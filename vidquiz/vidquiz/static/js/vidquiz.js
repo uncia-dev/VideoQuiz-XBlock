@@ -192,8 +192,6 @@ function VideoQuiz(runtime, element) {
             // Load quiz questions and grab their cue times
             getToWork();
 
-            console.log(quiz_loaded);
-
             if (quiz_loaded) {
 
                 console.log("Got a quiz");
