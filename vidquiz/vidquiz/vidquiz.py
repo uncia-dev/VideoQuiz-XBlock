@@ -286,7 +286,7 @@ class VideoQuiz(XBlock):
 
         return content
 
-    # ================================================================================================================ #
+    # = edX related stuff ============================================================================================ #
 
     # TO-DO: change this view to display your data your own way.
     def student_view(self, context=None):
