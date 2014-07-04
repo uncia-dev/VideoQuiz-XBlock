@@ -3,24 +3,51 @@
 .vidquiz_block {
   font-family: 'Arial', 'Helvetica', sans-serif;
   background: #F0F0F0;
-  text-align: center;
+  /*text-align: center;*/
   padding: 15px;
   min-height: 320px;
 }
 
-.quiz_space {
+.video_area {
+    text-align: center;
+}
+
+.question {
+    text-align: center;
+}
+
+.student_answer {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+}
+
+.answer_multi_list {
+    list-style: none;
+}
+
+.answer_multi {
 
 }
 
-.DEV {
-  text-align: center;
-  color:green;
+.feedback_area {
+    text-align: center;
 }
 
-.vidquiz_block .count {
-    font-weight: bold;
+.button_area {
+    text-align: center;
 }
 
-.vidquiz_block p {
-    cursor: pointer;
+.tries {
+    text-align: center;
+}
+
+.novid {
+    text-align: center;
+    color: darkorange;
+}
+
+.noquiz {
+    text-align: center;
+    color: darkorange;
 }

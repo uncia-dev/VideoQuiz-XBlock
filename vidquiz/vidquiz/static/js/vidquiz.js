@@ -58,15 +58,30 @@ function VideoQuiz(runtime, element) {
         // Student may choose from an array of answers
         } else if (cur_question_kind == "radio" || cur_question_kind == "checkbox") {
 
+            /*
+            $(".student_answer").append("<ul>", {
+                class: "answer_multi_list"
+            })
+            */
+
+
+
             $.each(quiz_content.options, function() {
                 $(".student_answer").append(
-                    $("<li>").text(this).append(
-                        $('<input />', {
-                            type: cur_question_kind,
-                            class: 'answer_multi_' + this,
-                            name: 'answer_multi',
-                            value: this
-                        })
+
+                    $("<ul>", {
+                        class: 'answer_multi_list'
+                    }).append(
+                        $("<li>").append(
+                            $('<input />', {
+                                type: cur_question_kind,
+                                class: 'answer_multi_' + this,
+                                name: 'answer_multi',
+                                value: this
+                            })
+                        ).append(
+                            $("<span>").text(this)
+                        )
                     )
                 );
             });
@@ -99,7 +114,7 @@ function VideoQuiz(runtime, element) {
 
             if (quiz_content.result == 5) {
 
-                var out = "You have already answered this question. The valid answer";
+                var out = "You have already answered this question. The answer";
 
                 if (quiz_content.answer.length > 1) {
                     out += "s were: ";

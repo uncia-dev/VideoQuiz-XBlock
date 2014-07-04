@@ -2,36 +2,39 @@
 
     <!-- TODO Make video player compatible with multiple formats to be HTML5 compliant -->
 
-    <!-- Video player affected by Popcorn.js -->
-    <video class="vid_lecture" height={{self.height}} width={{self.width}} controls>
-        <source class="vidsrc" src="{{self.href}}"> <!-- will need work here to make it work cross-platform -->
-    </video>
+    <div class="video_area">
+
+        <!-- Video player affected by Popcorn.js -->
+        <video class="vid_lecture" height={{self.height}} width={{self.width}} controls>
+            <source class="vidsrc" src="{{self.href}}"> <!-- will need work here to make it work cross-platform -->
+        </video>
+
+    </div>
+
     <!-- Question form to be displayed for each question -->
     <div class="quiz_space" hidden>
 
         <p class="question"></p>
 
         <form class="student_input" method="POST">
-
             <div class="student_answer"></div>
-
-            <div>
-                <input class="btn_submit" type="button" value="Submit">
-                <input class="btn_next" type="button" value="Skip">
-            </div>
-
         </form>
 
-        <p>
+        <p class="feedback_area">
             <img class="answer_icon" src="">
             <span class="answer_feedback"></span>
         </p>
+
+        <div class="button_area">
+            <input class="btn_submit" type="button" value="Submit">
+            <input class="btn_next" type="button" value="Skip">
+        </div>
 
         <p class="tries"></p>
 
     </div>
 
-    <p class="novid" style="color: darkorange" hidden>There is no video to display.</p>
-    <p class="noquiz" style="color: darkorange" hidden>There is no quiz to display.</p>
+    <p class="novid" hidden>There is no video to display.</p>
+    <p class="noquiz" hidden>There is no quiz to display.</p>
 
 </div>
