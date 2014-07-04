@@ -17,7 +17,7 @@ The quiz file can be any text file, but its first two lines must contain the fol
 
 This module was made for Seneca College, but you may use the code for your own purposes.
 
-The module is NOT complete, and will be put on hold until a later time.
+This module is WIP and may take a while longer to complete.
 
 What is not complete yet
 ------------------------

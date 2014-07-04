@@ -170,9 +170,6 @@ class VideoQuiz(XBlock):
                    "result": self.results[self.index]
                    }
 
-        #TODO: delete later
-        print(content)
-
         # Send out answers ONLY IF the student answered correctly
         if self.results[self.index] == 5:
             content["answer"] = self.quiz[self.index].answer
@@ -206,10 +203,6 @@ class VideoQuiz(XBlock):
                 new_left.append(x['value'])
 
             result = new_left == right
-
-        print(left)
-        print(right)
-        print(result)
 
         return result
 
@@ -323,7 +316,7 @@ class VideoQuiz(XBlock):
         if self.quiz_file != "":
             self.load_quiz()
 
-        #TODO: REMOVE
+        '''
         print("Loading Student View")
         print("====================")
         print(">> Parameters: ")
@@ -337,6 +330,7 @@ class VideoQuiz(XBlock):
         print("Answers: " + str(self.answers))
         print("Results: " + str(self.results))
         print("Tries: " + str(self.tries))
+        '''
 
         fragment = Fragment()
         fragment.add_content(render_template('templates/html/vidquiz.html', {'self': self}))
