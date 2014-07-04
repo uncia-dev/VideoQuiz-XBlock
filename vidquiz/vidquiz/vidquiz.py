@@ -170,6 +170,9 @@ class VideoQuiz(XBlock):
                    "result": self.results[self.index]
                    }
 
+        #TODO: delete later
+        print(content)
+
         # Send out answers ONLY IF the student answered correctly
         if self.results[self.index] == 5:
             content["answer"] = self.quiz[self.index].answer
@@ -178,32 +181,54 @@ class VideoQuiz(XBlock):
 
         return content
 
-    def answer_validate(self, left, right, kind="SA"):
+    def answer_validate(self, left, right):
         """Validate student answer and return true if the answer is correct, false otherwise."""
 
-        # just a basic string comparison here
-        # expand if you wish to allow students some leniency with their answers
+        result = False
 
-        # TODO make the statements below compatible with the multiple choice/answer questions
+        if self.quiz[self.index].kind == "text":
 
-        ''' Helpful sample from StackOverflow
-            >>> list1 = ['a', 'c', 'c']
-            >>> list2 = ['x', 'b', 'a', 'x', 'c', 'y', 'c']
-            >>> set(list1) < set(list2)
-            True
-        '''
+            if left in right:
+                result = True
 
-        if left in right:
-            return True
-        else:
-            return False
+        if self.quiz[self.index].kind == "radio":
+
+            if left != "blank":
+
+                # Grab only the first answer in the array returned; prevent cheating
+                if left[0]['value'] in right:
+                    result = True
+
+        if self.quiz[self.index].kind == "checkbox":
+
+            new_left = []
+            for x in left:
+                new_left.append(x['value'])
+
+            result = new_left == right
+
+        print(left)
+        print(right)
+        print(result)
+
+        return result
 
     @XBlock.json_handler
     def answer_submit(self, data, suffix=''):
         """Accept, record and validate student input, and generate a mark."""
 
+        '''
+            Question states being used below:
+               0 = student did not touch this question yet
+               1 = failed, with tries left
+               2 = tries ran out; will fail; used for initial feedback; will be set to 4 afterwards
+               3 = passed; used for initial feedback; will be set to 5 afterwards
+               4 = failed, with no tries left
+               5 = passed
+        '''
+
         # make sure the question is of a familiar kind
-        if self.quiz[self.index].kind in ["SA", "MC", "MA"]:
+        if self.quiz[self.index].kind in ["text", "radio", "checkbox"]:
 
             # record student answers; might be useful for professors
             self.answers.append([self.index, data["answer"]])
@@ -226,13 +251,13 @@ class VideoQuiz(XBlock):
 
         else:
 
-            print("Unsupported kind of question.")
-
-        content = self.grab_current_question()
+            print("Unsupported kind of question in this quiz.")
 
         # If the tries ran out, mark this answer as failed
         if self.tries[self.index] == 0 and self.results[self.index] == 1:
             self.results[self.index] = 2
+
+        content = self.grab_current_question()
 
         # mark this question as attempted, after preparing output
         # ensures student is not alerted too early of completing the question in the past
@@ -298,6 +323,7 @@ class VideoQuiz(XBlock):
         if self.quiz_file != "":
             self.load_quiz()
 
+        #TODO: REMOVE
         print("Loading Student View")
         print("====================")
         print(">> Parameters: ")
@@ -316,7 +342,6 @@ class VideoQuiz(XBlock):
         fragment.add_content(render_template('templates/html/vidquiz.html', {'self': self}))
         fragment.add_css(load_resource('static/css/vidquiz.css'))
         fragment.add_javascript(load_resource('static/js/vidquiz.js'))
-
         fragment.initialize_js('VideoQuiz')
 
         return fragment
