@@ -316,7 +316,6 @@ class VideoQuiz(XBlock):
         if self.quiz_file != "":
             self.load_quiz()
 
-        '''
         print("Loading Student View")
         print("====================")
         print(">> Parameters: ")
@@ -330,7 +329,6 @@ class VideoQuiz(XBlock):
         print("Answers: " + str(self.answers))
         print("Results: " + str(self.results))
         print("Tries: " + str(self.tries))
-        '''
 
         fragment = Fragment()
         fragment.add_content(render_template('templates/html/vidquiz.html', {'self': self}))
