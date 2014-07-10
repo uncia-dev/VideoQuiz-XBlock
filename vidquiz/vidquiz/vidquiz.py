@@ -103,6 +103,8 @@ class VideoQuiz(XBlock):
     def load_quiz(self):
         """Load all questions of the quiz from file located at path."""
 
+        print("break 1")
+
         # purge quiz and cue times in case it already contains elements
         del self.quiz[:]
         del self.quiz_cuetimes[:]
@@ -112,13 +114,16 @@ class VideoQuiz(XBlock):
         # got an http/https link; open a url
         if self.quiz_file[:4] == "http":
             handle = urllib.urlopen(self.quiz_file)
+            print("break 2")
 
          # got a *nix path; open file - used to development and testing mostly
         elif self.quiz_file[0] == "/":
             handle = open(self.quiz_file, 'r')
+            print("break 2")
 
         else:
             handle = ""
+            print("break 2")
 
         # Quiz file pattern:
         # cue time ~ question kind ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ tries
@@ -128,11 +133,20 @@ class VideoQuiz(XBlock):
             print("Not a valid vidquiz file!")
             # ignore this file and leave quiz empty
 
+            print("break 3")
+
         else:
+
+            print("break 4")
+
             handle.readline()  # skip syntax line
+
+            print("break 5")
 
             # grab questions, answers, etc from file now and build a quiz
             for line in handle:
+
+                print("in tje loop")
 
                 tmp = line.strip('\n').split(" ~ ")
                 tmp_opt = tmp[3].split("|")
