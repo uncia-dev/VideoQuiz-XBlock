@@ -111,57 +111,61 @@ class VideoQuiz(XBlock):
 
         # open quiz file and read its contents to the question container
 
+        print(self.quiz_file)
+
         # got an http/https link; open a url
         if self.quiz_file[:4] == "http":
             handle = urllib.urlopen(self.quiz_file)
-            print("break 2")
+            print(handle)
 
          # got a *nix path; open file - used to development and testing mostly
         elif self.quiz_file[0] == "/":
             handle = open(self.quiz_file, 'r')
-            print("break 2")
+            print(handle)
 
         else:
             handle = ""
-            print("break 2")
+            print("no file!")
 
-        # Quiz file pattern:
-        # cue time ~ question kind ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ tries
+        if handle != "":
 
-        # Check if file is valid
-        if handle.readline() != "#vidquiz_file\n":
-            print("Not a valid vidquiz file!")
-            # ignore this file and leave quiz empty
+            # Quiz file pattern:
+            # cue time ~ question kind ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ tries
 
-            print("break 3")
+            # Check if file is valid
+            if handle.readline() != "#vidquiz_file\n":
+                print("Not a valid vidquiz file!")
+                # ignore this file and leave quiz empty
 
-        else:
+                print("break 3")
 
-            print("break 4")
+            else:
 
-            handle.readline()  # skip syntax line
+                print("break 4")
 
-            print("break 5")
+                handle.readline()  # skip syntax line
 
-            # grab questions, answers, etc from file now and build a quiz
-            for line in handle:
+                print("break 5")
 
-                print("in tje loop")
+                # grab questions, answers, etc from file now and build a quiz
+                for line in handle:
 
-                tmp = line.strip('\n').split(" ~ ")
-                tmp_opt = tmp[3].split("|")
-                tmp_ans = tmp[4].split("|")
+                    print("in tje loop")
 
-                # populate arrays being used by this object
-                self.quiz_cuetimes.append(tmp[0])
-                self.quiz.append(QuizQuestion(tmp[2], tmp_opt, tmp_ans, tmp[1], int(tmp[5])))
+                    tmp = line.strip('\n').split(" ~ ")
+                    tmp_opt = tmp[3].split("|")
+                    tmp_ans = tmp[4].split("|")
 
-                # Check if the student records were already populated for this quiz
-                if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
-                    self.tries.append(int(tmp[5]))
-                    self.results.append(0)
+                    # populate arrays being used by this object
+                    self.quiz_cuetimes.append(tmp[0])
+                    self.quiz.append(QuizQuestion(tmp[2], tmp_opt, tmp_ans, tmp[1], int(tmp[5])))
 
-        handle.close()
+                    # Check if the student records were already populated for this quiz
+                    if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
+                        self.tries.append(int(tmp[5]))
+                        self.results.append(0)
+
+            handle.close()
 
     @XBlock.json_handler
     def get_to_work(self, data, suffix=''):
