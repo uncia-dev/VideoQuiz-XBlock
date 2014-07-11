@@ -1,638 +1,188 @@
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 86  LIMIT 1; args=(86,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-07-04 19:12:21.323902, "state" = {
-  "answers": [
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        },
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ]
-  ],
-  "index": 1,
-  "results": [
-    0,
-    0,
-    0
-  ],
-  "tries": [
-    5,
-    5,
-    5
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = html_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.html_demo.d1  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'html_demo', 'three-problems-2.html_demo.d1', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (definition, three-problems-2.html_demo.d1, None, three-problems-2, html_demo, 2014-07-11 14:53:03.071390, {}); args=['definition', 'three-problems-2.html_demo.d1', None, 'three-problems-2', 'html_demo', u'2014-07-11 14:53:03.071390', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 54  LIMIT 1; args=(54,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = definition, "scope_id" = three-problems-2.html_demo.d1, "user_id" = NULL, "scenario" = three-problems-2, "tag" = html_demo, "created" = 2014-07-11 14:53:03.071390, "state" = {
+  "content": "<p>What is $a \u00d7 $b?</p>"
+} WHERE "workbench_xblockstate"."id" = 54 ; args=('definition', 'three-problems-2.html_demo.d1', 'three-problems-2', 'html_demo', u'2014-07-11 14:53:03.071390', '{\n  "content": "<p>What is $a \\u00d7 $b?</p>"\n}', 54)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = parent  AND "workbench_xblockstate"."tag" = html_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.html_demo.d1.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('parent', 'html_demo', 'three-problems-2.html_demo.d1.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (parent, three-problems-2.html_demo.d1.u0, None, three-problems-2, html_demo, 2014-07-11 14:53:03.378947, {}); args=['parent', 'three-problems-2.html_demo.d1.u0', None, 'three-problems-2', 'html_demo', u'2014-07-11 14:53:03.378947', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 55  LIMIT 1; args=(55,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = parent, "scope_id" = three-problems-2.html_demo.d1.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = html_demo, "created" = 2014-07-11 14:53:03.378947, "state" = {
+  "parent": "three-problems-2.problem_demo.d1.u0"
+} WHERE "workbench_xblockstate"."id" = 55 ; args=('parent', 'three-problems-2.html_demo.d1.u0', 'three-problems-2', 'html_demo', u'2014-07-11 14:53:03.378947', '{\n  "parent": "three-problems-2.problem_demo.d1.u0"\n}', 55)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = children  AND "workbench_xblockstate"."tag" = problem_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.problem_demo.d1.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('children', 'problem_demo', 'three-problems-2.problem_demo.d1.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (children, three-problems-2.problem_demo.d1.u0, None, three-problems-2, problem_demo, 2014-07-11 14:53:03.697080, {}); args=['children', 'three-problems-2.problem_demo.d1.u0', None, 'three-problems-2', 'problem_demo', u'2014-07-11 14:53:03.697080', u'{}']
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = textinput_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.textinput_demo.d1.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('usage', 'textinput_demo', 'three-problems-2.textinput_demo.d1.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (usage, three-problems-2.textinput_demo.d1.u0, None, three-problems-2, textinput_demo, 2014-07-11 14:53:03.840780, {}); args=['usage', 'three-problems-2.textinput_demo.d1.u0', None, 'three-problems-2', 'textinput_demo', u'2014-07-11 14:53:03.840780', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 57  LIMIT 1; args=(57,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = three-problems-2.textinput_demo.d1.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = textinput_demo, "created" = 2014-07-11 14:53:03.840780, "state" = {
+  "name": "sum_input"
+} WHERE "workbench_xblockstate"."id" = 57 ; args=('usage', 'three-problems-2.textinput_demo.d1.u0', 'three-problems-2', 'textinput_demo', u'2014-07-11 14:53:03.840780', '{\n  "name": "sum_input"\n}', 57)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = textinput_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.textinput_demo.d1  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'textinput_demo', 'three-problems-2.textinput_demo.d1', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (definition, three-problems-2.textinput_demo.d1, None, three-problems-2, textinput_demo, 2014-07-11 14:53:04.141502, {}); args=['definition', 'three-problems-2.textinput_demo.d1', None, 'three-problems-2', 'textinput_demo', u'2014-07-11 14:53:04.141502', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 58  LIMIT 1; args=(58,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = definition, "scope_id" = three-problems-2.textinput_demo.d1, "user_id" = NULL, "scenario" = three-problems-2, "tag" = textinput_demo, "created" = 2014-07-11 14:53:04.141502, "state" = {
+  "input_type": "int"
+} WHERE "workbench_xblockstate"."id" = 58 ; args=('definition', 'three-problems-2.textinput_demo.d1', 'three-problems-2', 'textinput_demo', u'2014-07-11 14:53:04.141502', '{\n  "input_type": "int"\n}', 58)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = parent  AND "workbench_xblockstate"."tag" = textinput_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.textinput_demo.d1.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('parent', 'textinput_demo', 'three-problems-2.textinput_demo.d1.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (parent, three-problems-2.textinput_demo.d1.u0, None, three-problems-2, textinput_demo, 2014-07-11 14:53:04.425485, {}); args=['parent', 'three-problems-2.textinput_demo.d1.u0', None, 'three-problems-2', 'textinput_demo', u'2014-07-11 14:53:04.425485', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 59  LIMIT 1; args=(59,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = parent, "scope_id" = three-problems-2.textinput_demo.d1.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = textinput_demo, "created" = 2014-07-11 14:53:04.425485, "state" = {
+  "parent": "three-problems-2.problem_demo.d1.u0"
+} WHERE "workbench_xblockstate"."id" = 59 ; args=('parent', 'three-problems-2.textinput_demo.d1.u0', 'three-problems-2', 'textinput_demo', u'2014-07-11 14:53:04.425485', '{\n  "parent": "three-problems-2.problem_demo.d1.u0"\n}', 59)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = equality_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.equality_demo.d1.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('usage', 'equality_demo', 'three-problems-2.equality_demo.d1.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (usage, three-problems-2.equality_demo.d1.u0, None, three-problems-2, equality_demo, 2014-07-11 14:53:05.037003, {}); args=['usage', 'three-problems-2.equality_demo.d1.u0', None, 'three-problems-2', 'equality_demo', u'2014-07-11 14:53:05.037003', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 60  LIMIT 1; args=(60,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = three-problems-2.equality_demo.d1.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = equality_demo, "created" = 2014-07-11 14:53:05.037003, "state" = {
+  "name": "sum_checker"
+} WHERE "workbench_xblockstate"."id" = 60 ; args=('usage', 'three-problems-2.equality_demo.d1.u0', 'three-problems-2', 'equality_demo', u'2014-07-11 14:53:05.037003', '{\n  "name": "sum_checker"\n}', 60)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = equality_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.equality_demo.d1  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'equality_demo', 'three-problems-2.equality_demo.d1', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (definition, three-problems-2.equality_demo.d1, None, three-problems-2, equality_demo, 2014-07-11 14:53:05.362158, {}); args=['definition', 'three-problems-2.equality_demo.d1', None, 'three-problems-2', 'equality_demo', u'2014-07-11 14:53:05.362158', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 61  LIMIT 1; args=(61,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = definition, "scope_id" = three-problems-2.equality_demo.d1, "user_id" = NULL, "scenario" = three-problems-2, "tag" = equality_demo, "created" = 2014-07-11 14:53:05.362158, "state" = {
+  "arguments": {
+    "left": "./sum_input/@student_input",
+    "right": "$c"
+  }
+} WHERE "workbench_xblockstate"."id" = 61 ; args=('definition', 'three-problems-2.equality_demo.d1', 'three-problems-2', 'equality_demo', u'2014-07-11 14:53:05.362158', '{\n  "arguments": {\n    "left": "./sum_input/@student_input",\n    "right": "$c"\n  }\n}', 61)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = equality_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.equality_demo.d1.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('usage', 'equality_demo', 'three-problems-2.equality_demo.d1.u0', 'three-problems-2')
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 60  LIMIT 1; args=(60,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = three-problems-2.equality_demo.d1.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = equality_demo, "created" = 2014-07-11 14:53:05.037003, "state" = {
+  "left": "./sum_input/@student_input",
+  "name": "sum_checker"
+} WHERE "workbench_xblockstate"."id" = 60 ; args=(u'usage', u'three-problems-2.equality_demo.d1.u0', u'three-problems-2', u'equality_demo', u'2014-07-11 14:53:05.037003', '{\n  "left": "./sum_input/@student_input",\n  "name": "sum_checker"\n}', 60)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = parent  AND "workbench_xblockstate"."tag" = equality_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.equality_demo.d1.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('parent', 'equality_demo', 'three-problems-2.equality_demo.d1.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (parent, three-problems-2.equality_demo.d1.u0, None, three-problems-2, equality_demo, 2014-07-11 14:53:05.846652, {}); args=['parent', 'three-problems-2.equality_demo.d1.u0', None, 'three-problems-2', 'equality_demo', u'2014-07-11 14:53:05.846652', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 62  LIMIT 1; args=(62,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = parent, "scope_id" = three-problems-2.equality_demo.d1.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = equality_demo, "created" = 2014-07-11 14:53:05.846652, "state" = {
+  "parent": "three-problems-2.problem_demo.d1.u0"
+} WHERE "workbench_xblockstate"."id" = 62 ; args=('parent', 'three-problems-2.equality_demo.d1.u0', 'three-problems-2', 'equality_demo', u'2014-07-11 14:53:05.846652', '{\n  "parent": "three-problems-2.problem_demo.d1.u0"\n}', 62)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = equality_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.equality_demo.d1.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('usage', 'equality_demo', 'three-problems-2.equality_demo.d1.u0', 'three-problems-2')
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 60  LIMIT 1; args=(60,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = three-problems-2.equality_demo.d1.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = equality_demo, "created" = 2014-07-11 14:53:05.037003, "state" = {
+  "left": "./sum_input/@student_input",
+  "name": "sum_checker",
+  "right": "$c"
+} WHERE "workbench_xblockstate"."id" = 60 ; args=(u'usage', u'three-problems-2.equality_demo.d1.u0', u'three-problems-2', u'equality_demo', u'2014-07-11 14:53:05.037003', '{\n  "left": "./sum_input/@student_input",\n  "name": "sum_checker",\n  "right": "$c"\n}', 60)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = problem_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.problem_demo.d1  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'problem_demo', 'three-problems-2.problem_demo.d1', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (definition, three-problems-2.problem_demo.d1, None, three-problems-2, problem_demo, 2014-07-11 14:53:06.465956, {}); args=['definition', 'three-problems-2.problem_demo.d1', None, 'three-problems-2', 'problem_demo', u'2014-07-11 14:53:06.465956', u'{}']
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = problem_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.problem_demo.d1  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'problem_demo', 'three-problems-2.problem_demo.d1', 'three-problems-2')
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 63  LIMIT 1; args=(63,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = definition, "scope_id" = three-problems-2.problem_demo.d1, "user_id" = NULL, "scenario" = three-problems-2, "tag" = problem_demo, "created" = 2014-07-11 14:53:06.465956, "state" = {
+  "script": "\n                                import random\n                                a = random.randint(2, 6)\n                                b = random.randint(3, 7)\n                                c = a * b\n                            "
+} WHERE "workbench_xblockstate"."id" = 63 ; args=(u'definition', u'three-problems-2.problem_demo.d1', u'three-problems-2', u'problem_demo', u'2014-07-11 14:53:06.465956', '{\n  "script": "\\n                                import random\\n                                a = random.randint(2, 6)\\n                                b = random.randint(3, 7)\\n                                c = a * b\\n                            "\n}', 63)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = children  AND "workbench_xblockstate"."tag" = problem_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.problem_demo.d1.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('children', 'problem_demo', 'three-problems-2.problem_demo.d1.u0', 'three-problems-2')
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 56  LIMIT 1; args=(56,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = children, "scope_id" = three-problems-2.problem_demo.d1.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = problem_demo, "created" = 2014-07-11 14:53:03.697080, "state" = {
+  "children": [
+    "three-problems-2.html_demo.d1.u0",
+    "three-problems-2.textinput_demo.d1.u0",
+    "three-problems-2.equality_demo.d1.u0"
   ]
-} WHERE "workbench_xblockstate"."id" = 86 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-07-04 19:12:21.323902', '{\n  "answers": [\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        },\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ]\n  ],\n  "index": 1,\n  "results": [\n    0,\n    0,\n    0\n  ],\n  "tries": [\n    5,\n    5,\n    5\n  ]\n}', 86)
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 86  LIMIT 1; args=(86,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-07-04 19:12:21.323902, "state" = {
-  "answers": [
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        },
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ]
-  ],
-  "index": 1,
-  "results": [
-    0,
-    1,
-    0
-  ],
-  "tries": [
-    5,
-    5,
-    5
+} WHERE "workbench_xblockstate"."id" = 56 ; args=(u'children', u'three-problems-2.problem_demo.d1.u0', u'three-problems-2', u'problem_demo', u'2014-07-11 14:53:03.697080', '{\n  "children": [\n    "three-problems-2.html_demo.d1.u0",\n    "three-problems-2.textinput_demo.d1.u0",\n    "three-problems-2.equality_demo.d1.u0"\n  ]\n}', 56)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = parent  AND "workbench_xblockstate"."tag" = problem_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.problem_demo.d1.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('parent', 'problem_demo', 'three-problems-2.problem_demo.d1.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (parent, three-problems-2.problem_demo.d1.u0, None, three-problems-2, problem_demo, 2014-07-11 14:53:07.118913, {}); args=['parent', 'three-problems-2.problem_demo.d1.u0', None, 'three-problems-2', 'problem_demo', u'2014-07-11 14:53:07.118913', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 64  LIMIT 1; args=(64,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = parent, "scope_id" = three-problems-2.problem_demo.d1.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = problem_demo, "created" = 2014-07-11 14:53:07.118913, "state" = {
+  "parent": "three-problems-2.sidebar_demo.d0.u0"
+} WHERE "workbench_xblockstate"."id" = 64 ; args=('parent', 'three-problems-2.problem_demo.d1.u0', 'three-problems-2', 'problem_demo', u'2014-07-11 14:53:07.118913', '{\n  "parent": "three-problems-2.sidebar_demo.d0.u0"\n}', 64)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = children  AND "workbench_xblockstate"."tag" = sidebar_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.sidebar_demo.d0.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('children', 'sidebar_demo', 'three-problems-2.sidebar_demo.d0.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (children, three-problems-2.sidebar_demo.d0.u0, None, three-problems-2, sidebar_demo, 2014-07-11 14:53:07.429308, {}); args=['children', 'three-problems-2.sidebar_demo.d0.u0', None, 'three-problems-2', 'sidebar_demo', u'2014-07-11 14:53:07.429308', u'{}']
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = children  AND "workbench_xblockstate"."tag" = sidebar_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.sidebar_demo.d0.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('children', 'sidebar_demo', 'three-problems-2.sidebar_demo.d0.u0', 'three-problems-2')
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 65  LIMIT 1; args=(65,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = children, "scope_id" = three-problems-2.sidebar_demo.d0.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = sidebar_demo, "created" = 2014-07-11 14:53:07.429308, "state" = {
+  "children": [
+    "three-problems-2.problem_demo.d1.u0"
   ]
-} WHERE "workbench_xblockstate"."id" = 86 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-07-04 19:12:21.323902', '{\n  "answers": [\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        },\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ]\n  ],\n  "index": 1,\n  "results": [\n    0,\n    1,\n    0\n  ],\n  "tries": [\n    5,\n    5,\n    5\n  ]\n}', 86)
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 86  LIMIT 1; args=(86,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-07-04 19:12:21.323902, "state" = {
-  "answers": [
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        },
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ]
-  ],
-  "index": 1,
-  "results": [
-    0,
-    1,
-    0
-  ],
-  "tries": [
-    5,
-    4,
-    5
+} WHERE "workbench_xblockstate"."id" = 65 ; args=(u'children', u'three-problems-2.sidebar_demo.d0.u0', u'three-problems-2', u'sidebar_demo', u'2014-07-11 14:53:07.429308', '{\n  "children": [\n    "three-problems-2.problem_demo.d1.u0"\n  ]\n}', 65)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = parent  AND "workbench_xblockstate"."tag" = sidebar_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.sidebar_demo.d0.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('parent', 'sidebar_demo', 'three-problems-2.sidebar_demo.d0.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (parent, three-problems-2.sidebar_demo.d0.u0, None, three-problems-2, sidebar_demo, 2014-07-11 14:53:07.754241, {}); args=['parent', 'three-problems-2.sidebar_demo.d0.u0', None, 'three-problems-2', 'sidebar_demo', u'2014-07-11 14:53:07.754241', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 66  LIMIT 1; args=(66,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = parent, "scope_id" = three-problems-2.sidebar_demo.d0.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = sidebar_demo, "created" = 2014-07-11 14:53:07.754241, "state" = {
+  "parent": "three-problems-2.vertical_demo.d0.u0"
+} WHERE "workbench_xblockstate"."id" = 66 ; args=('parent', 'three-problems-2.sidebar_demo.d0.u0', 'three-problems-2', 'sidebar_demo', u'2014-07-11 14:53:07.754241', '{\n  "parent": "three-problems-2.vertical_demo.d0.u0"\n}', 66)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = parent  AND "workbench_xblockstate"."tag" = html_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.html_demo.d2.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('parent', 'html_demo', 'three-problems-2.html_demo.d2.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (parent, three-problems-2.html_demo.d2.u0, None, three-problems-2, html_demo, 2014-07-11 14:53:08.040307, {}); args=['parent', 'three-problems-2.html_demo.d2.u0', None, 'three-problems-2', 'html_demo', u'2014-07-11 14:53:08.040307', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 67  LIMIT 1; args=(67,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = parent, "scope_id" = three-problems-2.html_demo.d2.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = html_demo, "created" = 2014-07-11 14:53:08.040307, "state" = {
+  "parent": "three-problems-2.problem_demo.d2.u0"
+} WHERE "workbench_xblockstate"."id" = 67 ; args=('parent', 'three-problems-2.html_demo.d2.u0', 'three-problems-2', 'html_demo', u'2014-07-11 14:53:08.040307', '{\n  "parent": "three-problems-2.problem_demo.d2.u0"\n}', 67)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = html_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.html_demo.d2  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'html_demo', 'three-problems-2.html_demo.d2', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (definition, three-problems-2.html_demo.d2, None, three-problems-2, html_demo, 2014-07-11 14:53:08.332751, {}); args=['definition', 'three-problems-2.html_demo.d2', None, 'three-problems-2', 'html_demo', u'2014-07-11 14:53:08.332751', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 68  LIMIT 1; args=(68,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = definition, "scope_id" = three-problems-2.html_demo.d2, "user_id" = NULL, "scenario" = three-problems-2, "tag" = html_demo, "created" = 2014-07-11 14:53:08.332751, "state" = {
+  "content": "<p>What is $a+$b?</p>"
+} WHERE "workbench_xblockstate"."id" = 68 ; args=('definition', 'three-problems-2.html_demo.d2', 'three-problems-2', 'html_demo', u'2014-07-11 14:53:08.332751', '{\n  "content": "<p>What is $a+$b?</p>"\n}', 68)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = children  AND "workbench_xblockstate"."tag" = problem_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.problem_demo.d2.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('children', 'problem_demo', 'three-problems-2.problem_demo.d2.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (children, three-problems-2.problem_demo.d2.u0, None, three-problems-2, problem_demo, 2014-07-11 14:53:08.617201, {}); args=['children', 'three-problems-2.problem_demo.d2.u0', None, 'three-problems-2', 'problem_demo', u'2014-07-11 14:53:08.617201', u'{}']
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = textinput_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.textinput_demo.d2.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('usage', 'textinput_demo', 'three-problems-2.textinput_demo.d2.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (usage, three-problems-2.textinput_demo.d2.u0, None, three-problems-2, textinput_demo, 2014-07-11 14:53:08.775394, {}); args=['usage', 'three-problems-2.textinput_demo.d2.u0', None, 'three-problems-2', 'textinput_demo', u'2014-07-11 14:53:08.775394', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 70  LIMIT 1; args=(70,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = three-problems-2.textinput_demo.d2.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = textinput_demo, "created" = 2014-07-11 14:53:08.775394, "state" = {
+  "name": "sum_input"
+} WHERE "workbench_xblockstate"."id" = 70 ; args=('usage', 'three-problems-2.textinput_demo.d2.u0', 'three-problems-2', 'textinput_demo', u'2014-07-11 14:53:08.775394', '{\n  "name": "sum_input"\n}', 70)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = parent  AND "workbench_xblockstate"."tag" = textinput_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.textinput_demo.d2.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('parent', 'textinput_demo', 'three-problems-2.textinput_demo.d2.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (parent, three-problems-2.textinput_demo.d2.u0, None, three-problems-2, textinput_demo, 2014-07-11 14:53:09.071402, {}); args=['parent', 'three-problems-2.textinput_demo.d2.u0', None, 'three-problems-2', 'textinput_demo', u'2014-07-11 14:53:09.071402', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 71  LIMIT 1; args=(71,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = parent, "scope_id" = three-problems-2.textinput_demo.d2.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = textinput_demo, "created" = 2014-07-11 14:53:09.071402, "state" = {
+  "parent": "three-problems-2.problem_demo.d2.u0"
+} WHERE "workbench_xblockstate"."id" = 71 ; args=('parent', 'three-problems-2.textinput_demo.d2.u0', 'three-problems-2', 'textinput_demo', u'2014-07-11 14:53:09.071402', '{\n  "parent": "three-problems-2.problem_demo.d2.u0"\n}', 71)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = textinput_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.textinput_demo.d2  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'textinput_demo', 'three-problems-2.textinput_demo.d2', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (definition, three-problems-2.textinput_demo.d2, None, three-problems-2, textinput_demo, 2014-07-11 14:53:09.371052, {}); args=['definition', 'three-problems-2.textinput_demo.d2', None, 'three-problems-2', 'textinput_demo', u'2014-07-11 14:53:09.371052', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 72  LIMIT 1; args=(72,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = definition, "scope_id" = three-problems-2.textinput_demo.d2, "user_id" = NULL, "scenario" = three-problems-2, "tag" = textinput_demo, "created" = 2014-07-11 14:53:09.371052, "state" = {
+  "input_type": "int"
+} WHERE "workbench_xblockstate"."id" = 72 ; args=('definition', 'three-problems-2.textinput_demo.d2', 'three-problems-2', 'textinput_demo', u'2014-07-11 14:53:09.371052', '{\n  "input_type": "int"\n}', 72)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = equality_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.equality_demo.d2.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('usage', 'equality_demo', 'three-problems-2.equality_demo.d2.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (usage, three-problems-2.equality_demo.d2.u0, None, three-problems-2, equality_demo, 2014-07-11 14:53:09.689433, {}); args=['usage', 'three-problems-2.equality_demo.d2.u0', None, 'three-problems-2', 'equality_demo', u'2014-07-11 14:53:09.689433', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 73  LIMIT 1; args=(73,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = three-problems-2.equality_demo.d2.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = equality_demo, "created" = 2014-07-11 14:53:09.689433, "state" = {
+  "name": "sum_checker"
+} WHERE "workbench_xblockstate"."id" = 73 ; args=('usage', 'three-problems-2.equality_demo.d2.u0', 'three-problems-2', 'equality_demo', u'2014-07-11 14:53:09.689433', '{\n  "name": "sum_checker"\n}', 73)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = equality_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.equality_demo.d2.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('usage', 'equality_demo', 'three-problems-2.equality_demo.d2.u0', 'three-problems-2')
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 73  LIMIT 1; args=(73,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = three-problems-2.equality_demo.d2.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = equality_demo, "created" = 2014-07-11 14:53:09.689433, "state" = {
+  "left": "./sum_input/@student_input",
+  "name": "sum_checker"
+} WHERE "workbench_xblockstate"."id" = 73 ; args=(u'usage', u'three-problems-2.equality_demo.d2.u0', u'three-problems-2', u'equality_demo', u'2014-07-11 14:53:09.689433', '{\n  "left": "./sum_input/@student_input",\n  "name": "sum_checker"\n}', 73)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = parent  AND "workbench_xblockstate"."tag" = equality_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.equality_demo.d2.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('parent', 'equality_demo', 'three-problems-2.equality_demo.d2.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (parent, three-problems-2.equality_demo.d2.u0, None, three-problems-2, equality_demo, 2014-07-11 14:53:10.133542, {}); args=['parent', 'three-problems-2.equality_demo.d2.u0', None, 'three-problems-2', 'equality_demo', u'2014-07-11 14:53:10.133542', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 74  LIMIT 1; args=(74,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = parent, "scope_id" = three-problems-2.equality_demo.d2.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = equality_demo, "created" = 2014-07-11 14:53:10.133542, "state" = {
+  "parent": "three-problems-2.problem_demo.d2.u0"
+} WHERE "workbench_xblockstate"."id" = 74 ; args=('parent', 'three-problems-2.equality_demo.d2.u0', 'three-problems-2', 'equality_demo', u'2014-07-11 14:53:10.133542', '{\n  "parent": "three-problems-2.problem_demo.d2.u0"\n}', 74)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = equality_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.equality_demo.d2  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'equality_demo', 'three-problems-2.equality_demo.d2', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (definition, three-problems-2.equality_demo.d2, None, three-problems-2, equality_demo, 2014-07-11 14:53:10.425294, {}); args=['definition', 'three-problems-2.equality_demo.d2', None, 'three-problems-2', 'equality_demo', u'2014-07-11 14:53:10.425294', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 75  LIMIT 1; args=(75,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = definition, "scope_id" = three-problems-2.equality_demo.d2, "user_id" = NULL, "scenario" = three-problems-2, "tag" = equality_demo, "created" = 2014-07-11 14:53:10.425294, "state" = {
+  "arguments": {
+    "left": "./sum_input/@student_input",
+    "right": "$c"
+  }
+} WHERE "workbench_xblockstate"."id" = 75 ; args=('definition', 'three-problems-2.equality_demo.d2', 'three-problems-2', 'equality_demo', u'2014-07-11 14:53:10.425294', '{\n  "arguments": {\n    "left": "./sum_input/@student_input",\n    "right": "$c"\n  }\n}', 75)
+(0.001) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = equality_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.equality_demo.d2.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('usage', 'equality_demo', 'three-problems-2.equality_demo.d2.u0', 'three-problems-2')
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 73  LIMIT 1; args=(73,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = three-problems-2.equality_demo.d2.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = equality_demo, "created" = 2014-07-11 14:53:09.689433, "state" = {
+  "left": "./sum_input/@student_input",
+  "name": "sum_checker",
+  "right": "$c"
+} WHERE "workbench_xblockstate"."id" = 73 ; args=(u'usage', u'three-problems-2.equality_demo.d2.u0', u'three-problems-2', u'equality_demo', u'2014-07-11 14:53:09.689433', '{\n  "left": "./sum_input/@student_input",\n  "name": "sum_checker",\n  "right": "$c"\n}', 73)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = problem_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.problem_demo.d2  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'problem_demo', 'three-problems-2.problem_demo.d2', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (definition, three-problems-2.problem_demo.d2, None, three-problems-2, problem_demo, 2014-07-11 14:53:10.860326, {}); args=['definition', 'three-problems-2.problem_demo.d2', None, 'three-problems-2', 'problem_demo', u'2014-07-11 14:53:10.860326', u'{}']
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = children  AND "workbench_xblockstate"."tag" = problem_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.problem_demo.d2.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('children', 'problem_demo', 'three-problems-2.problem_demo.d2.u0', 'three-problems-2')
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 69  LIMIT 1; args=(69,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = children, "scope_id" = three-problems-2.problem_demo.d2.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = problem_demo, "created" = 2014-07-11 14:53:08.617201, "state" = {
+  "children": [
+    "three-problems-2.html_demo.d2.u0",
+    "three-problems-2.textinput_demo.d2.u0",
+    "three-problems-2.equality_demo.d2.u0"
   ]
-} WHERE "workbench_xblockstate"."id" = 86 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-07-04 19:12:21.323902', '{\n  "answers": [\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        },\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ]\n  ],\n  "index": 1,\n  "results": [\n    0,\n    1,\n    0\n  ],\n  "tries": [\n    5,\n    4,\n    5\n  ]\n}', 86)
-(0.001) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 86  LIMIT 1; args=(86,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-07-04 19:12:21.323902, "state" = {
-  "answers": [
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        },
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        }
-      ]
-    ]
-  ],
-  "index": 1,
-  "results": [
-    0,
-    1,
-    0
-  ],
-  "tries": [
-    5,
-    4,
-    5
-  ]
-} WHERE "workbench_xblockstate"."id" = 86 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-07-04 19:12:21.323902', '{\n  "answers": [\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        },\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        }\n      ]\n    ]\n  ],\n  "index": 1,\n  "results": [\n    0,\n    1,\n    0\n  ],\n  "tries": [\n    5,\n    4,\n    5\n  ]\n}', 86)
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 86  LIMIT 1; args=(86,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-07-04 19:12:21.323902, "state" = {
-  "answers": [
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        },
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        }
-      ]
-    ]
-  ],
-  "index": 1,
-  "results": [
-    0,
-    1,
-    0
-  ],
-  "tries": [
-    5,
-    3,
-    5
-  ]
-} WHERE "workbench_xblockstate"."id" = 86 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-07-04 19:12:21.323902', '{\n  "answers": [\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        },\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        }\n      ]\n    ]\n  ],\n  "index": 1,\n  "results": [\n    0,\n    1,\n    0\n  ],\n  "tries": [\n    5,\n    3,\n    5\n  ]\n}', 86)
-(0.001) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 86  LIMIT 1; args=(86,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-07-04 19:12:21.323902, "state" = {
-  "answers": [
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        },
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ]
-  ],
-  "index": 1,
-  "results": [
-    0,
-    1,
-    0
-  ],
-  "tries": [
-    5,
-    3,
-    5
-  ]
-} WHERE "workbench_xblockstate"."id" = 86 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-07-04 19:12:21.323902', '{\n  "answers": [\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        },\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ]\n  ],\n  "index": 1,\n  "results": [\n    0,\n    1,\n    0\n  ],\n  "tries": [\n    5,\n    3,\n    5\n  ]\n}', 86)
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 86  LIMIT 1; args=(86,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-07-04 19:12:21.323902, "state" = {
-  "answers": [
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        },
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ]
-  ],
-  "index": 1,
-  "results": [
-    0,
-    5,
-    0
-  ],
-  "tries": [
-    5,
-    3,
-    5
-  ]
-} WHERE "workbench_xblockstate"."id" = 86 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-07-04 19:12:21.323902', '{\n  "answers": [\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        },\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ]\n  ],\n  "index": 1,\n  "results": [\n    0,\n    5,\n    0\n  ],\n  "tries": [\n    5,\n    3,\n    5\n  ]\n}', 86)
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 86  LIMIT 1; args=(86,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-07-04 19:12:21.323902, "state" = {
-  "answers": [
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        },
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ]
-  ],
-  "index": 1,
-  "results": [
-    0,
-    5,
-    0
-  ],
-  "tries": [
-    5,
-    2,
-    5
-  ]
-} WHERE "workbench_xblockstate"."id" = 86 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-07-04 19:12:21.323902', '{\n  "answers": [\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        },\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ]\n  ],\n  "index": 1,\n  "results": [\n    0,\n    5,\n    0\n  ],\n  "tries": [\n    5,\n    2,\n    5\n  ]\n}', 86)
-(0.001) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 86  LIMIT 1; args=(86,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-07-04 19:12:21.323902, "state" = {
-  "answers": [
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        },
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ]
-  ],
-  "index": 2,
-  "results": [
-    0,
-    5,
-    0
-  ],
-  "tries": [
-    5,
-    2,
-    5
-  ]
-} WHERE "workbench_xblockstate"."id" = 86 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-07-04 19:12:21.323902', '{\n  "answers": [\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        },\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ]\n  ],\n  "index": 2,\n  "results": [\n    0,\n    5,\n    0\n  ],\n  "tries": [\n    5,\n    2,\n    5\n  ]\n}', 86)
-(0.001) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 86  LIMIT 1; args=(86,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-07-04 19:12:21.323902, "state" = {
-  "answers": [
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        },
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ],
-    [
-      2,
-      [
-        {
-          "name": "answer_multi",
-          "value": "no"
-        }
-      ]
-    ]
-  ],
-  "index": 2,
-  "results": [
-    0,
-    5,
-    0
-  ],
-  "tries": [
-    5,
-    2,
-    5
-  ]
-} WHERE "workbench_xblockstate"."id" = 86 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-07-04 19:12:21.323902', '{\n  "answers": [\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        },\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ],\n    [\n      2,\n      [\n        {\n          "name": "answer_multi",\n          "value": "no"\n        }\n      ]\n    ]\n  ],\n  "index": 2,\n  "results": [\n    0,\n    5,\n    0\n  ],\n  "tries": [\n    5,\n    2,\n    5\n  ]\n}', 86)
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 86  LIMIT 1; args=(86,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-07-04 19:12:21.323902, "state" = {
-  "answers": [
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        },
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ],
-    [
-      2,
-      [
-        {
-          "name": "answer_multi",
-          "value": "no"
-        }
-      ]
-    ]
-  ],
-  "index": 2,
-  "results": [
-    0,
-    5,
-    5
-  ],
-  "tries": [
-    5,
-    2,
-    5
-  ]
-} WHERE "workbench_xblockstate"."id" = 86 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-07-04 19:12:21.323902', '{\n  "answers": [\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        },\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ],\n    [\n      2,\n      [\n        {\n          "name": "answer_multi",\n          "value": "no"\n        }\n      ]\n    ]\n  ],\n  "index": 2,\n  "results": [\n    0,\n    5,\n    5\n  ],\n  "tries": [\n    5,\n    2,\n    5\n  ]\n}', 86)
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 86  LIMIT 1; args=(86,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-07-04 19:12:21.323902, "state" = {
-  "answers": [
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        },
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "yes"
-        }
-      ]
-    ],
-    [
-      1,
-      [
-        {
-          "name": "answer_multi",
-          "value": "no"
-        },
-        {
-          "name": "answer_multi",
-          "value": "maybe"
-        }
-      ]
-    ],
-    [
-      2,
-      [
-        {
-          "name": "answer_multi",
-          "value": "no"
-        }
-      ]
-    ]
-  ],
-  "index": 2,
-  "results": [
-    0,
-    5,
-    5
-  ],
-  "tries": [
-    5,
-    2,
-    4
-  ]
-} WHERE "workbench_xblockstate"."id" = 86 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-07-04 19:12:21.323902', '{\n  "answers": [\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        },\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "yes"\n        }\n      ]\n    ],\n    [\n      1,\n      [\n        {\n          "name": "answer_multi",\n          "value": "no"\n        },\n        {\n          "name": "answer_multi",\n          "value": "maybe"\n        }\n      ]\n    ],\n    [\n      2,\n      [\n        {\n          "name": "answer_multi",\n          "value": "no"\n        }\n      ]\n    ]\n  ],\n  "index": 2,\n  "results": [\n    0,\n    5,\n    5\n  ],\n  "tries": [\n    5,\n    2,\n    4\n  ]\n}', 86)
+} WHERE "workbench_xblockstate"."id" = 69 ; args=(u'children', u'three-problems-2.problem_demo.d2.u0', u'three-problems-2', u'problem_demo', u'2014-07-11 14:53:08.617201', '{\n  "children": [\n    "three-problems-2.html_demo.d2.u0",\n    "three-problems-2.textinput_demo.d2.u0",\n    "three-problems-2.equality_demo.d2.u0"\n  ]\n}', 69)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = parent  AND "workbench_xblockstate"."tag" = problem_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.problem_demo.d2.u0  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('parent', 'problem_demo', 'three-problems-2.problem_demo.d2.u0', 'three-problems-2')
+(0.000) INSERT INTO "workbench_xblockstate" ("scope", "scope_id", "user_id", "scenario", "tag", "created", "state") VALUES (parent, three-problems-2.problem_demo.d2.u0, None, three-problems-2, problem_demo, 2014-07-11 14:53:11.562757, {}); args=['parent', 'three-problems-2.problem_demo.d2.u0', None, 'three-problems-2', 'problem_demo', u'2014-07-11 14:53:11.562757', u'{}']
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 77  LIMIT 1; args=(77,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = parent, "scope_id" = three-problems-2.problem_demo.d2.u0, "user_id" = NULL, "scenario" = three-problems-2, "tag" = problem_demo, "created" = 2014-07-11 14:53:11.562757, "state" = {
+  "parent": "three-problems-2.vertical_demo.d0.u0"
+} WHERE "workbench_xblockstate"."id" = 77 ; args=('parent', 'three-problems-2.problem_demo.d2.u0', 'three-problems-2', 'problem_demo', u'2014-07-11 14:53:11.562757', '{\n  "parent": "three-problems-2.vertical_demo.d0.u0"\n}', 77)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = problem_demo  AND "workbench_xblockstate"."scope_id" = three-problems-2.problem_demo.d2  AND "workbench_xblockstate"."scenario" = three-problems-2  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'problem_demo', 'three-problems-2.problem_demo.d2', 'three-problems-2')
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 76  LIMIT 1; args=(76,)

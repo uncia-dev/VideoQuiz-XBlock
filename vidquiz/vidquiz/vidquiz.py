@@ -103,36 +103,23 @@ class VideoQuiz(XBlock):
     def load_quiz(self):
         """Load all questions of the quiz from file located at path."""
 
-        print("break 1")
-
         # purge quiz and cue times in case it already contains elements
         del self.quiz[:]
         del self.quiz_cuetimes[:]
 
         # open quiz file and read its contents to the question container
 
-        print(self.quiz_file)
-
         # got an http/https link; open a url
         if self.quiz_file[:4] == "http":
-
-            print("got http")
-            print(self.quiz_file)
-
             handle = urllib.urlopen(self.quiz_file)
-            print(handle)
 
          # got a *nix path; open file - used to development and testing mostly
         elif self.quiz_file[0] == "/":
-
-            print("got file")
-
             handle = open(self.quiz_file, 'r')
-            print(handle)
 
         else:
             handle = ""
-            print("no file!")
+            print("no file or invalid address!")
 
         if handle != "":
 
@@ -144,20 +131,12 @@ class VideoQuiz(XBlock):
                 print("Not a valid vidquiz file!")
                 # ignore this file and leave quiz empty
 
-                print("break 3")
-
             else:
-
-                print("break 4")
 
                 handle.readline()  # skip syntax line
 
-                print("break 5")
-
                 # grab questions, answers, etc from file now and build a quiz
                 for line in handle:
-
-                    print("in tje loop")
 
                     tmp = line.strip('\n').split(" ~ ")
                     tmp_opt = tmp[3].split("|")
@@ -382,6 +361,6 @@ class VideoQuiz(XBlock):
         """Workbench scenario for development and testing"""
         return [
             ("VideoQuiz", """<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv"
-             quiz_file="/home/raymond/edx/vidquiz/sample_quiz.txt" width="320" height="200"/>"""),
+             quiz_file="http://142.204.133.7:26001/c4x/test/test101/asset/sample_quiz.txt" width="320" height="200"/>"""),
         ]
 
