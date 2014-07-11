@@ -115,11 +115,18 @@ class VideoQuiz(XBlock):
 
         # got an http/https link; open a url
         if self.quiz_file[:4] == "http":
+
+            print("got http")
+            print(self.quiz_file)
+
             handle = urllib.urlopen(self.quiz_file)
             print(handle)
 
          # got a *nix path; open file - used to development and testing mostly
         elif self.quiz_file[0] == "/":
+
+            print("got file")
+
             handle = open(self.quiz_file, 'r')
             print(handle)
 
