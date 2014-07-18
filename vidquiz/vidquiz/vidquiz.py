@@ -158,14 +158,15 @@ class VideoQuiz(XBlock):
         """Perform the actions below when the module is loaded."""
 
         # return cue time triggers and tell whether or not the quit was loaded
-        return {"cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0,
+        return {"vid_url": self.href, "cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0,
                 "correct": self.runtime.local_resource_url(self, 'public/img/correct-icon.png'),
                 "incorrect": self.runtime.local_resource_url(self, 'public/img/incorrect-icon.png')}
 
     def grab_current_question(self):
         """Return data relevant for each refresh of the quiz form."""
 
-        content = {"index": self.index,
+        content = {
+                   "index": self.index,
                    "question": self.quiz[self.index].question,
                    "kind": self.quiz[self.index].kind,
                    "options": self.quiz[self.index].options,
@@ -360,7 +361,7 @@ class VideoQuiz(XBlock):
     def workbench_scenarios():
         """Workbench scenario for development and testing"""
         return [
-            ("VideoQuiz", """<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv"
-             quiz_file="http://142.204.133.7:26001/c4x/test/test101/asset/sample_quiz.txt" width="320" height="200"/>"""),
+            #("VideoQuiz", """<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_file="http://127.0.0.1/sample_quiz.txt" width="640" height="400"/>"""),
+            ("VideoQuiz", """<vidquiz href="http://www.youtube.com/watch?v=CxvgCLgwdNk" quiz_file="http://127.0.0.1/sample_quiz.txt" width="480" height="270"/>"""),
         ]
 

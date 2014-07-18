@@ -1,5 +1,6 @@
 function VideoQuiz(runtime, element) {
 
+    var vid_url = ""; // url to the video being displayed
     var cue_times = []; // store cue times for each quiz question
     var quiz_loaded = false; // was the quiz loaded?
     var icon_correct = "";
@@ -188,6 +189,7 @@ function VideoQuiz(runtime, element) {
             data: JSON.stringify({}),
             async: false,
             success: function(result) {
+                vid_url = result.vid_url;
                 cue_times = result.cuetimes;
                 quiz_loaded = result.quiz_loaded;
                 icon_correct = result.correct;
@@ -221,10 +223,20 @@ function VideoQuiz(runtime, element) {
             if (quiz_loaded) {
 
                 // Load Popcorn js
-                $.getScript("http://cdn.popcornjs.org/code/dist/popcorn.min.js", function(){
+                $.getScript("http://cdn.popcornjs.org/code/dist/popcorn-complete.min.js", function(){
 
                     // Popcorn object that affects video lecture
-                    var corn = Popcorn(".vid_lecture");
+
+                    // Code below is for direct links to video files - no longer used
+                    // var corn = Popcorn(".vid_lecture");
+
+                    var yt = Popcorn.HTMLYouTubeVideoElement( ".vid_lecture" );
+                    yt.autoplay = false;
+                    yt.controls = true;
+                    yt.src = vid_url;
+yt.volume = 0.0; // disable this when done !!!
+
+                    var corn = new Popcorn(yt);
 
                     // Set trigger times for each quiz question, and attach controls the quiz
                     //elements (ie buttons, text field, etc)
@@ -236,6 +248,10 @@ function VideoQuiz(runtime, element) {
                             quizGoto(k);
                         });
                     });
+
+
+
+
 
                     // Clicked Submit/Resubmit
                     $('.btn_submit').click(function (eventObject) {
