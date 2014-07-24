@@ -7,10 +7,10 @@ from setuptools import setup
 def package_data(pkg, roots):
     """Generic function to find package_data.
 
-    All of the files under each of the `roots` will be declared as package
-    data for package `pkg`.
+All of the files under each of the `roots` will be declared as package
+data for package `pkg`.
 
-    """
+"""
     data = []
     for root in roots:
         for dirname, _, files in os.walk(os.path.join(pkg, root)):
@@ -21,19 +21,19 @@ def package_data(pkg, roots):
 
 
 setup(
-    name='xblock-vidquiz',
+    name='vidquiz-xblock',
     version='0.1',
-    description='XBlock - VideoQuiz',
+    description='vidquiz XBlock', # TODO: write a better description.
     packages=[
         'vidquiz',
     ],
     install_requires=[
-        'XBlock',+
+        'XBlock',
     ],
     entry_points={
         'xblock.v1': [
             'vidquiz = vidquiz:VideoQuiz',
         ]
     },
-    package_data=package_data("vidquiz", ["static", "public", "templates"]),
+    package_data=package_data("vidquiz", ["static", "public"]),
 )
