@@ -21,14 +21,14 @@ def package_data(pkg, roots):
 
 
 setup(
-    name='vidquiz-xblock',
+    name='xblock-vidquiz',
     version='0.1',
-    description='vidquiz XBlock',   # TODO: write a better description.
+    description='XBlock - VideoQuiz',
     packages=[
         'vidquiz',
     ],
     install_requires=[
-        'XBlock',
+        'XBlock',+
     ],
     entry_points={
         'xblock.v1': [
