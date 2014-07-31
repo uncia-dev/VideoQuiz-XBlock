@@ -107,19 +107,12 @@ class VideoQuiz(XBlock):
         del self.quiz[:]
         del self.quiz_cuetimes[:]
 
-        print(self.quiz_content)
-
-        '''
-
-        if self.quiz_content[:4] == "DEMO":
-            split_char = '||'
-        else:
-            split_char = '\n'
-
         # grab questions, answers, etc from form
-        for line in self.quiz_content.split(split_char):
+        for line in self.quiz_content.split(';'):
 
-            tmp = line.replace("DEMO", "").strip('\n').split(" ~ ")
+            print(line)
+
+            tmp = line.strip('\n').split(" ~ ")
             tmp_opt = tmp[3].split("|")
             tmp_ans = tmp[4].split("|")
 
@@ -131,8 +124,6 @@ class VideoQuiz(XBlock):
             if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
                 self.tries.append(int(tmp[5]))
                 self.results.append(0)
-
-        '''
 
     @XBlock.json_handler
     def get_to_work(self, data, suffix=''):
@@ -351,6 +342,6 @@ class VideoQuiz(XBlock):
         """Workbench scenario for development and testing"""
         return [
             #("VideoQuiz", """<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_content="http://127.0.0.1/sample_quiz.txt" width="640" height="400"/>"""),
-            ("VideoQuiz", """<vidquiz href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content=""/>"""),
+            ("VideoQuiz", """<vidquiz href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ 5;2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ 5;3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ 5"/>"""),
         ]
 
