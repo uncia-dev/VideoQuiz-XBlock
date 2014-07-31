@@ -35,5 +35,5 @@ setup(
             'vidquiz = vidquiz:VideoQuiz',
         ]
     },
-    package_data=package_data("vidquiz", ["static", "public"]),
+    package_data=package_data("vidquiz", ["static", "public", "templates"]),
 )
