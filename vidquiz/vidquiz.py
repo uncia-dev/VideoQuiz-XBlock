@@ -107,6 +107,10 @@ class VideoQuiz(XBlock):
         del self.quiz[:]
         del self.quiz_cuetimes[:]
 
+        print(self.quiz_content)
+
+        '''
+
         if self.quiz_content[:4] == "DEMO":
             split_char = '||'
         else:
@@ -127,6 +131,8 @@ class VideoQuiz(XBlock):
             if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
                 self.tries.append(int(tmp[5]))
                 self.results.append(0)
+
+        '''
 
     @XBlock.json_handler
     def get_to_work(self, data, suffix=''):
@@ -298,7 +304,7 @@ class VideoQuiz(XBlock):
         The primary view of VideoQuiz, shown to students.
         """
 
-        # load contents of quiz file
+        # load contents of quiz
         if self.quiz_content != "":
             self.load_quiz()
 
@@ -325,6 +331,7 @@ class VideoQuiz(XBlock):
         return fragment
 
     def studio_view(self, context=None):
+    #def student_view(self, context=None):
         #def student_view(self, context=None):
         """
         The studio view of VideoQuiz, shown to course authors.
