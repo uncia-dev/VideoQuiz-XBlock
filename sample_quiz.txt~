@@ -1,0 +1,3 @@
+1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ 5
+2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ 5
+3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ 5

@@ -230,11 +230,10 @@ function VideoQuiz(runtime, element) {
                     // Code below is for direct links to video files - no longer used
                     // var corn = Popcorn(".vid_lecture");
 
-                    var yt = Popcorn.HTMLYouTubeVideoElement( ".vid_lecture" );
+                    var yt = Popcorn.HTMLYouTubeVideoElement(".vid_lecture");
                     yt.autoplay = false;
                     yt.controls = true;
                     yt.src = vid_url;
-yt.volume = 0.0; // disable this when done !!!
 
                     var corn = new Popcorn(yt);
 
@@ -248,10 +247,6 @@ yt.volume = 0.0; // disable this when done !!!
                             quizGoto(k);
                         });
                     });
-
-
-
-
 
                     // Clicked Submit/Resubmit
                     $('.btn_submit').click(function (eventObject) {

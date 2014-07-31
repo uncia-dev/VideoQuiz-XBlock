@@ -72,8 +72,8 @@ class VideoQuiz(XBlock):
         default=480, scope=Scope.content
     )
 
-    quiz_file = String(
-        help="Path to the quiz file being read",
+    quiz_content = String(
+        help="Content of quiz to be displayed",
         default="", scope=Scope.content
     )
 
@@ -107,51 +107,26 @@ class VideoQuiz(XBlock):
         del self.quiz[:]
         del self.quiz_cuetimes[:]
 
-        # open quiz file and read its contents to the question container
-
-        # got an http/https link; open a url
-        if self.quiz_file[:4] == "http":
-            handle = urllib.urlopen(self.quiz_file)
-
-         # got a *nix path; open file - used to development and testing mostly
-        elif self.quiz_file[0] == "/":
-            handle = open(self.quiz_file, 'r')
-
+        if self.quiz_content[:4] == "DEMO":
+            split_char = '||'
         else:
-            handle = ""
-            print("no file or invalid address!")
+            split_char = '\n'
 
-        if handle != "":
+        # grab questions, answers, etc from form
+        for line in self.quiz_content.split(split_char):
 
-            # Quiz file pattern:
-            # cue time ~ question kind ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ tries
+            tmp = line.replace("DEMO", "").strip('\n').split(" ~ ")
+            tmp_opt = tmp[3].split("|")
+            tmp_ans = tmp[4].split("|")
 
-            # Check if file is valid
-            if handle.readline() != "#vidquiz_file\n":
-                print("Not a valid vidquiz file!")
-                # ignore this file and leave quiz empty
+            # populate arrays being used by this object
+            self.quiz_cuetimes.append(tmp[0])
+            self.quiz.append(QuizQuestion(tmp[2], tmp_opt, tmp_ans, tmp[1], int(tmp[5])))
 
-            else:
-
-                handle.readline()  # skip syntax line
-
-                # grab questions, answers, etc from file now and build a quiz
-                for line in handle:
-
-                    tmp = line.strip('\n').split(" ~ ")
-                    tmp_opt = tmp[3].split("|")
-                    tmp_ans = tmp[4].split("|")
-
-                    # populate arrays being used by this object
-                    self.quiz_cuetimes.append(tmp[0])
-                    self.quiz.append(QuizQuestion(tmp[2], tmp_opt, tmp_ans, tmp[1], int(tmp[5])))
-
-                    # Check if the student records were already populated for this quiz
-                    if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
-                        self.tries.append(int(tmp[5]))
-                        self.results.append(0)
-
-            handle.close()
+            # Check if the student records were already populated for this quiz
+            if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
+                self.tries.append(int(tmp[5]))
+                self.results.append(0)
 
     @XBlock.json_handler
     def get_to_work(self, data, suffix=''):
@@ -294,14 +269,14 @@ class VideoQuiz(XBlock):
 
             # There is no validation! Enter your data carefully!
 
-            self.quiz_file = data["quiz_file"]
+            self.quiz_content = data["quiz_content"]
             self.href = data["href"]
             self.height = data["height"]
             self.width = data["width"]
 
         # prepare current module parameters for return
         content = {
-            "quiz_file": self.quiz_file,
+            "quiz_content": self.quiz_content,
             "href": self.href,
             "width": self.width,
             "height": self.height,
@@ -318,13 +293,13 @@ class VideoQuiz(XBlock):
         """
 
         # load contents of quiz file
-        if self.quiz_file != "":
+        if self.quiz_content != "":
             self.load_quiz()
 
         print("Loading Student View")
         print("====================")
         print(">> Parameters: ")
-        print(self.quiz_file)
+        print(self.quiz_content)
         print(self.href)
         print(self.width)
         print(self.height)
@@ -344,6 +319,7 @@ class VideoQuiz(XBlock):
         return fragment
 
     def studio_view(self, context=None):
+        #def student_view(self, context=None):
         """
         The studio view of VideoQuiz, shown to course authors.
         """
@@ -361,7 +337,7 @@ class VideoQuiz(XBlock):
     def workbench_scenarios():
         """Workbench scenario for development and testing"""
         return [
-            #("VideoQuiz", """<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_file="http://127.0.0.1/sample_quiz.txt" width="640" height="400"/>"""),
-            ("VideoQuiz", """<vidquiz href="http://www.youtube.com/watch?v=CxvgCLgwdNk" quiz_file="http://127.0.0.1/sample_quiz.txt" width="480" height="270"/>"""),
+            #("VideoQuiz", """<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_content="http://127.0.0.1/sample_quiz.txt" width="640" height="400"/>"""),
+            ("VideoQuiz", """<vidquiz href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content="DEMO1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ 5||2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ 5||3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ 5"/>"""),
         ]
 

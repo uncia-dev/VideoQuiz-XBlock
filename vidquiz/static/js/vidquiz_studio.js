@@ -29,7 +29,7 @@ function VideoQuizStudio(runtime, element) {
                 type: "POST",
                 url: runtime.handlerUrl(element, 'studio_submit'),
                 data: JSON.stringify({
-                    "quiz_file": $('.quiz_file').val(),
+                    "quiz_file": $('.quiz_content').val(),
                     "href": $('.href').val(),
                     "width": $('.width').val(),
                     "height": $('.height').val()

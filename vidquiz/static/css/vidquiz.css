@@ -8,6 +8,11 @@
   min-height: 320px;
 }
 
+.vid_lecture {
+    display: block;
+    margin: 0 auto;
+}
+
 .video_area {
     text-align: center;
 }
@@ -50,4 +55,11 @@
 .noquiz {
     text-align: center;
     color: darkorange;
+}
+
+/* Entries only affecting studio */
+
+.studio {
+    text-align: center;
+
 }
