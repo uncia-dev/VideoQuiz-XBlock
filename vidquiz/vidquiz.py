@@ -274,6 +274,12 @@ class VideoQuiz(XBlock):
             self.height = data["height"]
             self.width = data["width"]
 
+            print("submitted data")
+            print(data["quiz_content"])
+            print(data["href"])
+            print(data["height"])
+            print(data["width"])
+
         # prepare current module parameters for return
         content = {
             "quiz_content": self.quiz_content,
@@ -338,6 +344,6 @@ class VideoQuiz(XBlock):
         """Workbench scenario for development and testing"""
         return [
             #("VideoQuiz", """<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_content="http://127.0.0.1/sample_quiz.txt" width="640" height="400"/>"""),
-            ("VideoQuiz", """<vidquiz href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content="DEMO1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ 5||2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ 5||3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ 5"/>"""),
+            ("VideoQuiz", """<vidquiz href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content=""/>"""),
         ]
 
