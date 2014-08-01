@@ -107,6 +107,8 @@ class VideoQuiz(XBlock):
         del self.quiz[:]
         del self.quiz_cuetimes[:]
 
+        print("loading quiz")
+
         # grab questions, answers, etc from form
         for line in self.quiz_content.split(';'):
 
@@ -322,7 +324,7 @@ class VideoQuiz(XBlock):
         return fragment
 
     def studio_view(self, context=None):
-    #def student_view(self, context=None):
+        #def student_view(self, context=None):
         #def student_view(self, context=None):
         """
         The studio view of VideoQuiz, shown to course authors.
