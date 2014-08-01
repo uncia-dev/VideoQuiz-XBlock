@@ -230,12 +230,14 @@ function VideoQuiz(runtime, element) {
                     // Code below is for direct links to video files - no longer used
                     // var corn = Popcorn(".vid_lecture");
 
-                    var yt = Popcorn.HTMLYouTubeVideoElement(".vid_lecture");
-                    yt.autoplay = false;
-                    yt.controls = true;
-                    yt.src = vid_url;
+                    //var yt = Popcorn.HTMLYouTubeVideoElement(".vid_lecture");
+                    //yt.autoplay = false;
+                    //yt.controls = true;
+                    //yt.src = vid_url;
 
-                    var corn = new Popcorn(yt);
+                    //var corn = new Popcorn(yt);
+
+                    var corn = Popcorn.youtube(".vid_lecture", "http://www.youtube.com/watch?v=CxvgCLgwdNk");
 
                     // Set trigger times for each quiz question, and attach controls the quiz
                     //elements (ie buttons, text field, etc)
