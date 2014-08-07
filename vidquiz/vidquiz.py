@@ -33,20 +33,21 @@ class QuizQuestion():
 
     '''
     Constructor takes in a string for the question, an array of choices as answers (for multiple choice and
-    checkboxes only), an array of potential answers, the kind of question (Simple Answer, Multiple Choice, Check Boxes),
+    checkboxes only), an array of potential answers, the kind of question (text, radio, checkbox),
     and the number of attempts a student has.
     '''
-    def __init__(self, question='', options=[], answer=[], kind='SA', tries=3):
+    def __init__(self, kind='text', question='', options=[], answer=[], explanation='', tries=3):
         self.kind = kind
         self.question = question
         self.options = options
         self.answer = answer
+        self.explanation = explanation
         self.tries = tries
 
     ''' For development purposes: Output QuizQuestion variables '''
     def __str__(self):
         return "[Question: " + self.question + ", Kind: " + self.kind + ", Options: " + str(self.options) +\
-               ", Answer(s): " + str(self.answer) + ", Result: " + ", Tries: " + str(self.tries) + "]"
+               ", Answer(s): " + str(self.answer) + ", Explanation: " + str(self.explanation) + ", Result: " + ", Tries: " + str(self.tries) + "]"
 
 
 class VideoQuiz(XBlock):
@@ -55,7 +56,17 @@ class VideoQuiz(XBlock):
     the student has to answer. Upon completing or skipping a question, the video resumes playback.
     """
 
-    #has_score = True
+    display_name = String(
+        display_name="Video Quiz",
+        help="This name appears in the horizontal navigation at the top of the page",
+        scope=Scope.settings,
+        default="Video Quiz"
+    )
+
+    title = String(
+        help="Title to be shown above the video area",
+        default="", scope=Scope.content
+    )
 
     href = String(
         help="URL of the video page at the provider",
@@ -78,12 +89,12 @@ class VideoQuiz(XBlock):
     )
 
     index = Integer(
-        default=-1, scope=Scope.user_state,
+        default=-1, scope=Scope.content,  # was user_state
         help="Counter that keeps track of the current question being displayed",
     )
 
     tries = List(
-        default=[], scope=Scope.user_state,
+        default=[], scope=Scope.content,  # was user_state
         help="The number of tries left for each question",
     )
 
@@ -112,16 +123,28 @@ class VideoQuiz(XBlock):
         # grab questions, answers, etc from form
         for line in self.quiz_content.split(';'):
 
+            '''
+            each line will contain the following:
+                trigger time
+                question kind (text, radio, checkbox)
+                question
+                optionA|optionB|optionC
+                answerA|answerB
+                explanation
+                tries
+            '''
+
             print(line)
 
             tmp = line.strip('\n').split(" ~ ")
-            tmp_opt = tmp[3].split("|")
-            tmp_ans = tmp[4].split("|")
 
-            # populate arrays being used by this object
+            # populate trigger times for each question
             self.quiz_cuetimes.append(tmp[0])
-            self.quiz.append(QuizQuestion(tmp[2], tmp_opt, tmp_ans, tmp[1], int(tmp[5])))
 
+            #kind='text', question='', options=[], answer=[], explanation='', tries=3
+
+            # populate container for quiz questions
+            self.quiz.append(QuizQuestion(tmp[1], tmp[2], tmp[3].split("|"), tmp[4].split("|"), tmp[5], int(tmp[6])))
             # Check if the student records were already populated for this quiz
             if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
                 self.tries.append(int(tmp[5]))
@@ -344,6 +367,6 @@ class VideoQuiz(XBlock):
         """Workbench scenario for development and testing"""
         return [
             #("VideoQuiz", """<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_content="http://127.0.0.1/sample_quiz.txt" width="640" height="400"/>"""),
-            ("VideoQuiz", """<vidquiz href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ 5;2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ 5;3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ 5"/>"""),
+            ("VideoQuiz", """<vidquiz href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question ~ 5;2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ this is the second question ~ 5;3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ this is the third question ~ 5"/>"""),
         ]
 
