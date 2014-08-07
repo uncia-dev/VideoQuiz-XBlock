@@ -89,7 +89,7 @@ class VideoQuiz(XBlock):
     )
 
     index = Integer(
-        default=-1, scope=Scope.content,  # was user_state
+        default=-1, scope=Scope.content,
         help="Counter that keeps track of the current question being displayed",
     )
 
@@ -140,8 +140,6 @@ class VideoQuiz(XBlock):
 
             # populate trigger times for each question
             self.quiz_cuetimes.append(tmp[0])
-
-            #kind='text', question='', options=[], answer=[], explanation='', tries=3
 
             # populate container for quiz questions
             self.quiz.append(QuizQuestion(tmp[1], tmp[2], tmp[3].split("|"), tmp[4].split("|"), tmp[5], int(tmp[6])))
@@ -291,12 +289,14 @@ class VideoQuiz(XBlock):
 
             # There is no validation! Enter your data carefully!
 
+            self.title = data["title"]
             self.quiz_content = data["quiz_content"]
             self.href = data["href"]
             self.height = data["height"]
             self.width = data["width"]
 
             print("submitted data")
+            print(data["title"])
             print(data["quiz_content"])
             print(data["href"])
             print(data["height"])
@@ -304,6 +304,7 @@ class VideoQuiz(XBlock):
 
         # prepare current module parameters for return
         content = {
+            "title": self.title,
             "quiz_content": self.quiz_content,
             "href": self.href,
             "width": self.width,
@@ -367,6 +368,6 @@ class VideoQuiz(XBlock):
         """Workbench scenario for development and testing"""
         return [
             #("VideoQuiz", """<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_content="http://127.0.0.1/sample_quiz.txt" width="640" height="400"/>"""),
-            ("VideoQuiz", """<vidquiz href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question ~ 5;2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ this is the second question ~ 5;3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ this is the third question ~ 5"/>"""),
+            ("VideoQuiz", """<vidquiz title="Test VidQuiz" href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question ~ 5;2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ this is the second question ~ 5;3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ this is the third question ~ 5"/>"""),
         ]
 
