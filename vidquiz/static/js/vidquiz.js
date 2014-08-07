@@ -6,6 +6,7 @@ function VideoQuiz(runtime, element) {
     var icon_correct = "";
     var icon_incorrect = "";
     var cur_question_kind = "";
+    var cur_explanation = "";
 
     /*
     Resets question form to a blank state
@@ -18,11 +19,19 @@ function VideoQuiz(runtime, element) {
         $(".tries").text("").show();
         $(".btn_submit").val("Submit").show();
         $(".btn_next").val("Skip");
+        $(".btn_explain").hide();
         $(".answer_icon").hide();
         $(".answer_feedback").hide();
         $(".student_answer").empty();
 
     }
+
+    /* Functions to add
+
+        draw input area
+
+
+    */
 
     /* Update contents of quiz field to those received from quiz_content */
     function quizUpdate(quiz_content) {
@@ -39,47 +48,53 @@ function VideoQuiz(runtime, element) {
         quizReset(); // refresh quiz form; not the most optimal way, but it does the job
 
         cur_question_kind = quiz_content.kind;
+        cur_explanation = quiz_content.explanation;
 
         $('.index', element).text(quiz_content.index);
         $('.question', element).text(quiz_content.question);
 
+
+        // First draw student input form
+        var params = {type: cur_question_kind};
+
         // Just a simple answer
         if (cur_question_kind == "text") {
 
+            params['class'] = "answer_simple";
+
+            if (quiz_content.result >= 4) {
+                params['disabled'] = true;
+                params['value'] = quiz_content.answer;
+            }
+
             $(".student_answer").append(
                 $("<p>").append(
-                    $("<input />", {
-                            type: cur_question_kind,
-                            class: "answer_simple"
-                        }
-                    )
+                    $("<input />", params)
                 )
             );
 
         // Student may choose from an array of answers
         } else if (cur_question_kind == "radio" || cur_question_kind == "checkbox") {
 
-            /*
-            $(".student_answer").append("<ul>", {
-                class: "answer_multi_list"
-            })
-            */
-
-
+            params['name'] = 'answer_multi';
 
             $.each(quiz_content.options, function() {
-                $(".student_answer").append(
 
-                    $("<ul>", {
-                        class: 'answer_multi_list'
-                    }).append(
+                params['value'] = this;
+
+                if (quiz_content.result >= 4) {
+                    params['disabled'] = true;
+
+                    if ($.inArray(String(this), quiz_content.answer) > -1) {
+                        params['checked'] = true;
+                    }
+
+                }
+
+                $(".student_answer").append(
+                    $("<ul>").append(
                         $("<li>").append(
-                            $('<input />', {
-                                type: cur_question_kind,
-                                class: 'answer_multi_' + this,
-                                name: 'answer_multi',
-                                value: this
-                            })
+                            $('<input />', params)
                         ).append(
                             $("<span>").text(this)
                         )
@@ -103,38 +118,14 @@ function VideoQuiz(runtime, element) {
             $('.btn_submit').hide();
             $('.btn_next').val("Continue");
             $('.tries').hide();
-            $(".student_answer").empty();
 
-            if (cur_question_kind == "radio" || cur_question_kind == "checkbox") {
-                $.each(quiz_content.options, function() {
-                    $(".student_answer").append(
-                        $("<li>").text(this)
-                    );
-                });
-            }
+            if (quiz_content.result == 4) out = "You have already attempted this question.";
+            else out = "You have already answered this question";
 
-            if (quiz_content.result == 5) {
-
-                var out = "You have already answered this question. The answer";
-
-                if (quiz_content.answer.length > 1) {
-                    out += "s were: ";
-                } else {
-                    out += " was: "
-                }
-
-                $(".answer_feedback").show().text(out + quiz_content.answer + ".");
-
-            } else {
-
-                $(".answer_feedback").show().text("You have already attempted this question.");
-
-            }
+            $(".answer_feedback").show().text(out);
 
         // Question isn't a "finalized" stage yet
         } else {
-
-            // Provide feedback on the given answer
 
             // Right answer
             if (quiz_content.result == 3) {
@@ -168,11 +159,16 @@ function VideoQuiz(runtime, element) {
             // Tries ran out
             } else {
 
-                $(".student_answer").empty();
+                //$(".student_answer").empty();
                 $(".tries").text("Sorry, you ran out of tries.");
                 $(".btn_submit").hide();
                 $(".btn_next").val("Continue");
 
+            }
+
+            // Conditions for showing Explanation button
+            if (quiz_content.student_tries == 0 || quiz_content.result >= 3) {
+                $(".btn_explain").show();
             }
 
         }
@@ -279,6 +275,27 @@ function VideoQuiz(runtime, element) {
                         corn.play();
                     });
 
+                    $('.btn_explain').click(function(evenObject) {
+
+                        // change in the future; this implementation is the bare minimum
+
+                        function openindex()
+                        {
+                        OpenWindow=window.open("", "newwin", "height=250, width=640,toolbar=no,scrollbars="+scroll+",menubar=no");
+                        OpenWindow.document.write("<TITLE>Explanation</TITLE>");
+                        OpenWindow.document.write("<BODY BGCOLOR=gray>");
+                        OpenWindow.document.write(cur_explanation);
+                        OpenWindow.document.write("<FORM>");
+                        OpenWindow.document.write("<INPUT TYPE='BUTTON' VALUE='Close Window' onClick='window.close()'>");
+                        OpenWindow.document.write("</FORM>");
+                        OpenWindow.document.write("</BODY>");
+                        OpenWindow.document.write("</HTML>");
+                        OpenWindow.document.close();
+                        self.name="main"
+                        }
+                        openindex();
+
+                    });
 
                 });
 

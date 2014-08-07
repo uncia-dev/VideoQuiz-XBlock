@@ -145,7 +145,7 @@ class VideoQuiz(XBlock):
             self.quiz.append(QuizQuestion(tmp[1], tmp[2], tmp[3].split("|"), tmp[4].split("|"), tmp[5], int(tmp[6])))
             # Check if the student records were already populated for this quiz
             if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
-                self.tries.append(int(tmp[5]))
+                self.tries.append(int(tmp[6]))
                 self.results.append(0)
 
     @XBlock.json_handler
@@ -165,16 +165,21 @@ class VideoQuiz(XBlock):
                    "question": self.quiz[self.index].question,
                    "kind": self.quiz[self.index].kind,
                    "options": self.quiz[self.index].options,
-                   "answer": "",
+                   "answer": self.quiz[self.index].answer,  # originally blank to prevent cheating
+                   "explanation": self.quiz[self.index].explanation,
                    "student_tries": self.tries[self.index],
                    "result": self.results[self.index]
                    }
+
+        ''' Old code; intended to prevent students from grabbing the answer if they did not answer correctly
 
         # Send out answers ONLY IF the student answered correctly
         if self.results[self.index] == 5:
             content["answer"] = self.quiz[self.index].answer
         else:
             content["answer"] = "if you see this, you cheated! begone!"
+
+        '''
 
         return content
 
