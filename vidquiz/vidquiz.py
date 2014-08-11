@@ -93,19 +93,6 @@ class VideoQuiz(XBlock):
         help="Counter that keeps track of the current question being displayed",
     )
 
-    ''' Deprecated
-    tries = List(
-        default=[], scope=Scope.user_state,
-        help="The number of tries left for each question",
-    )
-    '''
-
-    ''' Deprecated
-    results = List(
-        default=[], scope=Scope.user_state,
-        help="The student's results for each question",
-    )
-    '''
     results = []
 
     answers = List(
@@ -146,11 +133,8 @@ class VideoQuiz(XBlock):
 
             # populate container for quiz questions
             self.quiz.append(QuizQuestion(tmp[1], tmp[2], tmp[3].split("|"), tmp[4].split("|"), tmp[5], int(tmp[6])))
-            # Check if the student records were already populated for this quiz
-
-            #if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
+            # Populate array of results for this session
             if len(self.results) < len(self.quiz):
-                #self.tries.append(int(tmp[6]))
                 self.results.append(0)
 
     @XBlock.json_handler
@@ -341,7 +325,6 @@ class VideoQuiz(XBlock):
         print("Quiz cue times: " + str(self.quiz_cuetimes))
         print("Answers: " + str(self.answers))
         print("Results: " + str(self.results))
-        # print("Tries: " + str(self.tries))
 
         fragment = Fragment()
         fragment.add_content(render_template('templates/html/vidquiz.html', {'self': self}))
@@ -352,15 +335,13 @@ class VideoQuiz(XBlock):
         return fragment
 
     def studio_view(self, context=None):
-        #def student_view(self, context=None):
-        #def student_view(self, context=None):
         """
         The studio view of VideoQuiz, shown to course authors.
         """
 
         fragment = Fragment()
         fragment.add_content(render_template('templates/html/vidquiz_studio.html', {'self': self}))
-        fragment.add_css(load_resource('static/css/vidquiz.css'))
+        fragment.add_css(load_resource('static/css/vidquiz_studio.css'))
         fragment.add_javascript(load_resource('static/js/vidquiz_studio.js'))
 
         fragment.initialize_js('VideoQuizStudio')
@@ -371,7 +352,6 @@ class VideoQuiz(XBlock):
     def workbench_scenarios():
         """Workbench scenario for development and testing"""
         return [
-            #("VideoQuiz", """<vidquiz href="http://videos.mozilla.org/serv/webmademovies/popcornplug.ogv" quiz_content="http://127.0.0.1/sample_quiz.txt" width="640" height="400"/>"""),
             ("VideoQuiz", """<vidquiz vid_title="Test VidQuiz" href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question ~ 5;2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ this is the second question ~ 5;3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ this is the third question ~ 5"/>"""),
         ]
 

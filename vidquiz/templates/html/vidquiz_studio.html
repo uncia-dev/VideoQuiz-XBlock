@@ -2,32 +2,27 @@
 
     <div class="studio">
 
-    <h1>VideoQuiz</h1>
+        <h1>VideoQuiz</h1>
 
-    <h4 style="color: darkorange">
-        The fields below will not be validated. Make sure they are correct before submitting.
-    </h4>
+        <div>
 
-    <div>
+            <form class="vidquiz_parameters">
 
-        <form class="vidquiz_parameters">
+                <p>Video Title</p><input type="text" class="vid_title">
+                <p>Video URL</p><input type="text" class="href">
+                <p>Video Width</p><input type="text" class="width">
+                <p>Video Height</p><input type="text" class="height">
+                <p>Quiz questions and answers</p><textarea class="quiz_content" rows="10" cols="130"></textarea>
+                <p>
+                    trigger time ~ question kind (text, radio, checkbox) ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ explanation ~ tries;
+                </p>
 
-            <p>Video Title</p><input type="text" class="vid_title">
-            <p>Video URL</p><input type="text" class="href">
-            <p>Video Width</p><input type="text" class="width">
-            <p>Video Height</p><input type="text" class="height">
-            <p>
-                Quiz questions and answers</br></br>
-                trigger time ~ question kind (text, radio, checkbox) ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ explanation ~ tries
+                <p><input class="btn_submit" type="button" value="Submit"></p>
 
-            </p><textarea class="quiz_content" rows="10" cols="80"></textarea>
-
-            <p><input class="btn_submit" type="button" value="Submit"></p>
-
-        </form>
+            </form>
 
 
-    </div>
+        </div>
 
     </div>
 
