@@ -26,43 +26,18 @@ function VideoQuiz(runtime, element) {
 
     }
 
-    /* Functions to add
-
-        draw input area
-
-
-    */
-
-    /* Update contents of quiz field to those received from quiz_content */
-    function quizUpdate(quiz_content) {
-
-        /* Question states being used below:
-               0 = student did not touch this question yet
-               1 = failed, with tries left
-               2 = tries ran out; will fail; used for initial feedback; will be set to 4 afterwards
-               3 = passed; used for initial feedback; will be set to 5 afterwards
-               4 = failed, with no tries left
-               5 = passed
-        */
-
-        quizReset(); // refresh quiz form; not the most optimal way, but it does the job
-
-        cur_question_kind = quiz_content.kind;
-        cur_explanation = quiz_content.explanation;
-
-        $('.index', element).text(quiz_content.index);
-        $('.question', element).text(quiz_content.question);
-
+    function drawQuestions(quiz_content) {
 
         // First draw student input form
         var params = {type: cur_question_kind};
+        $(".student_answer").empty();
 
         // Just a simple answer
         if (cur_question_kind == "text") {
 
             params['class'] = "answer_simple";
 
-            if (quiz_content.result >= 4) {
+            if (quiz_content.result >= 2) {
                 params['disabled'] = true;
                 params['value'] = quiz_content.answer;
             }
@@ -81,8 +56,9 @@ function VideoQuiz(runtime, element) {
             $.each(quiz_content.options, function() {
 
                 params['value'] = this;
+                params['checked'] = false;
 
-                if (quiz_content.result >= 4) {
+                if (quiz_content.result >= 2) {
                     params['disabled'] = true;
                     if ($.inArray(String(this), quiz_content.answer) > -1) params['checked'] = true;
                 }
@@ -108,6 +84,30 @@ function VideoQuiz(runtime, element) {
 
         }
 
+    }
+
+    /* Update contents of quiz field to those received from quiz_content */
+    function quizUpdate(quiz_content) {
+
+        /* Question states being used below:
+               0 = student did not touch this question yet
+               1 = failed, with tries left
+               2 = tries ran out; will fail; used for initial feedback; will be set to 4 afterwards
+               3 = passed; used for initial feedback; will be set to 5 afterwards
+               4 = failed, with no tries left
+               5 = passed
+        */
+
+        quizReset(); // refresh quiz form; not the most optimal way, but it does the job
+
+        cur_question_kind = quiz_content.kind;
+        cur_explanation = quiz_content.explanation;
+
+        $('.index', element).text(quiz_content.index);
+        $('.question', element).text(quiz_content.question);
+
+        drawQuestions(quiz_content);
+
         // Display feedback if student already attempted or completed this question
         if (quiz_content.result >= 4) {
 
@@ -132,7 +132,8 @@ function VideoQuiz(runtime, element) {
                 $('.tries').hide();
                 $('.btn_submit').hide();
                 $('.btn_next').val("Continue");
-                $(".student_answer").empty();
+                //$(".student_answer").empty();
+                drawQuestions(quiz_content);
 
             // Wrong answer
             } else if (quiz_content.result == 1) {
@@ -230,6 +231,7 @@ function VideoQuiz(runtime, element) {
                         corn.cue(v, function () {
                             corn.pause();
                             $(".vid_lecture").hide();
+                            $(".html5link").hide();
                             $(".quiz_space").show();
                             quizGoto(k);
                         });
@@ -267,6 +269,7 @@ function VideoQuiz(runtime, element) {
                     // Clicked Skip/Continue
                     $('.btn_next').click(function (eventObject) {
                         $(".vid_lecture").show();
+                        $(".html5link").show();
                         $(".quiz_space").hide();
                         corn.play();
                     });
