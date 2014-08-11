@@ -228,6 +228,9 @@ class VideoQuiz(XBlock):
                5 = passed
         '''
 
+        print(self.tries)
+        print(self.index)
+
         # make sure the question is of a familiar kind
         if self.quiz[self.index].kind in ["text", "radio", "checkbox"]:
 
