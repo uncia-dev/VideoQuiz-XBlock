@@ -119,6 +119,7 @@ class VideoQuiz(XBlock):
         # purge quiz and cue times in case it already contains elements
         del self.quiz[:]
         del self.quiz_cuetimes[:]
+        self.index = 0
 
         print("loading quiz")
 
@@ -162,6 +163,8 @@ class VideoQuiz(XBlock):
     def grab_current_question(self):
         """Return data relevant for each refresh of the quiz form."""
 
+
+
         content = {
                    "index": self.index,
                    "question": self.quiz[self.index].question,
@@ -169,7 +172,7 @@ class VideoQuiz(XBlock):
                    "options": self.quiz[self.index].options,
                    "answer": self.quiz[self.index].answer,  # originally blank to prevent cheating
                    "explanation": self.quiz[self.index].explanation,
-                   "student_tries": self.tries[self.index],
+                   "student_tries": self.tries[self.index] if len(self.tries) > 0 else 0,
                    "result": self.results[self.index]
                    }
 
@@ -270,7 +273,12 @@ class VideoQuiz(XBlock):
     def index_goto(self, data, suffix=''):
         """Retrieve index from JSON and return quiz question strings located at that index."""
 
+        print(self.index)
+        print(data['index'])
+
         self.index = data['index']
+
+
 
         return self.grab_current_question()
 
