@@ -88,15 +88,20 @@ class VideoQuiz(XBlock):
         default="", scope=Scope.content
     )
 
+    '''
     index = Integer(
         default=-1, scope=Scope.content,
         help="Counter that keeps track of the current question being displayed",
     )
+    '''
+    index = -1
 
+    '''
     tries = List(
-        default=[], scope=Scope.content,  # was user_state
+        default=[], scope=Scope.user_state,
         help="The number of tries left for each question",
-    )
+    )'''
+    tries = []
 
     results = List(
         default=[], scope=Scope.user_state,
