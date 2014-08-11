@@ -93,22 +93,27 @@ class VideoQuiz(XBlock):
         help="Counter that keeps track of the current question being displayed",
     )
 
+    ''' Deprecated
     tries = List(
         default=[], scope=Scope.user_state,
         help="The number of tries left for each question",
     )
+    '''
 
+    ''' Deprecated
     results = List(
         default=[], scope=Scope.user_state,
         help="The student's results for each question",
     )
+    '''
+    results = []
 
     answers = List(
         default=[], scope=Scope.user_state,
         help="Answers entered by the student",
     )
 
-    quiz =[]
+    quiz = []
     quiz_cuetimes = []
 
     def load_quiz(self):
@@ -117,9 +122,8 @@ class VideoQuiz(XBlock):
         # purge quiz and cue times in case it already contains elements
         del self.quiz[:]
         del self.quiz_cuetimes[:]
-        self.index = 0
 
-        print("loading quiz")
+        print("Loading quiz ...")
 
         # grab questions, answers, etc from form
         for line in self.quiz_content.split(';'):
@@ -135,8 +139,6 @@ class VideoQuiz(XBlock):
                 tries
             '''
 
-            print(line)
-
             tmp = line.strip('\n').split(" ~ ")
 
             # populate trigger times for each question
@@ -145,8 +147,10 @@ class VideoQuiz(XBlock):
             # populate container for quiz questions
             self.quiz.append(QuizQuestion(tmp[1], tmp[2], tmp[3].split("|"), tmp[4].split("|"), tmp[5], int(tmp[6])))
             # Check if the student records were already populated for this quiz
-            if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
-                self.tries.append(int(tmp[6]))
+
+            #if len(self.tries) < len(self.quiz) and len(self.results) < len(self.quiz):
+            if len(self.results) < len(self.quiz):
+                #self.tries.append(int(tmp[6]))
                 self.results.append(0)
 
     @XBlock.json_handler
@@ -161,7 +165,7 @@ class VideoQuiz(XBlock):
     def grab_current_question(self):
         """Return data relevant for each refresh of the quiz form."""
 
-
+        print(self.index)
 
         content = {
                    "index": self.index,
@@ -170,7 +174,7 @@ class VideoQuiz(XBlock):
                    "options": self.quiz[self.index].options,
                    "answer": self.quiz[self.index].answer,  # originally blank to prevent cheating
                    "explanation": self.quiz[self.index].explanation,
-                   "student_tries": self.tries[self.index] if len(self.tries) > 0 else 0,
+                   "student_tries": self.quiz[self.index].tries,
                    "result": self.results[self.index]
                    }
 
@@ -228,9 +232,6 @@ class VideoQuiz(XBlock):
                5 = passed
         '''
 
-        print(self.tries)
-        print(self.index)
-
         # make sure the question is of a familiar kind
         if self.quiz[self.index].kind in ["text", "radio", "checkbox"]:
 
@@ -238,13 +239,13 @@ class VideoQuiz(XBlock):
             self.answers.append([self.index, data["answer"]])
 
             # are there any tries left?
-            if self.tries[self.index] > 0:
+            if self.quiz[self.index].tries > 0:
 
                 # glitch/cheat avoidance here
                 if not self.results[self.index] > 1:
 
                     # decrease number of tries
-                    self.tries[self.index] -= 1
+                    self.quiz[self.index].tries -= 1
 
                     # student enters valid answer(s)
                     if self.answer_validate(data["answer"], self.quiz[self.index].answer):
@@ -254,11 +255,10 @@ class VideoQuiz(XBlock):
                         self.results[self.index] = 1
 
         else:
-
             print("Unsupported kind of question in this quiz.")
 
         # If the tries ran out, mark this answer as failed
-        if self.tries[self.index] == 0 and self.results[self.index] == 1:
+        if self.quiz[self.index].tries == 0 and self.results[self.index] == 1:
             self.results[self.index] = 2
 
         content = self.grab_current_question()
@@ -274,18 +274,12 @@ class VideoQuiz(XBlock):
     def index_goto(self, data, suffix=''):
         """Retrieve index from JSON and return quiz question strings located at that index."""
 
+        print(data['index'])
+        print(self.index)
+
         self.index = data['index']
 
-        return self.grab_current_question()
-
-    @XBlock.json_handler
-    def index_reset(self, data, suffix=''):
-        """Reset index to 0."""
-
-        # NO LONGER USED
-
-        if self.index in range(0, len(self.quiz)):
-            self.index = 0
+        print(self.index)
 
         return self.grab_current_question()
 
@@ -348,7 +342,7 @@ class VideoQuiz(XBlock):
         print("Quiz cue times: " + str(self.quiz_cuetimes))
         print("Answers: " + str(self.answers))
         print("Results: " + str(self.results))
-        print("Tries: " + str(self.tries))
+        # print("Tries: " + str(self.tries))
 
         fragment = Fragment()
         fragment.add_content(render_template('templates/html/vidquiz.html', {'self': self}))
