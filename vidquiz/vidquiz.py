@@ -294,14 +294,14 @@ class VideoQuiz(XBlock):
 
             # There is no validation! Enter your data carefully!
 
-            self.title = data["title"]
+            self.title = data["vid_title"]
             self.quiz_content = data["quiz_content"]
             self.href = data["href"]
             self.height = data["height"]
             self.width = data["width"]
 
             print("submitted data")
-            print(data["title"])
+            print(data["vid_title"])
             print(data["quiz_content"])
             print(data["href"])
             print(data["height"])
@@ -309,7 +309,7 @@ class VideoQuiz(XBlock):
 
         # prepare current module parameters for return
         content = {
-            "title": self.title,
+            "vid_title": self.title,
             "quiz_content": self.quiz_content,
             "href": self.href,
             "width": self.width,
