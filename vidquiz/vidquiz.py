@@ -88,20 +88,15 @@ class VideoQuiz(XBlock):
         default="", scope=Scope.content
     )
 
-    '''
     index = Integer(
-        default=-1, scope=Scope.content,
+        default=-1, scope=Scope.user_state,
         help="Counter that keeps track of the current question being displayed",
     )
-    '''
-    index = -1
 
-    '''
     tries = List(
         default=[], scope=Scope.user_state,
         help="The number of tries left for each question",
-    )'''
-    tries = []
+    )
 
     results = List(
         default=[], scope=Scope.user_state,
@@ -276,12 +271,7 @@ class VideoQuiz(XBlock):
     def index_goto(self, data, suffix=''):
         """Retrieve index from JSON and return quiz question strings located at that index."""
 
-        print(self.index)
-        print(data['index'])
-
         self.index = data['index']
-
-
 
         return self.grab_current_question()
 
