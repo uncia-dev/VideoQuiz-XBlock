@@ -8,6 +8,14 @@
   min-height: 320px;
 }
 
+.vid_title {
+    text-align: center;
+}
+
+.html5link {
+    text-align: center;
+}
+
 .vid_lecture {
     display: block;
     margin: 0 auto;
