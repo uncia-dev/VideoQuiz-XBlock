@@ -84,11 +84,7 @@ function VideoQuiz(runtime, element) {
 
                 if (quiz_content.result >= 4) {
                     params['disabled'] = true;
-
-                    if ($.inArray(String(this), quiz_content.answer) > -1) {
-                        params['checked'] = true;
-                    }
-
+                    if ($.inArray(String(this), quiz_content.answer) > -1) params['checked'] = true;
                 }
 
                 $(".student_answer").append(
@@ -120,7 +116,7 @@ function VideoQuiz(runtime, element) {
             $('.tries').hide();
 
             if (quiz_content.result == 4) out = "You have already attempted this question.";
-            else out = "You have already answered this question";
+            else out = "You have already answered this question.";
 
             $(".answer_feedback").show().text(out);
 
@@ -166,11 +162,11 @@ function VideoQuiz(runtime, element) {
 
             }
 
-            // Conditions for showing Explanation button
-            if (quiz_content.student_tries == 0 || quiz_content.result >= 3) {
-                $(".btn_explain").show();
-            }
+        }
 
+        // Conditions for showing Explanation button
+        if (quiz_content.student_tries == 0 || quiz_content.result >= 3) {
+            $(".btn_explain").show();
         }
 
     }
