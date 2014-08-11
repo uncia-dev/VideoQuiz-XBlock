@@ -26,6 +26,7 @@ function VideoQuiz(runtime, element) {
 
     }
 
+    /* Display quiz questions (taking student results into calculation) */
     function drawQuestions(quiz_content) {
 
         // First draw student input form
@@ -128,11 +129,9 @@ function VideoQuiz(runtime, element) {
 
                 $(".answer_icon").show().attr("src", icon_correct);
                 $(".answer_feedback").show().text("Your answer is correct!");
-
                 $('.tries').hide();
                 $('.btn_submit').hide();
                 $('.btn_next').val("Continue");
-                //$(".student_answer").empty();
                 drawQuestions(quiz_content);
 
             // Wrong answer
@@ -143,25 +142,17 @@ function VideoQuiz(runtime, element) {
                 $(".btn_submit").val("Resubmit");
                 $('.btn_next').val("Continue");
 
+            // Ran out of trie state
             } else if (quiz_content.result == 2) {
 
-                // *crickets*
-
-            }
-
-            // Output tries left
-            if (quiz_content.student_tries > 0) {
-                $(".tries").text("Tries left: " + quiz_content.student_tries);
-
-            // Tries ran out
-            } else {
-
-                //$(".student_answer").empty();
                 $(".tries").text("Sorry, you ran out of tries.");
                 $(".btn_submit").hide();
                 $(".btn_next").val("Continue");
 
             }
+
+            // Output tries left
+            if (quiz_content.student_tries > 0) $(".tries").text("Tries left: " + quiz_content.student_tries);
 
         }
 
