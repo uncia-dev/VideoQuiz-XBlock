@@ -1,6 +1,8 @@
 edx-vidquiz
 ===========
 
+Text below is outdated! Will update soon
+
 About
 -----
 
