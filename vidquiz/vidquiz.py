@@ -286,6 +286,7 @@ class VideoQuiz(XBlock):
             # There is no validation! Enter your data carefully!
 
             self.vq_header = data["vq_header"]
+            self.display_name = data["vq_header"]
             self.quiz_content = data["quiz_content"]
             self.href = data["href"]
             self.height = data["height"]
