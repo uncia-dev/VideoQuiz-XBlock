@@ -8,11 +8,12 @@
   min-height: 320px;
 }
 
-/*
 .vq_header {
     text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+    color: #1aa1e0;
 }
-*/
 
 .html5link {
     text-align: center;

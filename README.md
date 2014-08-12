@@ -1,7 +1,7 @@
 edx-vidquiz
 ===========
 
-Text below is outdated! Will update soon
+Text below is outdated! Will update soon!
 
 About
 -----
@@ -33,5 +33,9 @@ What is not complete yet
 Setup
 -----
 
-Install just like any other XBlock module. Did not try the current version in the Production Stack yet, but it work in
-the earlier stages when it was only a video player.
+vidquiz-xblock installs just like any other XBlock module. Here is a list of commands that you should run on your edX
+ssh terminal:
+
+    sudo rm -r vidquiz-xblock/
+    git clone https://github.com/uw-ray/vidquiz-xblock.git
+    sudo -u edxapp /edx/bin/pip.edxapp install --upgrade vidquiz-xblock/
