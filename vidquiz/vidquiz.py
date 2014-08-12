@@ -63,7 +63,7 @@ class VideoQuiz(XBlock):
         default="Video Quiz"
     )
 
-    vid_title = String(
+    vq_title = String(
         help="Title to be shown above the video area",
         default="", scope=Scope.content
     )
@@ -258,12 +258,7 @@ class VideoQuiz(XBlock):
     def index_goto(self, data, suffix=''):
         """Retrieve index from JSON and return quiz question strings located at that index."""
 
-        print(data['index'])
-        print(self.index)
-
         self.index = data['index']
-
-        print(self.index)
 
         return self.grab_current_question()
 
@@ -278,21 +273,21 @@ class VideoQuiz(XBlock):
 
             # There is no validation! Enter your data carefully!
 
-            self.vid_title = data["vid_title"]
+            self.vq_title = data["vq_title"]
             self.quiz_content = data["quiz_content"]
             self.href = data["href"]
             self.height = data["height"]
             self.width = data["width"]
 
             print("submitted data")
-            print("Title: " + data["vid_title"])
+            print("Title: " + data["vq_title"])
             print("Quiz data: " + data["quiz_content"])
             print("Video URL: " + data["href"])
             print("Video size: " + data["width"] + "x" + data["height"] + "px")
 
         # prepare current module parameters for return
         content = {
-            "vid_title": self.vid_title,
+            "vq_title": self.vq_title,
             "quiz_content": self.quiz_content,
             "href": self.href,
             "width": self.width,
@@ -352,6 +347,6 @@ class VideoQuiz(XBlock):
     def workbench_scenarios():
         """Workbench scenario for development and testing"""
         return [
-            ("VideoQuiz", """<vidquiz vid_title="Test VidQuiz" href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question ~ 5;2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ this is the second question ~ 5;3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ this is the third question ~ 5"/>"""),
+            ("VideoQuiz", """<vidquiz vq_title="Test VidQuiz" href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question ~ 5;2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ this is the second question ~ 5;3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ this is the third question ~ 5"/>"""),
         ]
 
