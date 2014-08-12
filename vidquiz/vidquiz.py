@@ -149,8 +149,6 @@ class VideoQuiz(XBlock):
     def grab_current_question(self):
         """Return data relevant for each refresh of the quiz form."""
 
-        print(self.index)
-
         content = {
                    "index": self.index,
                    "question": self.quiz[self.index].question,
@@ -171,6 +169,20 @@ class VideoQuiz(XBlock):
             content["answer"] = "if you see this, you cheated! begone!"
 
         '''
+
+        return content
+
+    @XBlock.json_handler
+    def grab_grade(self, data, suffix=''):
+        """Return student grade for questions answered throughout video playback"""
+
+        content = {"grade": 0}
+
+        for i in self.results:
+            if i == 5:  # only take into account passed state
+                content["grade"] += 1
+
+        content["grade"] *= (100/len(self.results))
 
         return content
 

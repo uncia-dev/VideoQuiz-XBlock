@@ -1,6 +1,7 @@
 function VideoQuiz(runtime, element) {
 
     var vid_url = ""; // url to the video being displayed
+    var vid_duration = 0;
     var cue_times = []; // store cue times for each quiz question
     var quiz_loaded = false; // was the quiz loaded?
     var icon_correct = "";
@@ -90,7 +91,8 @@ function VideoQuiz(runtime, element) {
     /* Update contents of quiz field to those received from quiz_content */
     function quizUpdate(quiz_content) {
 
-        /* Question states being used below:
+        /*
+        Question states being used below:
                0 = student did not touch this question yet
                1 = failed, with tries left
                2 = tries ran out; will fail; used for initial feedback; will be set to 4 afterwards
@@ -186,7 +188,6 @@ function VideoQuiz(runtime, element) {
 
     /* Load question at index i, from vidquiz.py->self.quiz */
     function quizGoto(index, eventObject) {
-
         $.ajax({
             type: "POST",
             url: runtime.handlerUrl(element, "index_goto"),
@@ -213,8 +214,32 @@ function VideoQuiz(runtime, element) {
 
                     // Code below is for direct links to video files - no longer used
                     // var corn = Popcorn(".vid_lecture");
-
                     var corn = Popcorn.youtube(".vid_lecture", vid_url);
+
+// remove this
+corn.mute();
+
+                    // Add statistics to be show at the end of the video
+                    corn.cue(0.001, function() {
+
+                        // Not the most elegant way to do this, but there is no direct way to grab duration
+                        corn.cue(this.duration()-1.5, function() {
+
+                            $.ajax({
+                                type: "POST",
+                                url: runtime.handlerUrl(element, "grab_grade"),
+                                data: JSON.stringify({}),
+                                success: function(result) {
+                                    $('.video_area').hide();
+                                    $('.quiz_space').hide();
+                                    $('.score_board').show();
+                                    $('.result_feedback').text("You have correctly answered " + result.grade + "% of the questions.");
+                                }
+                            });
+
+                        });
+
+                    });
 
                     // Set trigger times for each quiz question, and attach controls the quiz
                     //elements (ie buttons, text field, etc)
@@ -265,7 +290,8 @@ function VideoQuiz(runtime, element) {
                         corn.play();
                     });
 
-                    $('.btn_explain').click(function(evenObject) {
+                    // Clicked Explain button
+                    $('.btn_explain').click(function(eventObject) {
 
                         // change in the future; this implementation is the bare minimum
 
@@ -285,6 +311,15 @@ function VideoQuiz(runtime, element) {
                         }
                         openindex();
 
+                    });
+
+                    // Clicked Replay button
+                    $('.btn_replay').click(function(eventObject) {
+                        $('.video_area').show();
+                        $('.quiz_space').hide();
+                        $('.score_board').hide();
+                        corn.currentTime(0);
+                        corn.play();
                     });
 
                 });
