@@ -63,7 +63,7 @@ class VideoQuiz(XBlock):
         default="Video Quiz"
     )
 
-    vq_title = String(
+    vq_header = String(
         help="Title to be shown above the video area",
         default="", scope=Scope.content
     )
@@ -273,21 +273,21 @@ class VideoQuiz(XBlock):
 
             # There is no validation! Enter your data carefully!
 
-            self.vq_title = data["vq_title"]
+            self.vq_header = data["vq_header"]
             self.quiz_content = data["quiz_content"]
             self.href = data["href"]
             self.height = data["height"]
             self.width = data["width"]
 
             print("submitted data")
-            print("Title: " + data["vq_title"])
+            print("Title: " + data["vq_header"])
             print("Quiz data: " + data["quiz_content"])
             print("Video URL: " + data["href"])
             print("Video size: " + data["width"] + "x" + data["height"] + "px")
 
         # prepare current module parameters for return
         content = {
-            "vq_title": self.vq_title,
+            "vq_header": self.vq_header,
             "quiz_content": self.quiz_content,
             "href": self.href,
             "width": self.width,
@@ -347,6 +347,6 @@ class VideoQuiz(XBlock):
     def workbench_scenarios():
         """Workbench scenario for development and testing"""
         return [
-            ("VideoQuiz", """<vidquiz vq_title="Test VidQuiz" href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question ~ 5;2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ this is the second question ~ 5;3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ this is the third question ~ 5"/>"""),
+            ("VideoQuiz", """<vidquiz vq_header="Test VidQuiz" href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question ~ 5;2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ this is the second question ~ 5;3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ this is the third question ~ 5"/>"""),
         ]
 
