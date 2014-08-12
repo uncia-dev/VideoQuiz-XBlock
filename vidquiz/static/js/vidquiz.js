@@ -231,8 +231,8 @@ corn.mute();
                                 data: JSON.stringify({}),
                                 success: function(result) {
                                     $('.video_area').hide();
-                                    $('.quiz_space').hide();
-                                    $('.score_board').show();
+                                    $('.quiz_area').hide();
+                                    $('.scoreboard').show();
                                     $('.result_feedback').text("You have correctly answered " + result.grade + "% of the questions.");
                                 }
                             });
@@ -248,7 +248,7 @@ corn.mute();
                             corn.pause();
                             $(".vid_lecture").hide();
                             $(".html5link").hide();
-                            $(".quiz_space").show();
+                            $(".quiz_area").show();
                             quizGoto(k);
                         });
                     });
@@ -286,7 +286,7 @@ corn.mute();
                     $('.btn_next').click(function (eventObject) {
                         $(".vid_lecture").show();
                         $(".html5link").show();
-                        $(".quiz_space").hide();
+                        $(".quiz_area").hide();
                         corn.play();
                     });
 
@@ -316,8 +316,8 @@ corn.mute();
                     // Clicked Replay button
                     $('.btn_replay').click(function(eventObject) {
                         $('.video_area').show();
-                        $('.quiz_space').hide();
-                        $('.score_board').hide();
+                        $('.quiz_area').hide();
+                        $('.scoreboard').hide();
                         corn.currentTime(0);
                         corn.play();
                     });
@@ -327,7 +327,7 @@ corn.mute();
             } else {
 
                 $(".vid_lecture").hide();
-                $(".quiz_space").hide();
+                $(".quiz_area").hide();
                 $(".novid").hide();
                 $(".noquiz").show();
 
@@ -336,7 +336,7 @@ corn.mute();
         } else {
 
             $(".vid_lecture").hide();
-            $(".quiz_space").hide();
+            $(".quiz_area").hide();
             $(".novid").show();
 
         }
