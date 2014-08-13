@@ -113,7 +113,7 @@ class VideoQuiz(XBlock):
         print("Loading quiz ...")
 
         # grab questions, answers, etc from form
-        for line in self.quiz_content.split(';'):
+        for line in self.quiz_content.split('\n'):
 
             '''
             each line will contain the following:
