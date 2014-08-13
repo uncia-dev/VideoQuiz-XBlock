@@ -15,6 +15,7 @@ function VideoQuiz(runtime, element) {
     function quizFormReset() {
 
         // Clear fields and reset their visibility
+        $(".student_answer").empty();
         $(".question").text("");
         $(".answer").text("");
         $(".tries").text("").show();
@@ -23,7 +24,6 @@ function VideoQuiz(runtime, element) {
         $(".btn_explain").hide();
         $(".answer_icon").hide();
         $(".answer_feedback").hide();
-        $(".student_answer").empty();
 
     }
 
