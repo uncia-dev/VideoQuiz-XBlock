@@ -115,8 +115,6 @@ class VideoQuiz(XBlock):
         # grab questions, answers, etc from form
         for line in self.quiz_content.split('\n'):
 
-            print(repr(line))
-
             '''
             each line will contain the following:
                 trigger time
@@ -185,7 +183,11 @@ class VideoQuiz(XBlock):
             if i == 5:  # only take into account passed state
                 content["grade"] += 1
 
+        print(content["grade"])
+
         content["grade"] *= (100/len(self.results))
+
+        print(content["grade"])
 
         return content
 
