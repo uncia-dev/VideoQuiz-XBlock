@@ -183,11 +183,9 @@ class VideoQuiz(XBlock):
             if i == 5:  # only take into account passed state
                 content["grade"] += 1.0
 
-        print(content["grade"])
+        print(100/3)
 
         content["grade"] *= (100/len(self.results))
-
-        print(content["grade"])
 
         return content
 
