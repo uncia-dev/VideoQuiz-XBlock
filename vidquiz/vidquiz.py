@@ -132,7 +132,8 @@ class VideoQuiz(XBlock):
             self.quiz_cuetimes.append(tmp[0])
 
             # populate container for quiz questions
-            self.quiz.append(QuizQuestion(tmp[1], tmp[2], tmp[3].split("|"), tmp[4].split("|"), tmp[5], int(tmp[6])))
+            #self.quiz.append(QuizQuestion(tmp[1], tmp[2], tmp[3].split("|"), tmp[4].split("|"), tmp[5], int(tmp[6])))
+            self.quiz.append(QuizQuestion(tmp[1], tmp[2], tmp[3].split("|"), tmp[4].split("|"), tmp[5]))  # ignore tries
             # Populate array of results for this session
             if len(self.results) < len(self.quiz):
                 self.results.append(0)

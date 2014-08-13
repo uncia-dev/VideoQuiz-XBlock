@@ -153,8 +153,8 @@ function VideoQuiz(runtime, element) {
 
             }
 
-            // Output tries left
-            if (quiz_content.student_tries > 0) $(".tries").text("Tries left: " + quiz_content.student_tries);
+            // Output tries left - disabled
+            // if (quiz_content.student_tries > 0) $(".tries").text("Tries left: " + quiz_content.student_tries);
 
         }
 
