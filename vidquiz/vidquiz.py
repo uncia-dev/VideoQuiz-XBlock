@@ -183,8 +183,6 @@ class VideoQuiz(XBlock):
             if i == 5:  # only take into account passed state
                 content["grade"] += 1.0
 
-        print(100.0/3)
-
         content["grade"] *= (100.0/len(self.results))
 
         return content
@@ -276,6 +274,15 @@ class VideoQuiz(XBlock):
         self.index = data['index']
 
         return self.grab_current_question()
+
+    @XBlock.json_handler
+    def quiz_reset(self, data, suffix=''):
+        """Reset quiz results"""
+
+        for i in range(0, len(self.results)):
+            self.results[i] = 0
+
+        return {}
 
     @XBlock.json_handler
     def studio_submit(self, data, suffix=''):

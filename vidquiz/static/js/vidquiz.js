@@ -12,7 +12,7 @@ function VideoQuiz(runtime, element) {
     /*
     Resets question form to a blank state
     */
-    function quizReset() {
+    function quizFormReset() {
 
         // Clear fields and reset their visibility
         $(".question").text("");
@@ -101,7 +101,7 @@ function VideoQuiz(runtime, element) {
                5 = passed
         */
 
-        quizReset(); // refresh quiz form; not the most optimal way, but it does the job
+        quizFormReset(); // refresh quiz form; not the most optimal way, but it does the job
 
         cur_question_kind = quiz_content.kind;
         cur_explanation = quiz_content.explanation;
@@ -315,11 +315,20 @@ corn.mute();
 
                     // Clicked Replay button
                     $('.btn_replay').click(function(eventObject) {
-                        $('.video_area').show();
-                        $('.quiz_area').hide();
-                        $('.scoreboard').hide();
-                        corn.currentTime(0);
-                        corn.play();
+
+                        $.ajax({
+                            type: "POST",
+                            url: runtime.handlerUrl(element, 'quiz_reset'),
+                            data: JSON.stringify({}),
+                            success: function(eventObject) {
+                                $('.video_area').show();
+                                $('.quiz_area').hide();
+                                $('.scoreboard').hide();
+                                corn.currentTime(0);
+                                corn.play();
+                            }
+                        });
+
                     });
 
                 });
