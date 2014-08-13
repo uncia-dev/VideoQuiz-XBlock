@@ -177,11 +177,11 @@ class VideoQuiz(XBlock):
     def grab_grade(self, data, suffix=''):
         """Return student grade for questions answered throughout video playback"""
 
-        content = {"grade": 0}
+        content = {"grade": 0.0}
 
         for i in self.results:
             if i == 5:  # only take into account passed state
-                content["grade"] += 1
+                content["grade"] += 1.0
 
         print(content["grade"])
 
