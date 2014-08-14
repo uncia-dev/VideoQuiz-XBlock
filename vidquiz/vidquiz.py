@@ -288,6 +288,7 @@ class VideoQuiz(XBlock):
 
         for i in range(0, len(self.results)):
             self.results[i] = 0
+            self.quiz[i].tries = 3
 
         return {}
 
