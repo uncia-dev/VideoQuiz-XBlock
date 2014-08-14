@@ -203,27 +203,26 @@ function VideoQuiz(runtime, element) {
 
             $(".novid").hide();
 
-        // Load Popcorn js
+            // Load Popcorn js
+            $.getScript("http://cdn.popcornjs.org/code/dist/popcorn-complete.min.js", function() {
 
-        $.getScript("http://cdn.popcornjs.org/code/dist/popcorn-complete.min.js", function() {
+                // Popcorn object that affects video lecture
 
-            // Popcorn object that affects video lecture
+                // Code below is for direct links to video files - no longer used
+                // var corn = Popcorn(".vid_lecture");
 
-            // Code below is for direct links to video files - no longer used
-            // var corn = Popcorn(".vid_lecture");
-
-            var wrapper = Popcorn.HTMLYouTubeVideoElement(".vid_lecture");
-            wrapper.src = vid_url + "?controls=1&enablejsapi=1&html5=1";
-            var corn = Popcorn(wrapper);
+                var wrapper = Popcorn.HTMLYouTubeVideoElement(".vid_lecture");
+                wrapper.src = vid_url + "?controls=1&enablejsapi=1&html5=1";
+                var corn = Popcorn(wrapper);
 
 // remove this
 corn.mute();
 
-            corn.cue(1, function() {
-                console.log("test");
-            })
+                corn.cue(1, function() {
+                    console.log("test");
+                })
 
-        })
+            })
 
         } else {
 
