@@ -175,7 +175,6 @@ function VideoQuiz(runtime, element) {
             data: JSON.stringify({}),
             async: false,
             success: function(result) {
-                console.log(result.vid_url);
                 vid_url = result.vid_url;
                 cue_times = result.cuetimes;
                 quiz_loaded = result.quiz_loaded;
