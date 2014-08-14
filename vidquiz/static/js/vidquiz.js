@@ -285,6 +285,8 @@ corn.mute();
                     success: quizUpdate
                 });
 
+                window.location.reload();
+
             });
 
             // Clicked Skip/Continue
