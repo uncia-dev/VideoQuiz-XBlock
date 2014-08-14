@@ -205,7 +205,7 @@ function VideoQuiz(runtime, element) {
             // Load quiz questions and grab their cue times
             getToWork();
 
-            if (quiz_loaded) {
+            //if (quiz_loaded) { // disabled; you can use VideoQuiz as a regular YouTube player as well
 
                 // Load Popcorn js
                 $.getScript("http://cdn.popcornjs.org/code/dist/popcorn-complete.min.js", function(){
@@ -230,10 +230,14 @@ corn.mute();
                                 url: runtime.handlerUrl(element, "grab_grade"),
                                 data: JSON.stringify({}),
                                 success: function(result) {
-                                    $('.video_area').hide();
-                                    $('.quiz_area').hide();
-                                    $('.scoreboard').show();
-                                    $('.result_feedback').text("You have correctly answered " + result.grade + "% of the questions.");
+
+                                    if (result.grade != -1) {
+                                        $('.video_area').hide();
+                                        $('.quiz_area').hide();
+                                        $('.scoreboard').show();
+                                        $('.result_feedback').text("You have correctly answered " + result.grade + "% of the questions.");
+                                    }
+
                                 }
                             });
 
@@ -247,7 +251,7 @@ corn.mute();
                         corn.cue(v, function () {
                             corn.pause();
                             $(".vid_lecture").hide();
-                            $(".html5link").hide();
+                            //$(".html5link").hide();
                             $(".quiz_area").show();
                             quizGoto(k);
                         });
@@ -285,7 +289,7 @@ corn.mute();
                     // Clicked Skip/Continue
                     $('.btn_next').click(function (eventObject) {
                         $(".vid_lecture").show();
-                        $(".html5link").show();
+                        //$(".html5link").show();
                         $(".quiz_area").hide();
                         corn.play();
                     });
@@ -321,6 +325,7 @@ corn.mute();
                             url: runtime.handlerUrl(element, 'quiz_reset'),
                             data: JSON.stringify({}),
                             success: function(eventObject) {
+                                quizFormReset();
                                 $('.video_area').show();
                                 $('.quiz_area').hide();
                                 $('.scoreboard').hide();
@@ -333,6 +338,7 @@ corn.mute();
 
                 });
 
+        /* This block displays an error message if the author does not write the text for the quizes
             } else {
 
                 $(".vid_lecture").hide();
@@ -341,6 +347,7 @@ corn.mute();
                 $(".noquiz").show();
 
             }
+        */
 
         } else {
 

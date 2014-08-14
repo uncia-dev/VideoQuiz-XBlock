@@ -177,13 +177,20 @@ class VideoQuiz(XBlock):
     def grab_grade(self, data, suffix=''):
         """Return student grade for questions answered throughout video playback"""
 
-        content = {"grade": 0.0}
+        # process grade only if there is a quiz
+        if self.quiz_content != "":
 
-        for i in self.results:
-            if i == 5:  # only take into account passed state
-                content["grade"] += 1.0
+            content = {"grade": 0.0}
 
-        content["grade"] *= (100.0/len(self.results))
+            for i in self.results:
+                if i == 5:  # only take into account passed state
+                    content["grade"] += 1.0
+
+            content["grade"] *= (100.0/len(self.results))
+
+        else:
+
+            content = {"grade": -1}
 
         return content
 
@@ -327,7 +334,7 @@ class VideoQuiz(XBlock):
         The primary view of VideoQuiz, shown to students.
         """
 
-        # load contents of quiz
+        # load contents of quiz if any, otherwise this is just a YouTube video player
         if self.quiz_content != "":
             self.load_quiz()
 
@@ -370,6 +377,7 @@ class VideoQuiz(XBlock):
     def workbench_scenarios():
         """Workbench scenario for development and testing"""
         return [
-            ("VideoQuiz", """<vidquiz vq_header="Test VidQuiz" href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270" quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question ~ 5;2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ this is the second question ~ 5;3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ this is the third question ~ 5"/>"""),
+            ("VideoQuiz", """<vidquiz vq_header="Test VidQuiz" href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270"
+            quiz_content=""/>"""),
         ]
 
