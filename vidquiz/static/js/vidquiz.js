@@ -1,9 +1,7 @@
 function VideoQuiz(runtime, element) {
 
     var vid_url = ""; // url to the video being displayed
-    var vid_duration = 0;
     var cue_times = []; // store cue times for each quiz question
-    var quiz_loaded = false; // was the quiz loaded?
     var icon_correct = "";
     var icon_incorrect = "";
     var cur_question_kind = "";
@@ -177,7 +175,6 @@ function VideoQuiz(runtime, element) {
             success: function(result) {
                 vid_url = result.vid_url;
                 cue_times = result.cuetimes;
-                quiz_loaded = result.quiz_loaded;
                 icon_correct = result.correct;
                 icon_incorrect = result.incorrect;
             }
@@ -201,6 +198,10 @@ function VideoQuiz(runtime, element) {
 
         // Load quiz questions and grab their cue times
         getToWork();
+
+        if (vid_url != "") {
+
+            $(".novid").hide();
 
         // Load Popcorn js
 
@@ -338,6 +339,12 @@ corn.mute();
             });
 
         })
+
+        } else {
+
+            $(".novid").show();
+
+        }
 
     })
 }

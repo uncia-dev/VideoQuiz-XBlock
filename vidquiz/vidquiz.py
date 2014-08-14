@@ -143,7 +143,7 @@ class VideoQuiz(XBlock):
         """Perform the actions below when the module is loaded."""
 
         # return cue time triggers and tell whether or not the quit was loaded
-        return {"vid_url": self.vid_url, "cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0,
+        return {"vid_url": self.vid_url, "cuetimes": self.quiz_cuetimes,
                 "correct": self.runtime.local_resource_url(self, 'public/img/correct-icon.png'),
                 "incorrect": self.runtime.local_resource_url(self, 'public/img/incorrect-icon.png')}
 
