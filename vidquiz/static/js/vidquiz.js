@@ -175,6 +175,7 @@ function VideoQuiz(runtime, element) {
             data: JSON.stringify({}),
             async: false,
             success: function(result) {
+                console.log(result.vid_url);
                 vid_url = result.vid_url;
                 cue_times = result.cuetimes;
                 quiz_loaded = result.quiz_loaded;
@@ -199,163 +200,143 @@ function VideoQuiz(runtime, element) {
     /* Page is loaded. Do something. */
     $(function($) {
 
-        // Is a video file assigned to vid_lecture?
-        if ($(".vidsrc").attr("src") != "") {
+        // Load quiz questions and grab their cue times
+        getToWork();
 
-            // Load quiz questions and grab their cue times
-            getToWork();
+        // Load Popcorn js
 
-            //if (quiz_loaded) { // disabled; you can use VideoQuiz as a regular YouTube player as well
+        $.getScript("http://cdn.popcornjs.org/code/dist/popcorn-complete.min.js", function(){
 
-                // Load Popcorn js
-                $.getScript("http://cdn.popcornjs.org/code/dist/popcorn-complete.min.js", function(){
+            // Popcorn object that affects video lecture
 
-                    // Popcorn object that affects video lecture
+            // Code below is for direct links to video files - no longer used
+            // var corn = Popcorn(".vid_lecture");
 
-                    // Code below is for direct links to video files - no longer used
-                    // var corn = Popcorn(".vid_lecture");
-                    var corn = Popcorn.youtube(".vid_lecture", vid_url);
+            var wrapper = Popcorn.HTMLYouTubeVideoElement(".vid_lecture");
+            wrapper.src = vid_url + "?controls=0";
+            var corn = Popcorn(wrapper);
 
 // remove this
 corn.mute();
 
-                    // Add statistics to be show at the end of the video
-                    corn.cue(0.001, function() {
+            // Add statistics to be show at the end of the video
+            corn.cue(0.001, function() {
 
-                        // Not the most elegant way to do this, but there is no direct way to grab duration
-                        corn.cue(this.duration()-1.5, function() {
+                // Not the most elegant way to do this, but there is no direct way to grab duration
+                corn.cue(this.duration()-1.5, function() {
 
-                            $.ajax({
-                                type: "POST",
-                                url: runtime.handlerUrl(element, "grab_grade"),
-                                data: JSON.stringify({}),
-                                success: function(result) {
+                    $.ajax({
+                        type: "POST",
+                        url: runtime.handlerUrl(element, "grab_grade"),
+                        data: JSON.stringify({}),
+                        success: function(result) {
 
-                                    if (result.grade != -1) {
-                                        $('.video_area').hide();
-                                        $('.quiz_area').hide();
-                                        $('.scoreboard').show();
-                                        $('.result_feedback').text("You have correctly answered " + result.grade + "% of the questions.");
-                                    }
-
-                                }
-                            });
-
-                        });
-
-                    });
-
-                    // Set trigger times for each quiz question, and attach controls the quiz
-                    //elements (ie buttons, text field, etc)
-                    Popcorn.forEach(cue_times, function (v, k, i) {
-                        corn.cue(v, function () {
-                            corn.pause();
-                            $(".vid_lecture").hide();
-                            //$(".html5link").hide();
-                            $(".quiz_area").show();
-                            quizGoto(k);
-                        });
-                    });
-
-                    // Clicked Submit/Resubmit
-                    $('.btn_submit').click(function (eventObject) {
-
-                        var out = [];
-
-                        if (cur_question_kind == "text") {
-                            out = $('.answer_simple').val();
-                        }
-
-                        if (cur_question_kind == "checkbox") {
-                            out = $('input:checkbox').serializeArray();
-                        }
-
-                        if (cur_question_kind == "radio") {
-                            out = $('input:radio').serializeArray();
-                            if (out.length == 0) out = "blank"; // still need to pass something to the server
-                        }
-
-                        $.ajax({
-                            type: "POST",
-                            url: runtime.handlerUrl(element, 'answer_submit'),
-                            data: JSON.stringify({
-                                "answer": out
-                            }),
-                            success: quizUpdate
-                        });
-
-                    });
-
-                    // Clicked Skip/Continue
-                    $('.btn_next').click(function (eventObject) {
-                        $(".vid_lecture").show();
-                        //$(".html5link").show();
-                        $(".quiz_area").hide();
-                        corn.play();
-                    });
-
-                    // Clicked Explain button
-                    $('.btn_explain').click(function(eventObject) {
-
-                        // change in the future; this implementation is the bare minimum
-
-                        function openindex()
-                        {
-                        OpenWindow=window.open("", "newwin", "height=250, width=640,toolbar=no,scrollbars="+scroll+",menubar=no");
-                        OpenWindow.document.write("<TITLE>Explanation</TITLE>");
-                        OpenWindow.document.write("<BODY BGCOLOR=gray>");
-                        OpenWindow.document.write(cur_explanation);
-                        OpenWindow.document.write("<FORM>");
-                        OpenWindow.document.write("<INPUT TYPE='BUTTON' VALUE='Close Window' onClick='window.close()'>");
-                        OpenWindow.document.write("</FORM>");
-                        OpenWindow.document.write("</BODY>");
-                        OpenWindow.document.write("</HTML>");
-                        OpenWindow.document.close();
-                        self.name="main"
-                        }
-                        openindex();
-
-                    });
-
-                    // Clicked Replay button
-                    $('.btn_replay').click(function(eventObject) {
-
-                        $.ajax({
-                            type: "POST",
-                            url: runtime.handlerUrl(element, 'quiz_reset'),
-                            data: JSON.stringify({}),
-                            success: function(eventObject) {
-                                quizFormReset();
-                                $('.video_area').show();
+                            if (result.grade != -1) {
+                                $('.video_area').hide();
                                 $('.quiz_area').hide();
-                                $('.scoreboard').hide();
-                                corn.currentTime(0);
-                                corn.play();
+                                $('.scoreboard').show();
+                                $('.result_feedback').text("You have correctly answered " + result.grade + "% of the questions.");
                             }
-                        });
 
+                        }
                     });
 
                 });
 
-        /* This block displays an error message if the author does not write the text for the quizes
-            } else {
+            });
 
-                $(".vid_lecture").hide();
+            // Set trigger times for each quiz question, and attach controls the quiz
+            //elements (ie buttons, text field, etc)
+            Popcorn.forEach(cue_times, function (v, k, i) {
+                corn.cue(v, function () {
+                    corn.pause();
+                    $(".vid_lecture").hide();
+                    //$(".html5link").hide();
+                    $(".quiz_area").show();
+                    quizGoto(k);
+                });
+            });
+
+            // Clicked Submit/Resubmit
+            $('.btn_submit').click(function (eventObject) {
+
+                var out = [];
+
+                if (cur_question_kind == "text") {
+                    out = $('.answer_simple').val();
+                }
+
+                if (cur_question_kind == "checkbox") {
+                    out = $('input:checkbox').serializeArray();
+                }
+
+                if (cur_question_kind == "radio") {
+                    out = $('input:radio').serializeArray();
+                    if (out.length == 0) out = "blank"; // still need to pass something to the server
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: runtime.handlerUrl(element, 'answer_submit'),
+                    data: JSON.stringify({
+                        "answer": out
+                    }),
+                    success: quizUpdate
+                });
+
+            });
+
+            // Clicked Skip/Continue
+            $('.btn_next').click(function (eventObject) {
+                $(".vid_lecture").show();
+                //$(".html5link").show();
                 $(".quiz_area").hide();
-                $(".novid").hide();
-                $(".noquiz").show();
+                corn.play();
+            });
 
-            }
-        */
+            // Clicked Explain button
+            $('.btn_explain').click(function(eventObject) {
 
-        } else {
+                // change in the future; this implementation is the bare minimum
 
-            $(".vid_lecture").hide();
-            $(".quiz_area").hide();
-            $(".novid").show();
+                function openindex()
+                {
+                OpenWindow=window.open("", "newwin", "height=250, width=640,toolbar=no,scrollbars="+scroll+",menubar=no");
+                OpenWindow.document.write("<TITLE>Explanation</TITLE>");
+                OpenWindow.document.write("<BODY BGCOLOR=gray>");
+                OpenWindow.document.write(cur_explanation);
+                OpenWindow.document.write("<FORM>");
+                OpenWindow.document.write("<INPUT TYPE='BUTTON' VALUE='Close Window' onClick='window.close()'>");
+                OpenWindow.document.write("</FORM>");
+                OpenWindow.document.write("</BODY>");
+                OpenWindow.document.write("</HTML>");
+                OpenWindow.document.close();
+                self.name="main"
+                }
+                openindex();
 
-        }
+            });
+
+            // Clicked Replay button
+            $('.btn_replay').click(function(eventObject) {
+
+                $.ajax({
+                    type: "POST",
+                    url: runtime.handlerUrl(element, 'quiz_reset'),
+                    data: JSON.stringify({}),
+                    success: function(eventObject) {
+                        quizFormReset();
+                        $('.video_area').show();
+                        $('.quiz_area').hide();
+                        $('.scoreboard').hide();
+                        corn.currentTime(0);
+                        corn.play();
+                    }
+                });
+
+            });
+
+        });
 
     });
 

@@ -68,7 +68,7 @@ class VideoQuiz(XBlock):
         default="", scope=Scope.content
     )
 
-    href = String(
+    vid_url = String(
         help="URL of the video page at the provider",
         default="", scope=Scope.content
     )
@@ -93,7 +93,7 @@ class VideoQuiz(XBlock):
         help="Counter that keeps track of the current question being displayed",
     )
 
-    results = []
+    results = []  # was XBlock field
 
     answers = List(
         default=[], scope=Scope.user_state,
@@ -143,7 +143,7 @@ class VideoQuiz(XBlock):
         """Perform the actions below when the module is loaded."""
 
         # return cue time triggers and tell whether or not the quit was loaded
-        return {"vid_url": self.href, "cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0,
+        return {"vid_url": self.vid_url, "cuetimes": self.quiz_cuetimes, "quiz_loaded": len(self.quiz) > 0,
                 "correct": self.runtime.local_resource_url(self, 'public/img/correct-icon.png'),
                 "incorrect": self.runtime.local_resource_url(self, 'public/img/incorrect-icon.png')}
 
@@ -305,21 +305,21 @@ class VideoQuiz(XBlock):
             self.vq_header = data["vq_header"]
             self.display_name = data["vq_header"]
             self.quiz_content = data["quiz_content"]
-            self.href = data["href"]
+            self.vid_url = data["vid_url"]
             self.height = data["height"]
             self.width = data["width"]
 
             print("submitted data")
             print("Title: " + data["vq_header"])
             print("Quiz data: " + data["quiz_content"])
-            print("Video URL: " + data["href"])
+            print("Video URL: " + data["vid_url"])
             print("Video size: " + data["width"] + "x" + data["height"] + "px")
 
         # prepare current module parameters for return
         content = {
             "vq_header": self.vq_header,
             "quiz_content": self.quiz_content,
-            "href": self.href,
+            "vid_url": self.vid_url,
             "width": self.width,
             "height": self.height,
         }
@@ -342,7 +342,7 @@ class VideoQuiz(XBlock):
         print("====================")
         print(">> Parameters: ")
         print(self.quiz_content)
-        print(self.href)
+        print(self.vid_url)
         print(self.width)
         print(self.height)
         print(">> Filled data")
@@ -377,7 +377,7 @@ class VideoQuiz(XBlock):
     def workbench_scenarios():
         """Workbench scenario for development and testing"""
         return [
-            ("VideoQuiz", """<vidquiz vq_header="Test VidQuiz" href="http://www.youtube.com/watch?v=CxvgCLgwdNk" width="480" height="270"
-            quiz_content=""/>"""),
+            ("VideoQuiz", """<vidquiz vq_header="Test VidQuiz" vid_url="//www.youtube.com/embed/CxvgCLgwdNk" width="640" height="480"
+            quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question"/>"""),
         ]
 
