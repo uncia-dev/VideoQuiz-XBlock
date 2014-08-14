@@ -6,7 +6,7 @@ function VideoQuizStudio(runtime, element) {
 
         $(".vq_header_studio").val(data.vq_header);
         $(".quiz_content").val(data.quiz_content);
-        $(".href").val(data.href);
+        $(".vid_url").val(data.vid_url);
         $(".width").val(data.width);
         $(".height").val(data.height);
 
@@ -32,7 +32,7 @@ function VideoQuizStudio(runtime, element) {
                 data: JSON.stringify({
                     "vq_header": $('.vq_header_studio').val(),
                     "quiz_content": $('.quiz_content').val(),
-                    "href": $('.href').val(),
+                    "vid_url": $('.vid_url').val(),
                     "width": $('.width').val(),
                     "height": $('.height').val()
                 }),
