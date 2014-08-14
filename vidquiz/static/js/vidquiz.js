@@ -236,7 +236,7 @@ corn.mute();
                                 $('.video_area').hide();
                                 $('.quiz_area').hide();
                                 $('.scoreboard').show();
-                                $('.result_feedback').text("You have correctly answered " + result.grade + "% of the questions.");
+                                $('.result_feedback').text("You have correctly answered " + Math.round(result.grade) + "% of the questions.");
                             }
 
                         }

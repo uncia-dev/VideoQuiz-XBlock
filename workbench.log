@@ -1,73 +1,28 @@
-(0.001) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 84  LIMIT 1; args=(84,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-08-14 19:22:44.889524, "state" = {
-  "answers": [
-    [
-      0,
-      ""
-    ],
-    [
-      0,
-      ""
-    ],
-    [
-      0,
-      ""
-    ],
-    [
-      0,
-      "jhn"
-    ],
-    [
-      0,
-      "kjh"
-    ]
-  ],
-  "index": 0
-} WHERE "workbench_xblockstate"."id" = 84 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-08-14 19:22:44.889524', '{\n  "answers": [\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      "jhn"\n    ],\n    [\n      0,\n      "kjh"\n    ]\n  ],\n  "index": 0\n}', 84)
-(0.001) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
-(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 84  LIMIT 1; args=(84,)
-(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-08-14 19:22:44.889524, "state" = {
-  "answers": [
-    [
-      0,
-      ""
-    ],
-    [
-      0,
-      ""
-    ],
-    [
-      0,
-      ""
-    ],
-    [
-      0,
-      "jhn"
-    ],
-    [
-      0,
-      "kjh"
-    ],
-    [
-      0,
-      "kjh"
-    ]
-  ],
-  "index": 0
-} WHERE "workbench_xblockstate"."id" = 84 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-08-14 19:22:44.889524', '{\n  "answers": [\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      "jhn"\n    ],\n    [\n      0,\n      "kjh"\n    ],\n    [\n      0,\n      "kjh"\n    ]\n  ],\n  "index": 0\n}', 84)
-(0.004) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'vidquiz', 'videoquiz.vidquiz.d0', 'videoquiz')
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = definition, "scope_id" = videoquiz.vidquiz.d0, "user_id" = NULL, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-08-14 19:22:37.237387, "state" = {
+  "height": "480",
+  "quiz_content": "1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question",
+  "vid_url": "//www.youtube.com/embed/CxvgCLgwdNk",
+  "vq_header": "Test VidQuiz",
+  "width": "640"
+} WHERE "workbench_xblockstate"."id" = 82 ; args=(u'definition', u'videoquiz.vidquiz.d0', u'videoquiz', u'vidquiz', u'2014-08-14 19:22:37.237387', '{\n  "height": "480",\n  "quiz_content": "1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question",\n  "vid_url": "//www.youtube.com/embed/CxvgCLgwdNk",\n  "vq_header": "Test VidQuiz",\n  "width": "640"\n}', 82)
 (0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'vidquiz', 'videoquiz.vidquiz.d0', 'videoquiz')
-(0.002) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'vidquiz', 'videoquiz.vidquiz.d0', 'videoquiz')
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 82  LIMIT 1; args=(82,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = definition, "scope_id" = videoquiz.vidquiz.d0, "user_id" = NULL, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-08-14 19:22:37.237387, "state" = {
+  "height": "480",
+  "quiz_content": "1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question",
+  "vid_url": "//www.youtube.com/embed/CxvgCLgwdNk",
+  "vq_header": "Test VidQuiz",
+  "width": "640"
+} WHERE "workbench_xblockstate"."id" = 82 ; args=(u'definition', u'videoquiz.vidquiz.d0', u'videoquiz', u'vidquiz', u'2014-08-14 19:22:37.237387', '{\n  "height": "480",\n  "quiz_content": "1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question",\n  "vid_url": "//www.youtube.com/embed/CxvgCLgwdNk",\n  "vq_header": "Test VidQuiz",\n  "width": "640"\n}', 82)
 (0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'vidquiz', 'videoquiz.vidquiz.d0', 'videoquiz')
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 82  LIMIT 1; args=(82,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = definition, "scope_id" = videoquiz.vidquiz.d0, "user_id" = NULL, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-08-14 19:22:37.237387, "state" = {
+  "height": "480",
+  "quiz_content": "1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question",
+  "vid_url": "//www.youtube.com/embed/CxvgCLgwdNk",
+  "vq_header": "Test VidQuiz",
+  "width": "640"
+} WHERE "workbench_xblockstate"."id" = 82 ; args=(u'definition', u'videoquiz.vidquiz.d0', u'videoquiz', u'vidquiz', u'2014-08-14 19:22:37.237387', '{\n  "height": "480",\n  "quiz_content": "1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question",\n  "vid_url": "//www.youtube.com/embed/CxvgCLgwdNk",\n  "vq_header": "Test VidQuiz",\n  "width": "640"\n}', 82)
 (0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'vidquiz', 'videoquiz.vidquiz.d0', 'videoquiz')
 (0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'vidquiz', 'videoquiz.vidquiz.d0', 'videoquiz')
 (0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'vidquiz', 'videoquiz.vidquiz.d0', 'videoquiz')
@@ -120,3 +75,79 @@
   ],
   "index": 0
 } WHERE "workbench_xblockstate"."id" = 84 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-08-14 19:22:44.889524', '{\n  "answers": [\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      "jhn"\n    ],\n    [\n      0,\n      "kjh"\n    ],\n    [\n      0,\n      "kjh"\n    ]\n  ],\n  "index": 0\n}', 84)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 84  LIMIT 1; args=(84,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-08-14 19:22:44.889524, "state" = {
+  "answers": [
+    [
+      0,
+      ""
+    ],
+    [
+      0,
+      ""
+    ],
+    [
+      0,
+      ""
+    ],
+    [
+      0,
+      "jhn"
+    ],
+    [
+      0,
+      "kjh"
+    ],
+    [
+      0,
+      "kjh"
+    ],
+    [
+      0,
+      "no"
+    ]
+  ],
+  "index": 0
+} WHERE "workbench_xblockstate"."id" = 84 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-08-14 19:22:44.889524', '{\n  "answers": [\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      "jhn"\n    ],\n    [\n      0,\n      "kjh"\n    ],\n    [\n      0,\n      "kjh"\n    ],\n    [\n      0,\n      "no"\n    ]\n  ],\n  "index": 0\n}', 84)
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'vidquiz', 'videoquiz.vidquiz.d0', 'videoquiz')
+(0.000) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = definition  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" IS NULL); args=('definition', 'vidquiz', 'videoquiz.vidquiz.d0', 'videoquiz')
+(0.001) SELECT "workbench_xblockstate"."id", "workbench_xblockstate"."scope", "workbench_xblockstate"."scope_id", "workbench_xblockstate"."user_id", "workbench_xblockstate"."scenario", "workbench_xblockstate"."tag", "workbench_xblockstate"."created", "workbench_xblockstate"."state" FROM "workbench_xblockstate" WHERE ("workbench_xblockstate"."scope" = usage  AND "workbench_xblockstate"."tag" = vidquiz  AND "workbench_xblockstate"."scope_id" = videoquiz.vidquiz.d0.u0  AND "workbench_xblockstate"."scenario" = videoquiz  AND "workbench_xblockstate"."user_id" = student_1 ); args=('usage', u'vidquiz', u'videoquiz.vidquiz.d0.u0', u'videoquiz', u'student_1')
+(0.000) SELECT (1) AS "a" FROM "workbench_xblockstate" WHERE "workbench_xblockstate"."id" = 84  LIMIT 1; args=(84,)
+(0.000) UPDATE "workbench_xblockstate" SET "scope" = usage, "scope_id" = videoquiz.vidquiz.d0.u0, "user_id" = student_1, "scenario" = videoquiz, "tag" = vidquiz, "created" = 2014-08-14 19:22:44.889524, "state" = {
+  "answers": [
+    [
+      0,
+      ""
+    ],
+    [
+      0,
+      ""
+    ],
+    [
+      0,
+      ""
+    ],
+    [
+      0,
+      "jhn"
+    ],
+    [
+      0,
+      "kjh"
+    ],
+    [
+      0,
+      "kjh"
+    ],
+    [
+      0,
+      "no"
+    ]
+  ],
+  "index": 0
+} WHERE "workbench_xblockstate"."id" = 84 ; args=(u'usage', u'videoquiz.vidquiz.d0.u0', u'student_1', u'videoquiz', u'vidquiz', u'2014-08-14 19:22:44.889524', '{\n  "answers": [\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      ""\n    ],\n    [\n      0,\n      "jhn"\n    ],\n    [\n      0,\n      "kjh"\n    ],\n    [\n      0,\n      "kjh"\n    ],\n    [\n      0,\n      "no"\n    ]\n  ],\n  "index": 0\n}', 84)
