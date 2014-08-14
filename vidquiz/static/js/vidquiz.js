@@ -204,8 +204,23 @@ function VideoQuiz(runtime, element) {
 
         // Load Popcorn js
 
+        $.getScript("http://cdn.popcornjs.org/code/dist/popcorn-complete.min.js", function() {
 
+            // Popcorn object that affects video lecture
 
-    });
+            // Code below is for direct links to video files - no longer used
+            // var corn = Popcorn(".vid_lecture");
+
+            var wrapper = Popcorn.HTMLYouTubeVideoElement(".vid_lecture");
+            wrapper.src = vid_url + "?controls=0";
+            var corn = Popcorn(wrapper);
+
+// remove this
+            corn.mute();
+
+        }
+
+        )}
+    )
 
 }
