@@ -213,8 +213,6 @@ function VideoQuiz(runtime, element) {
 
             var wrapper = Popcorn.HTMLYouTubeVideoElement(".vid_lecture");
             wrapper.src = vid_url + "?controls=1";
-            wrapper.width=640;
-            wrapper.height=480;
             var corn = Popcorn(wrapper);
 
 // remove this
