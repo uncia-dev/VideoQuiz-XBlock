@@ -5,7 +5,8 @@
   background: #F0F0F0;
   /*text-align: center;*/
   padding: 15px;
-  min-height: 320px;
+  min-height: 640px;
+  max-height: 640px;
 }
 
 .vq_header {
