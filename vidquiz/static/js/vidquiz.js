@@ -5,7 +5,6 @@ function VideoQuiz(runtime, element) {
     var icon_correct = "";
     var icon_incorrect = "";
     var cur_question_kind = "";
-    var cur_explanation = "";
 
     /*
     Resets question form to a blank state
@@ -102,7 +101,6 @@ function VideoQuiz(runtime, element) {
         quizFormReset(); // refresh quiz form; not the most optimal way, but it does the job
 
         cur_question_kind = quiz_content.kind;
-        cur_explanation = quiz_content.explanation;
 
         $('.index', element).text(quiz_content.index);
         $('.question', element).text(quiz_content.question);
@@ -177,6 +175,7 @@ function VideoQuiz(runtime, element) {
                 cue_times = result.cuetimes;
                 icon_correct = result.correct;
                 icon_incorrect = result.incorrect;
+                explanation_url = result.explanation_url;
             }
 
         });
@@ -234,7 +233,8 @@ corn.mute();
                                     $('.video_area').hide();
                                     $('.quiz_area').hide();
                                     $('.scoreboard').show();
-                                    $('.result_feedback').text("You have correctly answered " + Math.round(result.grade) + "% of the questions.");
+                                    $('.result_feedback').text("You have correctly answered " +
+                                        Math.round(result.grade) + "% of the questions.");
                                 }
 
                             }
@@ -296,23 +296,20 @@ corn.mute();
                 // Clicked Explain button
                 $('.btn_explain').click(function(eventObject) {
 
-                    // change in the future; this implementation is the bare minimum
+                    $.getScript("//code.jquery.com/ui/1.11.1/jquery-ui.js", function() {
 
-                    function openindex()
-                    {
-                    OpenWindow=window.open("", "newwin", "height=250, width=640,toolbar=no,scrollbars="+scroll+",menubar=no");
-                    OpenWindow.document.write("<TITLE>Explanation</TITLE>");
-                    OpenWindow.document.write("<BODY BGCOLOR=gray>");
-                    OpenWindow.document.write(cur_explanation);
-                    OpenWindow.document.write("<FORM>");
-                    OpenWindow.document.write("<INPUT TYPE='BUTTON' VALUE='Close Window' onClick='window.close()'>");
-                    OpenWindow.document.write("</FORM>");
-                    OpenWindow.document.write("</BODY>");
-                    OpenWindow.document.write("</HTML>");
-                    OpenWindow.document.close();
-                    self.name="main"
-                    }
-                    openindex();
+                        $.ajax({
+                            type: "POST",
+                            url: runtime.handlerUrl(element, 'grab_explanation'),
+                            data: JSON.stringify({}),
+                            success: function(result) {
+                                $(function () {
+                                    $(".explanation").text(result.explanation).dialog();
+                                });
+                            }
+                        });
+
+                    });
 
                 });
 

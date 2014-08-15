@@ -145,21 +145,21 @@ class VideoQuiz(XBlock):
         # return cue time triggers and tell whether or not the quit was loaded
         return {"vid_url": self.vid_url, "cuetimes": self.quiz_cuetimes,
                 "correct": self.runtime.local_resource_url(self, 'public/img/correct-icon.png'),
-                "incorrect": self.runtime.local_resource_url(self, 'public/img/incorrect-icon.png')}
+                "incorrect": self.runtime.local_resource_url(self, 'public/img/incorrect-icon.png'),
+                }
 
     def grab_current_question(self):
         """Return data relevant for each refresh of the quiz form."""
 
         content = {
-                   "index": self.index,
-                   "question": self.quiz[self.index].question,
-                   "kind": self.quiz[self.index].kind,
-                   "options": self.quiz[self.index].options,
-                   "answer": self.quiz[self.index].answer,  # originally blank to prevent cheating
-                   "explanation": self.quiz[self.index].explanation,
-                   "student_tries": self.quiz[self.index].tries,
-                   "result": self.results[self.index]
-                   }
+            "index": self.index,
+            "question": self.quiz[self.index].question,
+            "kind": self.quiz[self.index].kind,
+            "options": self.quiz[self.index].options,
+            "answer": self.quiz[self.index].answer,  # originally blank to prevent cheating
+            "student_tries": self.quiz[self.index].tries,
+            "result": self.results[self.index]
+        }
 
         ''' Old code; intended to prevent students from grabbing the answer if they did not answer correctly
 
@@ -193,6 +193,11 @@ class VideoQuiz(XBlock):
             content = {"grade": -1}
 
         return content
+
+    @XBlock.json_handler
+    def grab_explanation(self, data, suffix=''):
+        """Return explanation for current question"""
+        return {"explanation": self.quiz[self.index].explanation}
 
     def answer_validate(self, left, right):
         """Validate student answer and return true if the answer is correct, false otherwise."""
@@ -379,6 +384,6 @@ class VideoQuiz(XBlock):
         """Workbench scenario for development and testing"""
         return [
             ("VideoQuiz", """<vidquiz vq_header="Test VidQuiz" vid_url="//www.youtube.com/embed/CxvgCLgwdNk" width="640" height="480"
-            quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question"/>"""),
+            quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question this is the first question this is the first question this is the first question"/>"""),
         ]
 

@@ -68,7 +68,24 @@
     color: darkorange;
 }
 
-.noquiz {
-    text-align: center;
-    color: darkorange;
+.ui-dialog .ui-dialog-content
+{
+    position: relative;
+    padding: .5em 1em;
+    background: none;
+    overflow: auto;
+    zoom: 1;
+    background-color: #f3f3f3;
+    border: solid 1px #c3c3c3;
+}
+
+.ui-dialog .ui-dialog-titlebar
+{
+    background-color: #ce3229;
+    border: solid 1px #b93027;
+}
+
+.ui-widget-content
+{
+    /*border:none;*/
 }
