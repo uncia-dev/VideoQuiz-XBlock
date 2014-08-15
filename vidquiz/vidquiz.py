@@ -307,7 +307,6 @@ class VideoQuiz(XBlock):
         if len(data) > 0:
 
             # There is no validation! Enter your data carefully!
-
             self.vq_header = data["vq_header"]
             self.display_name = data["vq_header"]
             self.quiz_content = data["quiz_content"]
@@ -320,6 +319,13 @@ class VideoQuiz(XBlock):
             print("Quiz data: " + data["quiz_content"])
             print("Video URL: " + data["vid_url"])
             print("Video size: " + data["width"] + "x" + data["height"] + "px")
+
+            # Reset VidQuiz variables
+            self.index = 0
+            self.results = []
+            self.answers = []
+            self.quiz = []
+            self.quiz_cuetimes = []
 
         # prepare current module parameters for return
         content = {

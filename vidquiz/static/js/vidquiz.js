@@ -283,6 +283,8 @@ corn.mute();
                         success: quizUpdate
                     });
 
+                    setTimeout(function(){location.reload();},1000)
+
                 });
 
                 // Clicked Skip/Continue
