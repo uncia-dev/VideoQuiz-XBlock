@@ -15,7 +15,7 @@ function VideoQuizStudio(runtime, element) {
     /* Page is loaded. Do something. */
     $(function($) {
 
-        //$(".action-item").hide(); // hide edX's OK button
+        $(".button  action-cancel action-primary").hide(); // hide edX's OK button
 
         // Grab current values and update the fields
         $.ajax({
