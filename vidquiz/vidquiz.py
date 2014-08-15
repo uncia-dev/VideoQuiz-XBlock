@@ -321,9 +321,7 @@ class VideoQuiz(XBlock):
             print("Video size: " + data["width"] + "x" + data["height"] + "px")
 
             # Reset VidQuiz variables
-            self.index = 0
             self.results = []
-            self.answers = []
             self.quiz = []
             self.quiz_cuetimes = []
 
