@@ -15,7 +15,11 @@ function VideoQuizStudio(runtime, element) {
     /* Page is loaded. Do something. */
     $(function($) {
 
-        $(".button  action-cancel action-primary").hide(); // hide edX's OK button
+        // Hijack edX's button bar for the studio view
+        $(".modal-actions").empty()
+            .append(
+                    $("<input />", {type: "button", class: "btn_submit", value: "Submit"})
+            );
 
         // Grab current values and update the fields
         $.ajax({
