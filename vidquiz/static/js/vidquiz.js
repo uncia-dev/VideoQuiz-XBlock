@@ -211,7 +211,7 @@ function VideoQuiz(runtime, element) {
                 // var corn = Popcorn(".vid_lecture");
 
                 var wrapper = Popcorn.HTMLYouTubeVideoElement(".vid_lecture");
-                wrapper.src = vid_url + "?controls=2";
+                wrapper.src = "//www.youtube.com/embed/" + vid_url.split("https://www.youtube.com/watch?v=")[1] + "?controls=2";
                 var corn = Popcorn(wrapper);
 
 // remove this
