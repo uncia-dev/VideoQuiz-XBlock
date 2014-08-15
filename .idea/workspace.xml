@@ -49,8 +49,8 @@
       <file leaf-file-name="vidquiz.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vidquiz/static/js/vidquiz.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6606607" vertical-offset="3192" max-vertical-offset="4320">
-              <caret line="214" column="40" selection-start-line="214" selection-start-column="40" selection-end-line="214" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.7117117" vertical-offset="5355" max-vertical-offset="6354">
+              <caret line="337" column="18" selection-start-line="220" selection-start-column="0" selection-end-line="337" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -966,8 +966,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vidquiz/static/js/vidquiz.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6606607" vertical-offset="3192" max-vertical-offset="4320">
-          <caret line="214" column="40" selection-start-line="214" selection-start-column="40" selection-end-line="214" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.7117117" vertical-offset="5355" max-vertical-offset="6354">
+          <caret line="337" column="18" selection-start-line="220" selection-start-column="0" selection-end-line="337" selection-end-column="18" />
           <folding />
         </state>
       </provider>
