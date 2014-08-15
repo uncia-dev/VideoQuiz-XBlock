@@ -15,6 +15,8 @@ function VideoQuizStudio(runtime, element) {
     /* Page is loaded. Do something. */
     $(function($) {
 
+        $(".action-item").hide(); // hide edX's OK button
+
         // Grab current values and update the fields
         $.ajax({
             type: "POST",
@@ -39,7 +41,7 @@ function VideoQuizStudio(runtime, element) {
                 success: formUpdate
             });
 
-            //location.reload();
+            setTimeout(function(){location.reload();},1000)
 
         });
 
