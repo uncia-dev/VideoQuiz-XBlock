@@ -39,7 +39,7 @@ function VideoQuizStudio(runtime, element) {
                 success: formUpdate
             });
 
-            location.reload();
+            //location.reload();
 
         });
 
