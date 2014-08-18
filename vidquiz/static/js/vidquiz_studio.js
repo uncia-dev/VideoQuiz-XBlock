@@ -18,7 +18,7 @@ function VideoQuizStudio(runtime, element) {
         // Hijack edX's button bar for the studio view
         $(".modal-actions").empty()
             .append(
-                    $("<input />", {type: "button", class: "btn_submit", value: "Submit"})
+                    $("<input />", {type: "button", class: "btn_submit", value: "Save and Reload"})
             );
 
         // Grab current values and update the fields
