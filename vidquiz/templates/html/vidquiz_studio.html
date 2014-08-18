@@ -8,11 +8,14 @@
 
             <form class="vidquiz_parameters">
 
-                <p>Title</p><input type="text" class="vq_header_studio">
-                <p>YouTube Video URL</p><input type="text" class="vid_url">
+                <label for="vq_header_studio">Title</label>
+                <input type="text" id="vq_header_studio">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="vid_url">YouTube Video URL</label>
+                <input type="text" id="vid_url">
                 <!--<p>Video Width</p><input type="text" class="width">-->
                 <!--<p>Video Height</p><input type="text" class="height">-->
-                <p>Quiz details</p><textarea class="quiz_content" rows="10" cols="130"></textarea>
+                <p>Quiz details</p><textarea id="quiz_content" rows="10" cols="130"></textarea>
                 <p>
                     trigger time ~ question kind (text, radio, checkbox) ~ question ~ optionA|optionB|optionC ~ answerA|answerB ~ explanation
                 </p>

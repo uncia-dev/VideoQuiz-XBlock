@@ -4,9 +4,9 @@ function VideoQuizStudio(runtime, element) {
     /* Update fields of the form to the current values */
     function formUpdate(data) {
 
-        $(".vq_header_studio").val(data.vq_header);
-        $(".quiz_content").val(data.quiz_content);
-        $(".vid_url").val(data.vid_url);
+        $("#vq_header_studio").val(data.vq_header);
+        $("#quiz_content").val(data.quiz_content);
+        $("#vid_url").val(data.vid_url);
         //$(".width").val(data.width);
         //$(".height").val(data.height);
 
@@ -36,9 +36,9 @@ function VideoQuizStudio(runtime, element) {
                 type: "POST",
                 url: runtime.handlerUrl(element, 'studio_submit'),
                 data: JSON.stringify({
-                    "vq_header": $('.vq_header_studio').val(),
-                    "quiz_content": $('.quiz_content').val(),
-                    "vid_url": $('.vid_url').val()
+                    "vq_header": $('#vq_header_studio').val(),
+                    "quiz_content": $('#quiz_content').val(),
+                    "vid_url": $('#vid_url').val()
                     //"width": $('.width').val(),
                     //"height": $('.height').val()
                 }),
