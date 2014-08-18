@@ -12,15 +12,19 @@
     font-weight: bold;
     font-size: x-large;
     color: #1aa1e0;
-}
-
-.html5link {
-
+    text-align: center;
 }
 
 .vid_lecture {
     display: block;
     margin: 0 auto;
+    width: 720px;
+    height: 540px;
+}
+
+.quiz_area {
+    width: 720px;
+    height: 540px;
 }
 
 .video_area {
