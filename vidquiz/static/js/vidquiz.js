@@ -54,6 +54,7 @@ function VideoQuiz(runtime, element) {
         } else if (cur_question_kind == "radio" || cur_question_kind == "checkbox") {
 
             params['name'] = 'answer_multi';
+            $(".student_answer").append($("<ul>", {class: 'answer_multi_list'}));
 
             $.each(quiz_content.options, function() {
 
@@ -65,15 +66,14 @@ function VideoQuiz(runtime, element) {
                     if ($.inArray(String(this), quiz_content.answer) > -1) params['checked'] = true;
                 }
 
-                $(".student_answer").append(
-                    $("<ul>").append(
-                        $("<li>").append(
-                            $('<input />', params)
-                        ).append(
-                            $("<span>").text(this)
-                        )
+                $(".answer_multi_list").append(
+                    $("<li>").append(
+                        $('<input />', params)
+                    ).append(
+                        $('<span>').text(this)
                     )
                 );
+
             });
 
         // Notify student that there is an error and this question will not work
@@ -139,7 +139,7 @@ function VideoQuiz(runtime, element) {
             } else if (quiz_content.result == 1) {
 
                 $(".answer_icon").show().attr("src", icon_incorrect);
-                $(".answer_feedback").show().text("Sorry, your answer is not correct!");
+                $(".answer_feedback").show().text("Sorry, your answer is not correct. Try again.");
                 $(".btn_submit").val("Resubmit");
                 $('.btn_next').val("Continue");
 
@@ -296,6 +296,9 @@ corn.mute();
                 $('.btn_next').click(function (eventObject) {
                     $(".vid_lecture").show();
                     $(".quiz_area").hide();
+
+                    $(".ui-dialog-titlebar-close").click();
+
                     corn.play();
                 });
 

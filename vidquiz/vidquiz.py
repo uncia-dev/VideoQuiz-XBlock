@@ -390,6 +390,6 @@ class VideoQuiz(XBlock):
         """Workbench scenario for development and testing"""
         return [
             ("VideoQuiz", """<vidquiz vq_header="Test VidQuiz" vid_url="https://www.youtube.com/watch?v=CxvgCLgwdNk"
-            quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question this is the first question this is the first question this is the first question"/>"""),
+            quiz_content="1 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ this is the second question"/>"""),
         ]
 
