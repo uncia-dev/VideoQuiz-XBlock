@@ -19,7 +19,7 @@ function VideoQuiz(runtime, element) {
         $(".btn_submit").val("Submit").show();
         $(".btn_next").val("Skip").show();
         $(".btn_explain").hide();
-        $(".btn_reset").hide();
+        $('.btn_replay').hide();
         $(".answer_icon").hide();
         $(".answer_feedback").hide();
 
@@ -310,7 +310,7 @@ corn.mute();
                             data: JSON.stringify({}),
                             success: function(result) {
                                 $(function () {
-                                    $(".explanation").text(result.explanation).dialog().addClass("explanation-window");
+                                    $(".explanation").text(result.explanation).dialog({dialogClass: 'explanation-window'});
                                 });
                             }
                         });
