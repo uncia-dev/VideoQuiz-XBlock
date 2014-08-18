@@ -27,6 +27,8 @@ function VideoQuiz(runtime, element) {
     /* Display quiz questions (taking student results into calculation) */
     function drawQuestions(quiz_content) {
 
+        $(".question_number").text("Question " + (quiz_content.index + 1));
+
         // First draw student input form
         var params = {type: cur_question_kind};
         $(".student_answer").empty();

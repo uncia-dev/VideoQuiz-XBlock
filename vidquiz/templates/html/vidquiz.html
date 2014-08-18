@@ -1,6 +1,8 @@
 <div class="vidquiz_block">
 
-    <p class="vq_header">{{self.vq_header}}</p>
+    <div class="vq_header"><span>{{self.vq_header}}</span></div>
+
+    <br>
 
     <div class="video_area">
 
@@ -15,46 +17,43 @@
         <!--<div class="vid_lecture" style="width: {{self.width}}; height: {{self.height}}px;" ></div>-->
         <div class="vid_lecture"></div>
 
-        <!-- Disabled this; will remind students via edX, not this block
-        <p class="html5link">
-            <a onclick="window.open('https://www.youtube.com/html5')">Not using Google Chrome? Click here and press "Request the HTML5 player" in the following page.</a>
-        </p>
-        -->
-
     </div>
 
     <!-- Question form to be displayed for each question -->
     <div class="quiz_area" hidden>
 
-        <p class="question"></p>
+        <div class="question_area">
 
-        <form class="student_input" method="POST">
+            <p class="question_number"></p>
+            <p class="question"></p>
+
             <div class="student_answer"></div>
-        </form>
 
-        <p class="feedback_area">
-            <img class="answer_icon" src="">
-            <span class="answer_feedback"></span>
-        </p>
+            <!-- No longer used
+            <p class="tries"></p>
+             -->
 
-        <div class="button_area">
+            <div class="explanation" title="Explanation"></div>
+
+            <div class="feedback_area">
+                <img class="answer_icon" src="">
+                <span class="answer_feedback"></span>
+            </div>
+
+        </div>
+
+        <div class="scoreboard" hidden>
+            <p class="result_title">Your result</p>
+            <p class="result_feedback"></p>
+        </div>
+
+        <div class="control_area">
             <input class="btn_submit" type="button" value="Submit">
             <input class="btn_next" type="button" value="Skip">
             <input class="btn_explain" type="button" value="Explanation">
+            <input class="btn_replay" type="button" value="Restart">
         </div>
 
-        <!-- No longer used
-        <p class="tries"></p>
-         -->
-
-        <div class="explanation" title="Explanation"></div>
-
-    </div>
-
-    <div class="scoreboard" hidden>
-        <p>Your result</p>
-        <p class="result_feedback"></p>
-        <input class="btn_replay" type="button" value="Replay?">
     </div>
 
     <p class="novid" hidden>There is no video to display.</p>
