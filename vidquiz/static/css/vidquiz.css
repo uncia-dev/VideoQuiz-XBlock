@@ -3,21 +3,19 @@
 .vidquiz_block {
   font-family: 'Arial', 'Helvetica', sans-serif;
   background: #F0F0F0;
-  /*text-align: center;*/
   padding: 15px;
   min-height: 640px;
   max-height: 640px;
 }
 
 .vq_header {
-    text-align: center;
     font-weight: bold;
     font-size: x-large;
     color: #1aa1e0;
 }
 
 .html5link {
-    text-align: center;
+
 }
 
 .vid_lecture {
@@ -26,11 +24,11 @@
 }
 
 .video_area {
-    text-align: center;
+
 }
 
 .question {
-    text-align: center;
+
 }
 
 .student_answer {
@@ -48,23 +46,24 @@
 }
 
 .feedback_area {
-    text-align: center;
+
 }
 
 .button_area {
-    text-align: center;
+
 }
 
+/*
 .tries {
-    text-align: center;
+
 }
+*/
 
 .scoreboard {
-    text-align: center;
+
 }
 
 .novid {
-    text-align: center;
     color: darkorange;
 }
 

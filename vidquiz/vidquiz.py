@@ -73,6 +73,7 @@ class VideoQuiz(XBlock):
         default="", scope=Scope.content
     )
 
+    '''
     width = Integer(
         help="Width of the video",
         default=640, scope=Scope.content
@@ -82,6 +83,7 @@ class VideoQuiz(XBlock):
         help="Height of the video",
         default=480, scope=Scope.content
     )
+    '''
 
     quiz_content = String(
         help="Content of quiz to be displayed",
@@ -311,14 +313,14 @@ class VideoQuiz(XBlock):
             self.display_name = data["vq_header"]
             self.quiz_content = data["quiz_content"]
             self.vid_url = data["vid_url"]
-            self.height = data["height"]
-            self.width = data["width"]
+            # self.height = data["height"]
+            # self.width = data["width"]
 
             print("submitted data")
             print("Title: " + data["vq_header"])
             print("Quiz data: " + data["quiz_content"])
             print("Video URL: " + data["vid_url"])
-            print("Video size: " + data["width"] + "x" + data["height"] + "px")
+            # print("Video size: " + data["width"] + "x" + data["height"] + "px")
 
             # Reset VidQuiz variables
             self.results = []
@@ -330,8 +332,8 @@ class VideoQuiz(XBlock):
             "vq_header": self.vq_header,
             "quiz_content": self.quiz_content,
             "vid_url": self.vid_url,
-            "width": self.width,
-            "height": self.height,
+            # "width": self.width,
+            # "height": self.height,
         }
 
         return content
@@ -353,8 +355,8 @@ class VideoQuiz(XBlock):
         print(">> Parameters: ")
         print(self.quiz_content)
         print(self.vid_url)
-        print(self.width)
-        print(self.height)
+        # print(self.width)
+        # print(self.height)
         print(">> Filled data")
         print("Quiz entries: " + str(self.quiz))
         print("Quiz cue times: " + str(self.quiz_cuetimes))
@@ -387,7 +389,7 @@ class VideoQuiz(XBlock):
     def workbench_scenarios():
         """Workbench scenario for development and testing"""
         return [
-            ("VideoQuiz", """<vidquiz vq_header="Test VidQuiz" vid_url="//www.youtube.com/embed/CxvgCLgwdNk" width="640" height="480"
+            ("VideoQuiz", """<vidquiz vq_header="Test VidQuiz" vid_url="https://www.youtube.com/watch?v=CxvgCLgwdNk"
             quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question this is the first question this is the first question this is the first question"/>"""),
         ]
 
