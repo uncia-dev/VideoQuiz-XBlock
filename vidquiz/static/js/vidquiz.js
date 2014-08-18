@@ -17,8 +17,9 @@ function VideoQuiz(runtime, element) {
         $(".answer").text("");
         $(".tries").text("").show();
         $(".btn_submit").val("Submit").show();
-        $(".btn_next").val("Skip");
+        $(".btn_next").val("Skip").show();
         $(".btn_explain").hide();
+        $(".btn_reset").hide();
         $(".answer_icon").hide();
         $(".answer_feedback").hide();
 
@@ -233,8 +234,13 @@ corn.mute();
 
                                 if (result.grade != -1) {
                                     $('.video_area').hide();
-                                    $('.quiz_area').hide();
-                                    $('.scoreboard').show();
+                                    $(".quiz_area").show();
+                                    $('.question_area').hide();
+                                    $('.btn_next').hide();
+                                    $('.btn_submit').hide();
+                                    $('.btn_explain').hide();
+                                    $('.btn_replay').show();
+                                    $('.result_area').show();
                                     $('.result_feedback').text("You have correctly answered " +
                                         Math.round(result.grade) + "% of the questions.");
                                 }
@@ -252,7 +258,6 @@ corn.mute();
                     corn.cue(v, function () {
                         corn.pause();
                         $(".vid_lecture").hide();
-                        //$(".html5link").hide();
                         $(".quiz_area").show();
                         quizGoto(k);
                     });
@@ -290,7 +295,6 @@ corn.mute();
                 // Clicked Skip/Continue
                 $('.btn_next').click(function (eventObject) {
                     $(".vid_lecture").show();
-                    //$(".html5link").show();
                     $(".quiz_area").hide();
                     corn.play();
                 });
@@ -326,7 +330,9 @@ corn.mute();
                             quizFormReset();
                             $('.video_area').show();
                             $('.quiz_area').hide();
-                            $('.scoreboard').hide();
+                            $('.question_area').show();
+                            $('.result_area').hide();
+                            $('.btn_replay').hide();
                             corn.currentTime(0);
                             corn.play();
                         }

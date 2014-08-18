@@ -1,15 +1,16 @@
+
 /* CSS for VideoQuiz */
 
+/* Main XBlock */
 .vidquiz_block {
   font-family: 'Arial', 'Helvetica', sans-serif;
   background: #F0F0F0;
   padding: 15px;
   width: 790px;
   height: 670px;
-  border-style: dashed;
-  border-width: 1px;
 }
 
+/* Title bar */
 .vq_header {
     font-weight: bold;
     font-size: x-large;
@@ -18,14 +19,18 @@
     background-color: #C0C0C0;
     margin-top: -15px;
     margin-left: -15px;
-    width: 820px;
-    height: 36px;
+    width: 818px;
+    height: 30px;
+    border-style: solid;
+    border-width: 1px;
 }
+
 
 .vq_header span {
     vertical-align: middle;
 }
 
+/* Video area */
 .vid_lecture {
     display: block;
     margin: 0 auto;
@@ -33,9 +38,10 @@
     height: 540px;
 }
 
+/* Block containing questions, student input, results */
 .quiz_area {
     width: 720px;
-    height: 516px;
+    height: 540px;
     margin: auto;
     text-align: left;
     position:relative;
@@ -44,9 +50,58 @@
     border-width: 1px;
 }
 
+/* These are related to question output */
+.question_number {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* Text-only answer */
+.answer_simple {
+    width: 705px;
+    margin-left: 3px;
+}
+
+/* Radio or checkbox answer */
+.answer_multi {
+
+}
+
+.answer_multi_list {
+    list-style: none;
+}
+
+/* Correct or incorrect notification area */
+.feedback_area {
+
+}
+
+/* Deprecated - Number of tries left
+.tries {
+
+}
+*/
+
+/* Result window displayed at the end of the video */
+.result_area {
+    width: 720px;
+    height: 540px;
+    margin: auto;
+    text-align: left;
+    border-style: dashed;
+    border-width: 1px;
+}
+
+.result_title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Buttons used throughout the module */
 .control_area {
     width: 720px;
-    height: 24px;
+    height: 44px;
     margin: auto;
     text-align: left;
     position: absolute;
@@ -61,69 +116,12 @@
     margin-right: -7px;
 }
 
-.question_number {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.question {
-
-}
-
-
-.student_answer {
-
-}
-
-.answer_simple {
-    width: 712px;
-}
-
-.answer_multi_list {
-    list-style: none;
-}
-
-.answer_multi {
-
-}
-
-.feedback_area {
-
-}
-
-.button_area {
-    
-}
-
-.button_area input, .scoreboard input {
-    width: 96px;
-    margin-right: -5px;
-}
-
-/*
-.tries {
-
-}
-*/
-
-.scoreboard {
-    width: 720px;
-    height: 540px;
-    margin: auto;
-    text-align: left;
-    border-style: dashed;
-    border-width: 1px;
-}
-
-.result_title {
-    font-size: 18px;
-    font-weight: bold;
-}
-
+/* Window displayed when there is no video to load */
 .novid {
-    color: darkorange;
+    color: #1aa1e0;
 }
 
+/* JQuery dialog used for Explanation */
 .ui-dialog .ui-dialog-content
 {
     position: relative;
@@ -132,16 +130,17 @@
     overflow: auto;
     zoom: 1;
     background-color: #f3f3f3;
-    border: solid 1px #c3c3c3;
+    border: solid 1px;
 }
 
 .ui-dialog .ui-dialog-titlebar
 {
-    background-color: #ce3229;
-    border: solid 1px #b93027;
+    background-color: #1aa1e0;
+    border: 1px solid;
+    border-bottom: 0px;
 }
 
 .ui-widget-content
 {
-    /*border:none;*/
+
 }
