@@ -310,7 +310,7 @@ corn.mute();
                             data: JSON.stringify({}),
                             success: function(result) {
                                 $(function () {
-                                    $(".explanation").text(result.explanation).dialog();
+                                    $(".explanation").text(result.explanation).dialog().addClass("explanation-window");
                                 });
                             }
                         });
