@@ -217,9 +217,6 @@ function VideoQuiz(runtime, element) {
                 wrapper.src = "//www.youtube.com/embed/" + vid_url.split("https://www.youtube.com/watch?v=")[1] + "?controls=2";
                 var corn = Popcorn(wrapper);
 
-// remove this
-corn.mute();
-
                 // Add statistics to be show at the end of the video
                 corn.cue(0.001, function() {
 
