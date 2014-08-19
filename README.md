@@ -24,6 +24,8 @@ hidden left-overs from development which you can also use. Initially grading was
 tries would be shown to students and the size of the video could be controlled. The quiz content was also in a separate
 file. Initially only HTML5 videos were also support, but we have migrated to YouTube for less cross-platform hassles.
 
+This module uses JQuery, JQueryUI and Popcorn.js. Everything else is just stock XBlock features.
+
 Setup
 -----
 
@@ -38,7 +40,9 @@ ssh terminal:
 Sample Quiz
 -----------
 
-YouTube Video URL: https://www.youtube.com/watch?v=CxvgCLgwdNk
+YouTube Video URL:
+
+    https://www.youtube.com/watch?v=CxvgCLgwdNk (Popcorn.js demo video)
 
 Quiz content:
 
