@@ -117,8 +117,6 @@ class VideoQuiz(XBlock):
         # grab questions, answers, etc from form
         for line in self.quiz_content.split('\n'):
 
-            print(line)
-
             '''
             each line will contain the following:
                 trigger time
@@ -130,8 +128,6 @@ class VideoQuiz(XBlock):
             '''
 
             tmp = line.split(" ~ ")
-
-            print(tmp)
 
             # populate trigger times for each question
             self.quiz_cuetimes.append(tmp[0])

@@ -45,7 +45,7 @@ Sample Quiz
 -----------
 
 Video URL:
-    http://www.youtube.com/watch?v=CxvgCLgwdNk
+    https://www.youtube.com/watch?v=CxvgCLgwdNk
 
 Quiz content:
 1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question
