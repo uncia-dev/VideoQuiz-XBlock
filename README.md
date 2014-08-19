@@ -41,6 +41,7 @@ Sample Quiz
 YouTube Video URL: https://www.youtube.com/watch?v=CxvgCLgwdNk
 
 Quiz content:
+
     1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question
     2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ this is the second question
     3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ this is the third question
