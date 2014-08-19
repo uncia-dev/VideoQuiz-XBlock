@@ -6,7 +6,5 @@
   text-align: center;
   padding: 15px;
   min-height: 320px;
-}
-#vq_header_studio, #vid_url {
-    width: 350px;
+  margin: auto;
 }
