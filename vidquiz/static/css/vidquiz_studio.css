@@ -2,9 +2,19 @@
 
 .vidquiz_block {
   font-family: 'Arial', 'Helvetica', sans-serif;
-  background: #F0F0F0;
+  background: #FFFFFF;
   text-align: center;
   padding: 15px;
   min-height: 320px;
   margin: auto;
+}
+
+#quiz_content {
+    width: 700px;
+    min-height: 72px;
+    max-height: 155px;
+    resize: none;
+    overflow: scroll;
+    overflow-x: scroll;
+    overflow:-moz-scrollbars;
 }
