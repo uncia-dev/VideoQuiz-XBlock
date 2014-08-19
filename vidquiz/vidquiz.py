@@ -117,6 +117,8 @@ class VideoQuiz(XBlock):
         # grab questions, answers, etc from form
         for line in self.quiz_content.split('\n'):
 
+            print(line)
+
             '''
             each line will contain the following:
                 trigger time
@@ -125,10 +127,11 @@ class VideoQuiz(XBlock):
                 optionA|optionB|optionC
                 answerA|answerB
                 explanation
-                tries
             '''
 
             tmp = line.split(" ~ ")
+
+            print(tmp)
 
             # populate trigger times for each question
             self.quiz_cuetimes.append(tmp[0])
@@ -341,6 +344,7 @@ class VideoQuiz(XBlock):
     # = edX related stuff ============================================================================================ #
 
     # TO-DO: change this view to display your data your own way.
+
     def student_view(self, context=None):
         """
         The primary view of VideoQuiz, shown to students.
@@ -390,6 +394,6 @@ class VideoQuiz(XBlock):
         """Workbench scenario for development and testing"""
         return [
             ("VideoQuiz", """<vidquiz vq_header="Test VidQuiz" vid_url="https://www.youtube.com/watch?v=CxvgCLgwdNk"
-            quiz_content="1 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ this is the second question"/>"""),
+            quiz_content="2 ~ checkbox ~ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean consequat elit ante, at gravida ligula aliquam eget. Vivamus egestas scelerisque sapien ac sollicitudin. Nunc luctus iaculis rutrum. Sed convallis, orci ac rutrum commodo, tellus tortor viverra est, sed consectetur tellus sapien quis est. Ut ac odio tincidunt libero mattis facilisis id eu sapien. Maecenas vitae nibh eu nisl viverra sagittis. Sed id est non massa dictum egestas et in elit. Fusce fringilla in quam sed pellentesque. Praesent blandit, massa vitae consequat condimentum, tortor urna adipiscing augue, id venenatis enim erat sed tortor. Vivamus nisl ligula, elementum nec turpis quis, posuere euismod ligula. Proin vitae magna id sapien feugiat eleifend. Sed porttitor egestas est quis vehicula. In eu elit volutpat, laoreet lectus adipiscing, eleifend ante. Vestibulum. ~ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean consequat elit ante, at gravida ligula aliquam eget. Vivamus egestas scelerisque sapien ac sollicitudin. Nunc luctus iaculis rutrum. Sed convallis, orci ac rutrum commodo, tellus tortor viverra est, sed consectetur tellus sapien quis est. Ut ac odio tincidunt libero mattis facilisis id eu sapien. Maecenas vitae nibh eu nisl viverra sagittis. Sed id est non massa dictum egestas et in elit. Fusce fringilla in quam sed pellentesque. Praesent blandit, massa vitae consequat condimentum, tortor urna adipiscing augue, id venenatis enim erat sed tortor. Vivamus nisl ligula, elementum nec turpis quis, posuere euismod ligula. Proin vitae magna id sapien feugiat eleifend. Sed porttitor egestas est quis vehicula. In eu elit volutpat, laoreet lectus adipiscing, eleifend ante. Vestibulum. |no|maybezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz ~ no ~ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean consequat elit ante, at gravida ligula aliquam eget. Vivamus egestas scelerisque sapien ac sollicitudin. Nunc luctus iaculis rutrum. Sed convallis, orci ac rutrum commodo, tellus tortor viverra est, sed consectetur tellus sapien quis est. Ut ac odio tincidunt libero mattis facilisis id eu sapien. Maecenas vitae nibh eu nisl viverra sagittis. Sed id est non massa dictum egestas et in elit. Fusce fringilla in quam sed pellentesque. Praesent blandit, massa vitae consequat condimentum, tortor urna adipiscing augue, id venenatis enim erat sed tortor. Vivamus nisl ligula, elementum nec turpis quis, posuere euismod ligula. Proin vitae magna id sapien feugiat eleifend. Sed porttitor egestas est quis vehicula. In eu elit volutpat, laoreet lectus adipiscing, eleifend ante. Vestibulum."/>"""),
         ]
 
