@@ -16,3 +16,11 @@
     overflow: scroll;
     overflow:-moz-scrollbars;
 }
+
+#vq_header_studio {
+    width: 500px;
+}
+
+#vid_url {
+    width: 500px;
+}
