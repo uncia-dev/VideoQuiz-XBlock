@@ -92,9 +92,7 @@ class VideoQuiz(XBlock):
         default="", scope=Scope.content
     )
 
-    index = -1
-
-    results = []  # was XBlock field
+    results = []
 
     answers = List(
         default=[], scope=Scope.user_state,
@@ -103,6 +101,7 @@ class VideoQuiz(XBlock):
 
     quiz = []
     quiz_cuetimes = []
+    index = [0]  # for some reason index = 0 keeps resetting to 0
 
     def load_quiz(self):
         """Load all questions of the quiz from file located at path."""
@@ -144,7 +143,8 @@ class VideoQuiz(XBlock):
         """Perform the actions below when the module is loaded."""
 
         # return cue time triggers and tell whether or not the quit was loaded
-        return {"vid_url": self.vid_url, "cuetimes": self.quiz_cuetimes,
+        return {
+                "vid_url": self.vid_url, "cuetimes": self.quiz_cuetimes,
                 "correct": self.runtime.local_resource_url(self, 'public/img/correct-icon.png'),
                 "incorrect": self.runtime.local_resource_url(self, 'public/img/incorrect-icon.png'),
                 }
@@ -153,20 +153,20 @@ class VideoQuiz(XBlock):
         """Return data relevant for each refresh of the quiz form."""
 
         content = {
-            "index": self.index,
-            "question": self.quiz[self.index].question,
-            "kind": self.quiz[self.index].kind,
-            "options": self.quiz[self.index].options,
-            "answer": self.quiz[self.index].answer,  # originally blank to prevent cheating
-            "student_tries": self.quiz[self.index].tries,
-            "result": self.results[self.index]
+            "index": self.index[0],
+            "question": self.quiz[self.index[0]].question,
+            "kind": self.quiz[self.index[0]].kind,
+            "options": self.quiz[self.index[0]].options,
+            "answer": self.quiz[self.index[0]].answer,  # originally blank to prevent cheating
+            "student_tries": self.quiz[self.index[0]].tries,
+            "result": self.results[self.index[0]]
         }
 
         ''' Old code; intended to prevent students from grabbing the answer if they did not answer correctly
 
         # Send out answers ONLY IF the student answered correctly
-        if self.results[self.index] == 5:
-            content["answer"] = self.quiz[self.index].answer
+        if self.results[self.index[0]] == 5:
+            content["answer"] = self.quiz[self.index[0]].answer
         else:
             content["answer"] = "if you see this, you cheated! begone!"
 
@@ -181,36 +181,40 @@ class VideoQuiz(XBlock):
         # process grade only if there is a quiz
         if self.quiz_content != "":
 
-            content = {"grade": 0.0}
+            content = {"grade": 0, "total": len(self.results)}
 
             for i in self.results:
                 if i == 5:  # only take into account passed state
-                    content["grade"] += 1.0
+                    content["grade"] += 1
 
-            content["grade"] *= (100.0/len(self.results))
+            # content["grade"] *= (100.0/len(self.results))  # use this for percentage grade
 
         else:
 
-            content = {"grade": -1}
+            content = {"grade": -1, "total": -1}
 
         return content
 
     @XBlock.json_handler
     def grab_explanation(self, data, suffix=''):
         """Return explanation for current question"""
-        return {"explanation": self.quiz[self.index].explanation}
+
+        print("explaining")
+        print(self.index[0])
+
+        return {"explanation": self.quiz[self.index[0]].explanation}
 
     def answer_validate(self, left, right):
         """Validate student answer and return true if the answer is correct, false otherwise."""
 
         result = False
 
-        if self.quiz[self.index].kind == "text":
+        if self.quiz[self.index[0]].kind == "text":
 
             if left.upper() in right[0].upper():
                 result = True
 
-        if self.quiz[self.index].kind == "radio":
+        if self.quiz[self.index[0]].kind == "radio":
 
             if left != "blank":
 
@@ -218,7 +222,7 @@ class VideoQuiz(XBlock):
                 if left[0]['value'] in right:
                     result = True
 
-        if self.quiz[self.index].kind == "checkbox":
+        if self.quiz[self.index[0]].kind == "checkbox":
 
             new_left = []
             for x in left:
@@ -242,41 +246,43 @@ class VideoQuiz(XBlock):
                5 = passed
         '''
 
+        print(self.index[0])
+
         # make sure the question is of a familiar kind
-        if self.quiz[self.index].kind in ["text", "radio", "checkbox"]:
+        if self.quiz[self.index[0]].kind in ["text", "radio", "checkbox"]:
 
             # record student answers; might be useful for professors
-            self.answers.append([self.index, data["answer"]])
+            self.answers.append([self.index[0], data["answer"]])
 
             # are there any tries left?
-            if self.quiz[self.index].tries > 0:
+            if self.quiz[self.index[0]].tries > 0:
 
                 # glitch/cheat avoidance here
-                if not self.results[self.index] > 1:
+                if not self.results[self.index[0]] > 1:
 
                     # decrease number of tries
-                    self.quiz[self.index].tries -= 1
+                    self.quiz[self.index[0]].tries -= 1
 
                     # student enters valid answer(s)
-                    if self.answer_validate(data["answer"], self.quiz[self.index].answer):
-                        self.results[self.index] = 3
+                    if self.answer_validate(data["answer"], self.quiz[self.index[0]].answer):
+                        self.results[self.index[0]] = 3
                     # student enters invalid answer, but may still have tries left
                     else:
-                        self.results[self.index] = 1
+                        self.results[self.index[0]] = 1
 
         else:
             print("Unsupported kind of question in this quiz.")
 
         # If the tries ran out, mark this answer as failed
-        if self.quiz[self.index].tries == 0 and self.results[self.index] == 1:
-            self.results[self.index] = 2
+        if self.quiz[self.index[0]].tries == 0 and self.results[self.index[0]] == 1:
+            self.results[self.index[0]] = 2
 
         content = self.grab_current_question()
 
         # mark this question as attempted, after preparing output
         # ensures student is not alerted too early of completing the question in the past
-        if self.results[self.index] in range(2, 4):
-            self.results[self.index] += 2  # set to state 4 (failed) or 5 (passed)
+        if self.results[self.index[0]] in range(2, 4):
+            self.results[self.index[0]] += 2  # set to state 4 (failed) or 5 (passed)
 
         return content
 
@@ -284,13 +290,21 @@ class VideoQuiz(XBlock):
     def index_goto(self, data, suffix=''):
         """Retrieve index from JSON and return quiz question strings located at that index."""
 
-        self.index = data['index']
+        print("Going to ...")
+        print(data['index'])
+
+        self.index[0] = data['index']
+
+        print(self.index[0])
+        print('----')
 
         return self.grab_current_question()
 
     @XBlock.json_handler
     def quiz_reset(self, data, suffix=''):
         """Reset quiz results"""
+
+        self.index[0] = 0
 
         for i in range(0, len(self.results)):
             self.results[i] = 0

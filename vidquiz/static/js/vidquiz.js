@@ -187,12 +187,16 @@ function VideoQuiz(runtime, element) {
 
     /* Load question at index i, from vidquiz.py->self.quiz */
     function quizGoto(index, eventObject) {
+
+        console.log(index);
+
         $.ajax({
             type: "POST",
             url: runtime.handlerUrl(element, "index_goto"),
             data: JSON.stringify({"index": index}),
             success: quizUpdate
         });
+
     }
 
     /* Page is loaded. Do something. */
@@ -238,8 +242,8 @@ function VideoQuiz(runtime, element) {
                                     $('.btn_explain').hide();
                                     $('.btn_replay').show();
                                     $('.result_area').show();
-                                    $('.result_feedback').text("You have correctly answered " +
-                                        Math.round(result.grade) + "% of the questions.");
+                                    $('.result_feedback').text("You have correctly answered " + result.grade +
+                                        " out of " + result.total + " questions.");
                                 }
 
                             }
@@ -291,12 +295,12 @@ function VideoQuiz(runtime, element) {
 
                 // Clicked Skip/Continue
                 $('.btn_next').click(function (eventObject) {
+
                     $(".vid_lecture").show();
                     $(".quiz_area").hide();
-
                     $(".ui-dialog-titlebar-close").click();
-
                     corn.play();
+
                 });
 
                 // Clicked Explain button
@@ -340,7 +344,7 @@ function VideoQuiz(runtime, element) {
 
                 });
 
-                })
+            })
 
         } else {
 
