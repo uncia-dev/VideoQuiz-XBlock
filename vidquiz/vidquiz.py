@@ -290,13 +290,7 @@ class VideoQuiz(XBlock):
     def index_goto(self, data, suffix=''):
         """Retrieve index from JSON and return quiz question strings located at that index."""
 
-        print("Going to ...")
-        print(data['index'])
-
         self.index[0] = data['index']
-
-        print(self.index[0])
-        print('----')
 
         return self.grab_current_question()
 

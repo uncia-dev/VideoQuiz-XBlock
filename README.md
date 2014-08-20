@@ -8,7 +8,7 @@ This XBlock is a YouTube video player module for the edX platform, which can als
 times, and awaits student input. Three types of questions are supported so far: simple answers, multiple choice
 (radio boxes) and also multiple answers (check boxes). Once a student answers correctly, or runs out of tries, the
 student can also view an explanation dialog for the current question. At the end of the video playback, the students get
-a small statistic as well, showing the percentage of completed questions.
+a small statistic as well, showing how many questions were answered correctly.
 
 On the edX Studio side of this module, the professor has to input a title (both the navigation bar in edX, and the
 header within the module, a full HTTPS link to a YouTube video, without extra parameters (though they can technically
