@@ -56,6 +56,8 @@ class VideoQuiz(XBlock):
     the student has to answer. Upon completing or skipping a question, the video resumes playback.
     """
 
+    has_children = False
+
     display_name = String(
         display_name="Video Quiz",
         help="This name appears in the horizontal navigation at the top of the page",
@@ -91,7 +93,7 @@ class VideoQuiz(XBlock):
     )
 
     index = Integer(
-        default=-1, scope=Scope.user_state,
+        default=-1, scope=Scope.content,
         help="Counter that keeps track of the current question being displayed",
     )
 
