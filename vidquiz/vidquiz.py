@@ -92,10 +92,7 @@ class VideoQuiz(XBlock):
         default="", scope=Scope.content
     )
 
-    index = Integer(
-        default=-1, scope=Scope.content,
-        help="Counter that keeps track of the current question being displayed",
-    )
+    index = -1
 
     results = []  # was XBlock field
 
