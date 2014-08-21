@@ -29,9 +29,6 @@ function VideoQuiz(runtime, element) {
     /* Display quiz questions (taking student results into calculation) */
     function drawQuestions(quiz_content) {
 
-        console.log("DRAW");
-        console.log(quiz_content);
-
         $(".question_number").text("Question " + (index+1));
 
         // First draw student input form
@@ -327,7 +324,7 @@ function VideoQuiz(runtime, element) {
                         $.ajax({
                             type: "POST",
                             url: runtime.handlerUrl(element, 'get_explanation'),
-                            data: JSON.stringify({}),
+                            data: JSON.stringify({"index": index}),
                             success: function(result) {
                                 $(function () {
                                     $(".explanation").text(result.explanation).dialog({dialogClass: 'explanation-window'});

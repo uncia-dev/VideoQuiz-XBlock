@@ -92,7 +92,10 @@ class VideoQuiz(XBlock):
         default="", scope=Scope.content
     )
 
-    results = []
+    results = List(
+        default=[], scope=Scope.user_state,
+        help="Answers entered by the student",
+    )
 
     answers = List(
         default=[], scope=Scope.user_state,
@@ -171,7 +174,8 @@ class VideoQuiz(XBlock):
                 "kind": quiz[index][1].kind,
                 "options": quiz[index][1].options,
                 "answer": quiz[index][1].answer,
-                "explanation": quiz[index][1].explanation
+                "explanation": quiz[index][1].explanation,
+                "result": self.results[index]
             }
 
         except IndexError:
@@ -182,7 +186,8 @@ class VideoQuiz(XBlock):
                 "kind": "",
                 "options": "",
                 "answer": "",
-                "explanation": ""
+                "explanation": "",
+                "result": -1
             }
 
     def get_question_object(self, index):
