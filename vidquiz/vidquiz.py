@@ -399,8 +399,13 @@ class VideoQuiz(XBlock):
                 for i in range(0, self.get_quiz_len()):
                     self.results.append(0)
 
+            # Reset results if page is reloaded
+            if len(self.results) == self.get_quiz_len():
+                for i in range(0, self.get_quiz_len()):
+                    self.results[i] = 0
+
         print("Answers: " + str(self.answers))
-        print("Results: " + str(self.results))
+        print("Results: " + str(self.results))  # we should see only 0s here
 
         fragment = Fragment()
         fragment.add_content(render_template('templates/html/vidquiz.html', {'self': self}))

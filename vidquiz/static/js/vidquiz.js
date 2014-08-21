@@ -103,8 +103,6 @@ function VideoQuiz(runtime, element) {
 
         quizFormReset(); // refresh quiz form; not the most optimal way, but it does the job
 
-        console.log(quiz_content);
-
         if (quiz_content.cuetime != -1) { // Invalid case is -1
 
             cur_question_kind = quiz_content.kind;
@@ -207,9 +205,6 @@ function VideoQuiz(runtime, element) {
         // Load quiz questions and grab their cue times
         getToWork();
 
-        console.log(vid_url);
-        console.log(cue_times);
-
         if (vid_url != "") {
 
             $(".novid").hide();
@@ -301,8 +296,6 @@ function VideoQuiz(runtime, element) {
                     });
 
                     if (tries > 0) tries -= 1;
-
-                    console.log(tries);
 
                 });
 
