@@ -103,7 +103,7 @@ function VideoQuiz(runtime, element) {
 
         quizFormReset(); // refresh quiz form; not the most optimal way, but it does the job
 
-        if (quiz_content.noquiz == true) {
+        if (quiz_content.noquiz == false) {
 
             cur_question_kind = quiz_content.kind;
 
