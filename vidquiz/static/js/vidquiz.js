@@ -103,63 +103,71 @@ function VideoQuiz(runtime, element) {
 
         quizFormReset(); // refresh quiz form; not the most optimal way, but it does the job
 
-        cur_question_kind = quiz_content.kind;
+        if (quiz_content.noquiz == true) {
 
-        $('.index', element).text(quiz_content.index);
-        $('.question', element).text(quiz_content.question);
+            cur_question_kind = quiz_content.kind;
 
-        drawQuestions(quiz_content);
+            $('.index', element).text(quiz_content.index);
+            $('.question', element).text(quiz_content.question);
 
-        // Display feedback if student already attempted or completed this question
-        if (quiz_content.result >= 4) {
+            drawQuestions(quiz_content);
 
-            $('.btn_submit').hide();
-            $('.btn_next').val("Continue");
-            $('.tries').hide();
+            // Display feedback if student already attempted or completed this question
+            if (quiz_content.result >= 4) {
 
-            if (quiz_content.result == 4) out = "You have already attempted this question.";
-            else out = "You have already answered this question.";
-
-            $(".answer_feedback").show().text(out);
-
-        // Question isn't a "finalized" stage yet
-        } else {
-
-            // Right answer
-            if (quiz_content.result == 3) {
-
-                $(".answer_icon").show().attr("src", icon_correct);
-                $(".answer_feedback").show().text("Your answer is correct!");
-                $('.tries').hide();
                 $('.btn_submit').hide();
                 $('.btn_next').val("Continue");
-                drawQuestions(quiz_content);
+                $('.tries').hide();
 
-            // Wrong answer
-            } else if (quiz_content.result == 1) {
+                if (quiz_content.result == 4) out = "You have already attempted this question.";
+                else out = "You have already answered this question.";
 
-                $(".answer_icon").show().attr("src", icon_incorrect);
-                $(".answer_feedback").show().text("Sorry, your answer is not correct. Try again.");
-                $(".btn_submit").val("Resubmit");
-                $('.btn_next').val("Continue");
+                $(".answer_feedback").show().text(out);
 
-            // Ran out of trie state
-            } else if (quiz_content.result == 2) {
+                // Question isn't a "finalized" stage yet
+            } else {
 
-                $(".tries").text("Sorry, you ran out of tries.");
-                $(".btn_submit").hide();
-                $(".btn_next").val("Continue");
+                // Right answer
+                if (quiz_content.result == 3) {
+
+                    $(".answer_icon").show().attr("src", icon_correct);
+                    $(".answer_feedback").show().text("Your answer is correct!");
+                    $('.tries').hide();
+                    $('.btn_submit').hide();
+                    $('.btn_next').val("Continue");
+                    drawQuestions(quiz_content);
+
+                    // Wrong answer
+                } else if (quiz_content.result == 1) {
+
+                    $(".answer_icon").show().attr("src", icon_incorrect);
+                    $(".answer_feedback").show().text("Sorry, your answer is not correct. Try again.");
+                    $(".btn_submit").val("Resubmit");
+                    $('.btn_next').val("Continue");
+
+                    // Ran out of trie state
+                } else if (quiz_content.result == 2) {
+
+                    $(".tries").text("Sorry, you ran out of tries.");
+                    $(".btn_submit").hide();
+                    $(".btn_next").val("Continue");
+
+                }
+
+                // Output tries left - disabled
+                // if (quiz_content.student_tries > 0) $(".tries").text("Tries left: " + quiz_content.student_tries);
 
             }
 
-            // Output tries left - disabled
-            // if (quiz_content.student_tries > 0) $(".tries").text("Tries left: " + quiz_content.student_tries);
+            // Conditions for showing Explanation button
+            if (quiz_content.student_tries == 0 || quiz_content.result >= 3) {
+                $(".btn_explain").show();
+            }
 
-        }
+        } else {
 
-        // Conditions for showing Explanation button
-        if (quiz_content.student_tries == 0 || quiz_content.result >= 3) {
-            $(".btn_explain").show();
+            console.log("Something broke here...");
+
         }
 
     }

@@ -159,7 +159,8 @@ class VideoQuiz(XBlock):
             "options": self.quiz[self.index[0]].options,
             "answer": self.quiz[self.index[0]].answer,  # originally blank to prevent cheating
             "student_tries": self.quiz[self.index[0]].tries,
-            "result": self.results[self.index[0]]
+            "result": self.results[self.index[0]],
+            "noquiz": False
         }
 
         ''' Old code; intended to prevent students from grabbing the answer if they did not answer correctly
@@ -290,9 +291,12 @@ class VideoQuiz(XBlock):
     def index_goto(self, data, suffix=''):
         """Retrieve index from JSON and return quiz question strings located at that index."""
 
-        self.index[0] = data['index']
+        if len(self.quiz) > 0:
+            self.index[0] = data['index']
+            return self.grab_current_question()
 
-        return self.grab_current_question()
+        else:
+            return {"noquiz": True}
 
     @XBlock.json_handler
     def quiz_reset(self, data, suffix=''):
