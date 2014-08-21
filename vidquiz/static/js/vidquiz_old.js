@@ -4,9 +4,7 @@ function VideoQuiz(runtime, element) {
     var cue_times = []; // store cue times for each quiz question
     var icon_correct = "";
     var icon_incorrect = "";
-    var index = "";
     var cur_question_kind = "";
-    var tries = 3;
 
     /*
     Resets question form to a blank state
@@ -17,6 +15,7 @@ function VideoQuiz(runtime, element) {
         $(".student_answer").empty();
         $(".question").text("");
         $(".answer").text("");
+        $(".tries").text("").show();
         $(".btn_submit").val("Submit").show();
         $(".btn_next").val("Skip").show();
         $(".btn_explain").hide();
@@ -29,10 +28,7 @@ function VideoQuiz(runtime, element) {
     /* Display quiz questions (taking student results into calculation) */
     function drawQuestions(quiz_content) {
 
-        console.log("DRAW");
-        console.log(quiz_content);
-
-        $(".question_number").text("Question " + (index+1));
+        $(".question_number").text("Question " + (quiz_content.index + 1));
 
         // First draw student input form
         var params = {type: cur_question_kind};
@@ -83,9 +79,10 @@ function VideoQuiz(runtime, element) {
         // Notify student that there is an error and this question will not work
         } else {
 
-            $(".question").text("Invalid question type for question ID=" + index + ". Please contact your" +
+            $(".question").text("Invalid question type for question ID=" + quiz_content.index + ". Please contact your" +
                 " professor.");
             $(".btn_submit").hide();
+            $(".tries").hide();
 
         }
 
@@ -106,13 +103,11 @@ function VideoQuiz(runtime, element) {
 
         quizFormReset(); // refresh quiz form; not the most optimal way, but it does the job
 
-        console.log(quiz_content);
-
-        if (quiz_content.cuetime != -1) { // Invalid case is -1
+        if (quiz_content.noquiz == false) {
 
             cur_question_kind = quiz_content.kind;
 
-            $('.index', element).text(index);
+            $('.index', element).text(quiz_content.index);
             $('.question', element).text(quiz_content.question);
 
             drawQuestions(quiz_content);
@@ -122,6 +117,7 @@ function VideoQuiz(runtime, element) {
 
                 $('.btn_submit').hide();
                 $('.btn_next').val("Continue");
+                $('.tries').hide();
 
                 if (quiz_content.result == 4) out = "You have already attempted this question.";
                 else out = "You have already answered this question.";
@@ -136,6 +132,7 @@ function VideoQuiz(runtime, element) {
 
                     $(".answer_icon").show().attr("src", icon_correct);
                     $(".answer_feedback").show().text("Your answer is correct!");
+                    $('.tries').hide();
                     $('.btn_submit').hide();
                     $('.btn_next').val("Continue");
                     drawQuestions(quiz_content);
@@ -151,15 +148,19 @@ function VideoQuiz(runtime, element) {
                     // Ran out of trie state
                 } else if (quiz_content.result == 2) {
 
+                    $(".tries").text("Sorry, you ran out of tries.");
                     $(".btn_submit").hide();
                     $(".btn_next").val("Continue");
 
                 }
 
+                // Output tries left - disabled
+                // if (quiz_content.student_tries > 0) $(".tries").text("Tries left: " + quiz_content.student_tries);
+
             }
 
             // Conditions for showing Explanation button
-            if (tries == 0 && quiz_content.result >= 3) {
+            if (quiz_content.student_tries == 0 || quiz_content.result >= 3) {
                 $(".btn_explain").show();
             }
 
@@ -185,7 +186,7 @@ function VideoQuiz(runtime, element) {
                 cue_times = result.cuetimes;
                 icon_correct = result.correct;
                 icon_incorrect = result.incorrect;
-                index = 0;
+                explanation_url = result.explanation_url;
             }
 
         });
@@ -194,6 +195,8 @@ function VideoQuiz(runtime, element) {
 
     /* Load question at index i, from vidquiz.py->self.quiz */
     function quizGoto(index, eventObject) {
+
+        console.log(index);
 
         $.ajax({
             type: "POST",
@@ -209,9 +212,6 @@ function VideoQuiz(runtime, element) {
 
         // Load quiz questions and grab their cue times
         getToWork();
-
-        console.log(vid_url);
-        console.log(cue_times);
 
         if (vid_url != "") {
 
@@ -237,7 +237,7 @@ function VideoQuiz(runtime, element) {
 
                         $.ajax({
                             type: "POST",
-                            url: runtime.handlerUrl(element, "get_grade"),
+                            url: runtime.handlerUrl(element, "grab_grade"),
                             data: JSON.stringify({}),
                             success: function(result) {
 
@@ -269,8 +269,6 @@ function VideoQuiz(runtime, element) {
                         $(".vid_lecture").hide();
                         $(".quiz_area").show();
                         quizGoto(k);
-                        index = k;
-                        tries = 3;
                     });
                 });
 
@@ -296,16 +294,10 @@ function VideoQuiz(runtime, element) {
                         type: "POST",
                         url: runtime.handlerUrl(element, 'answer_submit'),
                         data: JSON.stringify({
-                            "answer": out,
-                            "index": index,
-                            "tries": tries
+                            "answer": out
                         }),
                         success: quizUpdate
                     });
-
-                    if (tries > 0) tries -= 1;
-
-                    console.log(tries);
 
                 });
 
@@ -326,7 +318,7 @@ function VideoQuiz(runtime, element) {
 
                         $.ajax({
                             type: "POST",
-                            url: runtime.handlerUrl(element, 'get_explanation'),
+                            url: runtime.handlerUrl(element, 'grab_explanation'),
                             data: JSON.stringify({}),
                             success: function(result) {
                                 $(function () {
@@ -353,7 +345,6 @@ function VideoQuiz(runtime, element) {
                             $('.question_area').show();
                             $('.result_area').hide();
                             $('.btn_replay').hide();
-                            index = 0;
                             corn.currentTime(0);
                             corn.play();
                         }

@@ -99,32 +99,22 @@ class VideoQuiz(XBlock):
         help="Answers entered by the student",
     )
 
-    @XBlock.json_handler
-    def get_to_work(self, data, suffix=''):
-        """Perform the actions below when the module is loaded."""
+    quiz = []
+    quiz_cuetimes = []
+    index = [0]  # for some reason index = 0 keeps resetting to 0
 
-        # return cue time triggers and tell whether or not the quit was loaded
-        return {
-            "vid_url": self.vid_url, "cuetimes": self.get_cuetimes(),
-            "correct": self.runtime.local_resource_url(self, 'public/img/correct-icon.png'),
-            "incorrect": self.runtime.local_resource_url(self, 'public/img/incorrect-icon.png'),
-        }
+    def load_quiz(self):
+        """Load all questions of the quiz from file located at path."""
 
-    def get_quiz_len(self):
-        """Return length of quiz"""
+        # purge quiz and cue times in case it already contains elements
+        del self.quiz[:]
+        del self.quiz_cuetimes[:]
 
-        if len(self.quiz_content) != "":
-            return len(self.quiz_content.split(';'))
-        else:
-            return 0
-
-    def get_quiz(self):
-        """Return dictionary with quiz content"""
-
-        quiz = []
+        print("Loading quiz ...")
 
         # grab questions, answers, etc from form
-        for line in self.quiz_content.split(';'):
+        # for line in self.quiz_content.split(';'):
+        for line in self.quiz_content.split('\n'):
 
             '''
             each line will contain the following:
@@ -138,78 +128,55 @@ class VideoQuiz(XBlock):
 
             tmp = line.split(" ~ ")
 
+            # populate trigger times for each question
+            self.quiz_cuetimes.append(tmp[0])
+
             # populate container for quiz questions
-            quiz.append([tmp[0], QuizQuestion(tmp[1], tmp[2], tmp[3].split("|"), tmp[4].split("|"), tmp[5])])
-
-        return quiz
-
-    def get_cuetimes(self):
-        """Return array of quiz cuetimes"""
-
-        if len(self.quiz_content) != "":
-
-            content = []
-
-            for line in self.quiz_content.split(';'):
-                content.append(line.split(" ~ ")[0])
-
-            return content
-
-        else:
-            return []
-
-    def get_question(self, index):
-        """Return data relevant for each refresh of the quiz form."""
-
-        quiz = self.get_quiz()
-
-        try:
-
-            return {
-                "cuetime": quiz[index][0],
-                "question": quiz[index][1].question,
-                "kind": quiz[index][1].kind,
-                "options": quiz[index][1].options,
-                "answer": quiz[index][1].answer,
-                "explanation": quiz[index][1].explanation
-            }
-
-        except IndexError:
-
-            return {
-                "cuetime": -1,
-                "question": "",
-                "kind": "",
-                "options": "",
-                "answer": "",
-                "explanation": ""
-            }
-
-    def get_question_object(self, index):
-        """Return data relevant for each refresh of the quiz form."""
-
-        quiz = self.get_quiz()
-
-        try:
-
-            return quiz[index][1]
-
-        except IndexError:
-
-            return QuizQuestion('invalid')
-
-    def get_result(self, index):
-        """Get student result at index"""
-
-        try:
-            return self.results[index],
-
-        except IndexError:
-            return -1
-
+            #self.quiz.append(QuizQuestion(tmp[1], tmp[2], tmp[3].split("|"), tmp[4].split("|"), tmp[5], int(tmp[6])))
+            self.quiz.append(QuizQuestion(tmp[1], tmp[2], tmp[3].split("|"), tmp[4].split("|"), tmp[5]))  # ignore tries
+            # Populate array of results for this session
+            if len(self.results) < len(self.quiz):
+                self.results.append(0)
 
     @XBlock.json_handler
-    def get_grade(self, data, suffix=''):
+    def get_to_work(self, data, suffix=''):
+        """Perform the actions below when the module is loaded."""
+
+        # return cue time triggers and tell whether or not the quit was loaded
+        return {
+                "vid_url": self.vid_url, "cuetimes": self.quiz_cuetimes,
+                "correct": self.runtime.local_resource_url(self, 'public/img/correct-icon.png'),
+                "incorrect": self.runtime.local_resource_url(self, 'public/img/incorrect-icon.png'),
+                }
+
+    def grab_current_question(self):
+        """Return data relevant for each refresh of the quiz form."""
+
+        content = {
+            "index": self.index[0],
+            "question": self.quiz[self.index[0]].question,
+            "kind": self.quiz[self.index[0]].kind,
+            "options": self.quiz[self.index[0]].options,
+            "answer": self.quiz[self.index[0]].answer,  # originally blank to prevent cheating
+            "student_tries": self.quiz[self.index[0]].tries,
+            "result": self.results[self.index[0]],
+            "noquiz": False
+        }
+
+        ''' Old code; intended to prevent students from grabbing the answer if they did not answer correctly
+
+        # Send out answers ONLY IF the student answered correctly
+        if self.results[self.index[0]] == 5:
+            content["answer"] = self.quiz[self.index[0]].answer
+        else:
+            content["answer"] = "if you see this, you cheated! begone!"
+
+        '''
+
+        return content
+
+    @XBlock.json_handler
+    def grab_grade(self, data, suffix=''):
         """Return student grade for questions answered throughout video playback"""
 
         # process grade only if there is a quiz
@@ -230,21 +197,25 @@ class VideoQuiz(XBlock):
         return content
 
     @XBlock.json_handler
-    def get_explanation(self, data, suffix=''):
+    def grab_explanation(self, data, suffix=''):
         """Return explanation for current question"""
-        return {"explanation": self.get_question_object(data["index"]).explanation}
 
-    def answer_validate(self, left, right, kind):
+        print("explaining")
+        print(self.index[0])
+
+        return {"explanation": self.quiz[self.index[0]].explanation}
+
+    def answer_validate(self, left, right):
         """Validate student answer and return true if the answer is correct, false otherwise."""
 
         result = False
 
-        if kind == "text":
+        if self.quiz[self.index[0]].kind == "text":
 
             if left.upper() in right[0].upper():
                 result = True
 
-        if kind == "radio":
+        if self.quiz[self.index[0]].kind == "radio":
 
             if left != "blank":
 
@@ -252,11 +223,11 @@ class VideoQuiz(XBlock):
                 if left[0]['value'] in right:
                     result = True
 
-        if kind == "checkbox":
+        if self.quiz[self.index[0]].kind == "checkbox":
 
             new_left = []
-            for i in left:
-                new_left.append(i['value'])
+            for x in left:
+                new_left.append(x['value'])
 
             result = new_left == right
 
@@ -276,59 +247,66 @@ class VideoQuiz(XBlock):
                5 = passed
         '''
 
-        index = data["index"]
-        question = self.get_question_object(index)
-        answer = data["answer"]
-        tries = data["tries"]
+        print(self.index[0])
 
         # make sure the question is of a familiar kind
-        if question.kind in ["text", "radio", "checkbox"]:
+        if self.quiz[self.index[0]].kind in ["text", "radio", "checkbox"]:
 
             # record student answers; might be useful for professors
-            self.answers.append([index, answer])
+            self.answers.append([self.index[0], data["answer"]])
 
             # are there any tries left?
-            if tries > 0:
+            if self.quiz[self.index[0]].tries > 0:
 
                 # glitch/cheat avoidance here
-                if not self.results[index] > 1:
+                if not self.results[self.index[0]] > 1:
+
+                    # decrease number of tries
+                    self.quiz[self.index[0]].tries -= 1
 
                     # student enters valid answer(s)
-                    if self.answer_validate(answer, question.answer, question.kind):
-
-                        self.results[index] = 3
+                    if self.answer_validate(data["answer"], self.quiz[self.index[0]].answer):
+                        self.results[self.index[0]] = 3
                     # student enters invalid answer, but may still have tries left
                     else:
-                        self.results[index] = 1
+                        self.results[self.index[0]] = 1
 
         else:
             print("Unsupported kind of question in this quiz.")
 
         # If the tries ran out, mark this answer as failed
-        if tries == 0 and self.results[index] == 1:
-            self.results[index] = 2
+        if self.quiz[self.index[0]].tries == 0 and self.results[self.index[0]] == 1:
+            self.results[self.index[0]] = 2
 
-        content = self.get_question(index)
+        content = self.grab_current_question()
 
         # mark this question as attempted, after preparing output
         # ensures student is not alerted too early of completing the question in the past
-        if self.results[index] in range(2, 4):
-            self.results[index] += 2  # set to state 4 (failed) or 5 (passed)
+        if self.results[self.index[0]] in range(2, 4):
+            self.results[self.index[0]] += 2  # set to state 4 (failed) or 5 (passed)
 
         return content
-
 
     @XBlock.json_handler
     def index_goto(self, data, suffix=''):
         """Retrieve index from JSON and return quiz question strings located at that index."""
-        return self.get_question(data["index"])
+
+        if len(self.quiz) > 0:
+            self.index[0] = data['index']
+            return self.grab_current_question()
+
+        else:
+            return {"noquiz": True}
 
     @XBlock.json_handler
     def quiz_reset(self, data, suffix=''):
         """Reset quiz results"""
 
+        self.index[0] = 0
+
         for i in range(0, len(self.results)):
             self.results[i] = 0
+            self.quiz[i].tries = 3
 
         return {}
 
@@ -355,8 +333,10 @@ class VideoQuiz(XBlock):
             print("Video URL: " + data["vid_url"])
             # print("Video size: " + data["width"] + "x" + data["height"] + "px")
 
-            # Reset variables
+            # Reset VidQuiz variables
             self.results = []
+            self.quiz = []
+            self.quiz_cuetimes = []
 
         # prepare current module parameters for return
         content = {
@@ -378,6 +358,10 @@ class VideoQuiz(XBlock):
         The primary view of VideoQuiz, shown to students.
         """
 
+        # load contents of quiz if any, otherwise this is just a YouTube video player
+        if self.quiz_content != "":
+            self.load_quiz()
+
         print("Loading Student View")
         print("====================")
         print(">> Parameters: ")
@@ -385,18 +369,9 @@ class VideoQuiz(XBlock):
         print(self.vid_url)
         # print(self.width)
         # print(self.height)
-
-        # load contents of quiz if any, otherwise this is just a YouTube video player
-        if self.quiz_content != "":
-            print("Quiz Array: ")
-            print(self.get_quiz())
-            print("Quiz Length: " + str(self.get_quiz_len()))
-
-            # Populate array of results for this session
-            if len(self.results) < self.get_quiz_len():
-                for i in range(0, self.get_quiz_len()):
-                    self.results.append(0)
-
+        print(">> Filled data")
+        print("Quiz entries: " + str(self.quiz))
+        print("Quiz cue times: " + str(self.quiz_cuetimes))
         print("Answers: " + str(self.answers))
         print("Results: " + str(self.results))
 
@@ -429,4 +404,3 @@ class VideoQuiz(XBlock):
             ("VideoQuiz", """<vidquiz vq_header="Test VidQuiz" vid_url="https://www.youtube.com/watch?v=CxvgCLgwdNk"
             quiz_content="1 ~ text ~ Is this the last question? ~ yes|no|maybe ~ no ~ this is the first question;2 ~ checkbox ~ Is this the first question? ~ yes|no|maybe ~ no|maybe ~ this is the second question;3 ~ radio ~ Is this the second question? ~ yes|no|maybe ~ no ~ this is the third question"/>"""),
         ]
-
