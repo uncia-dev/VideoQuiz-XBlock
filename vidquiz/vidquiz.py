@@ -117,7 +117,7 @@ class VideoQuiz(XBlock):
         """Return length of quiz"""
 
         if len(self.quiz_content) != "":
-            return len(self.quiz_content.split(';'))
+            return len(self.quiz_content.split('\n'))
         else:
             return 0
 
@@ -127,7 +127,7 @@ class VideoQuiz(XBlock):
         quiz = []
 
         # grab questions, answers, etc from form
-        for line in self.quiz_content.split(';'):
+        for line in self.quiz_content.split('\n'):
 
             '''
             each line will contain the following:
@@ -153,7 +153,7 @@ class VideoQuiz(XBlock):
 
             content = []
 
-            for line in self.quiz_content.split(';'):
+            for line in self.quiz_content.split('\n'):
                 content.append(line.split(" ~ ")[0])
 
             return content
@@ -359,9 +359,6 @@ class VideoQuiz(XBlock):
             print("Quiz data: " + data["quiz_content"])
             print("Video URL: " + data["vid_url"])
             # print("Video size: " + data["width"] + "x" + data["height"] + "px")
-
-            # Reset variables
-            self.results = []
 
         # prepare current module parameters for return
         content = {
