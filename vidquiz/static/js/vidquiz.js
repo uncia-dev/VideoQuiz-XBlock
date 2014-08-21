@@ -156,7 +156,7 @@ function VideoQuiz(runtime, element) {
             }
 
             // Conditions for showing Explanation button
-            if (tries == 0 && quiz_content.result >= 3) {
+            if (tries == 0 || quiz_content.result >= 3) {
                 $(".btn_explain").show();
             }
 

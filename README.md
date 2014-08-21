@@ -34,7 +34,7 @@ ssh terminal:
 
     sudo rm -r vidquiz-xblock/ # in case you have an older version
     git clone https://github.com/uw-ray/vidquiz-xblock.git
-    sudo -u edxapp /edx/bin/pip.edxapp install --upgrade vidquiz-xblock/ # --upgrade only if you have an older version
+    sudo -u edxapp /edx/bin/pip.edxapp install vidquiz-xblock/ # --upgrade to update, but this breaks fullstack
 
 
 Sample Quiz
