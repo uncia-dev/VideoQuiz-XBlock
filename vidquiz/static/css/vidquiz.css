@@ -77,6 +77,10 @@
     list-style-type: none;
 }
 
+.answer_multi_list li span {
+    margin-left: 5px;
+}
+
 /* Correct or incorrect notification area */
 .feedback_area {
     padding-left: 15px;
