@@ -26,6 +26,9 @@ file. Initially only HTML5 videos were also support, but we have migrated to You
 
 This module uses JQuery, JQueryUI and Popcorn.js. Everything else is just stock XBlock features.
 
+As a note, deep within the directories are vidquiz_old.py and vidquiz_old.js. These only work on Devstack and the XBlock
+SDK, but fail (on the Python side of things) on Production.
+
 Setup
 -----
 
