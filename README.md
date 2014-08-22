@@ -19,6 +19,9 @@ work), and the content for the questions. The syntax for the quiz content is as 
 You can have one or more options and answers for each questions. Options and all but the first answer will be ignored
 for text answers.
 
+The module does not fully work under Studio as it requires a student login. Can probably be fixed, but it is not
+necessary for our uses.
+
 This module was made for Seneca College, but you may of course use and adapt this code as you wish. There are still
 hidden left-overs from development which you can also use. Initially grading was supposed to implemented, the number of
 tries would be shown to students and the size of the video could be controlled. The quiz content was also in a separate
@@ -29,8 +32,8 @@ This module uses JQuery, JQueryUI and Popcorn.js. Everything else is just stock 
 As a note, deep within the directories are vidquiz_old.py and vidquiz_old.js. These only work on Devstack and the XBlock
 SDK, but fail (on the Python side of things) on Production.
 
-Setup
------
+Installing
+----------
 
 vidquiz-xblock installs just like any other XBlock module. Here is a list of commands that you should run on your edX
 ssh terminal:
@@ -38,6 +41,14 @@ ssh terminal:
     sudo rm -r vidquiz-xblock/ # in case you have an older version
     git clone https://github.com/uw-ray/vidquiz-xblock.git
     sudo -u edxapp /edx/bin/pip.edxapp install vidquiz-xblock/ # --upgrade to update, but this breaks fullstack
+
+Uninstalling
+------------
+
+    sudo -H -u edxapp bash
+    source /edx/app/edxapp/edxapp_env
+    cd /edx/app/edxapp/edx-platform
+    pip uninstall vidquiz-xblock
 
 
 Sample Quiz
