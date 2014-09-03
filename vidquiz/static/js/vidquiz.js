@@ -6,7 +6,7 @@ function VideoQuiz(runtime, element) {
     var icon_incorrect = "";
     var index = "";
     var cur_question_kind = "";
-    var tries = 3;
+    var tries = 2;
 
     /*
     Resets question form to a blank state
@@ -283,6 +283,9 @@ function VideoQuiz(runtime, element) {
                         out = $('input:radio').serializeArray();
                         if (out.length == 0) out = "blank"; // still need to pass something to the server
                     }
+
+                    console.log(out);
+
 
                     $.ajax({
                         type: "POST",

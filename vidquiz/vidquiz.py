@@ -244,26 +244,29 @@ class VideoQuiz(XBlock):
 
         result = False
 
-        if kind == "text":
+        # only do the checking if left is not empty; empty string is part of any string
+        if left != "":
 
-            if left.upper() in right[0].upper():
-                result = True
+            if kind == "text":
 
-        if kind == "radio":
-
-            if left != "blank":
-
-                # Grab only the first answer in the array returned; prevent cheating
-                if left[0]['value'] in right:
+                if left.upper() in right[0].upper():
                     result = True
 
-        if kind == "checkbox":
+            if kind == "radio":
 
-            new_left = []
-            for i in left:
-                new_left.append(i['value'])
+                if left != "blank":
 
-            result = new_left == right
+                    # Grab only the first answer in the array returned; prevent cheating
+                    if left[0]['value'] in right:
+                        result = True
+
+            if kind == "checkbox":
+
+                new_left = []
+                for i in left:
+                    new_left.append(i['value'])
+
+                result = new_left == right
 
         return result
 
@@ -300,13 +303,13 @@ class VideoQuiz(XBlock):
 
                     # student enters valid answer(s)
                     if self.answer_validate(answer, question.answer, question.kind):
-
                         self.results[index] = 3
                     # student enters invalid answer, but may still have tries left
                     else:
                         self.results[index] = 1
 
         else:
+
             print("Unsupported kind of question in this quiz.")
 
         # If the tries ran out, mark this answer as failed
@@ -321,7 +324,6 @@ class VideoQuiz(XBlock):
             self.results[index] += 2  # set to state 4 (failed) or 5 (passed)
 
         return content
-
 
     @XBlock.json_handler
     def index_goto(self, data, suffix=''):
