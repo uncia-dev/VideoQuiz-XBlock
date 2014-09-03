@@ -154,14 +154,12 @@ function VideoQuiz(runtime, element) {
             }
 
             // Conditions for showing Explanation button
-            if (tries == 0 || quiz_content.result >= 3) {
+            if (tries == -1 || quiz_content.result >= 4) {
                 $(".btn_explain").show();
             }
 
         } else {
-
             console.log("Something broke here...");
-
         }
 
     }
@@ -262,7 +260,7 @@ function VideoQuiz(runtime, element) {
                         $(".quiz_area").show();
                         quizGoto(k);
                         index = k;
-                        tries = 3;
+                        tries = 2;
                     });
                 });
 
@@ -298,7 +296,7 @@ function VideoQuiz(runtime, element) {
                         success: quizUpdate
                     });
 
-                    if (tries > 0) tries -= 1;
+                    if (tries >= 0) tries -= 1;
 
                 });
 
